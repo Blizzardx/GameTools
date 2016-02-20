@@ -11,7 +11,8 @@ using Microsoft.Office.Interop.Excel;
 
 namespace ExcelImproter
 {
-    class ExcelReader
+
+    public class ExcelReader
     {
         public bool ReadExcel(string filePath,ref List<string[][]> content)
         {
@@ -19,7 +20,7 @@ namespace ExcelImproter
 
             int rowCount = 0;
             int columnCount = 0;
-            string[] sheetNames = this.GetSheetNames(filePath, ref errMsg, ref rowCount, ref columnCount);
+            string[] sheetNames = GetSheetNames(filePath, ref errMsg, ref rowCount, ref columnCount);
             if (sheetNames == null)
             {
                 return false;
@@ -117,7 +118,7 @@ namespace ExcelImproter
 
             return true;
         }
-        public string[] GetSheetNames(string filePath, ref string errMsg, ref int rowCount, ref int columnCount)
+        protected string[] GetSheetNames(string filePath, ref string errMsg, ref int rowCount, ref int columnCount)
         {
             string[] sheetNames;
             Application excel = new Microsoft.Office.Interop.Excel.Application();

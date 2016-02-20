@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExcelImproter.Export;
+using Thrift.Protocol;
 
 namespace ExcelImproter
 {
@@ -33,6 +34,31 @@ namespace ExcelImproter
             a.ReadExcel("D:/My Documents/Visual Studio 2013/Projects/ExcelImproter/ExcelImproter/config/TestGameConfigLevel2.xlsx", ref content);
             exprot.ExportConfig2(content);
             Console.WriteLine("Done");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //import mmadv 
+            TBase tbase = null;
+            XmlConfigBase xbase = null;
+            TrunkImporter a = new TrunkImporter();
+            //a.Importer("D:/My Documents/Visual Studio 2013/Projects/ExcelImproter/ExcelImproter/config/TrunkConfig.xlsx", out tbase, out xbase);
+            a.Importer(SystemInfo.m_strExcelPath, out tbase, out xbase);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            SystemInfo.m_strExcelPath = textBox1.Text;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            SystemInfo.m_strXmlOutputPath = textBox2.Text;
         }
     }
 }
