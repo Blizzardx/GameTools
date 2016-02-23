@@ -13,6 +13,9 @@ public class RunnerTrunkConfig : XmlConfigBase
     [XmlAttribute("trunkDiff")]
     public int TrunkDiff { get; set; }
 
+    [XmlAttribute("sceneId")]
+    public int SceneId { get; set; }
+
     [XmlArray("trunkItem")]
     public List<RunnerTrunkItemConfig> ItemList { get; set; }
 
@@ -32,6 +35,9 @@ public class RunnerTrunkElementConfig : XmlConfigBase
     [XmlAttribute("trunkDesc")]
     public string TrunkDesc { get; set; }
 
+    [XmlAttribute("sceneId")]
+    public int SceneId { get; set; }
+
     [XmlArray("trunkItem")]
     public List<RunnerTrunkItemConfig> ItemList { get; set; }
 
@@ -42,6 +48,7 @@ public class RunnerTrunkElementConfig : XmlConfigBase
         res.TrunkId = source.TrunkId;
         res.TrunkLength = source.TrunkLength;
         res.TrunkDiff = source.TrunkDiff;
+        res.SceneId = source.SceneId;
         res.ItemList = new List<RunnerTrunkItemConfig>(source.ItemList);
         return res;
     }
@@ -52,6 +59,7 @@ public class RunnerTrunkElementConfig : XmlConfigBase
         res.TrunkLength = source.TrunkLength;
         res.TrunkDiff = source.TrunkDiff;
         res.TrunkDesc = string.Empty;
+        res.SceneId = source.SceneId;
         res.ItemList = new List<RunnerTrunkItemConfig>(source.ItemList);
         return res;
     }

@@ -76,12 +76,14 @@ public class TrunkImporter : ExcelImporter
         elem.ItemList = new List<RunnerTrunkItemConfig>();
 
         int id = int.Parse(config[0]);
-        int diff = int.Parse(config[1]);
+        int sceneId = int.Parse(config[1]);
+        int diff = int.Parse(config[2]);
 
         elem.TrunkId = id;
         elem.TrunkDiff = diff;
+        elem.SceneId = sceneId;
 
-        int index = 2;
+        int index = 3;
         int xoffset = 0;
         int lastLength = 0;
         int lastSkip = 0;
