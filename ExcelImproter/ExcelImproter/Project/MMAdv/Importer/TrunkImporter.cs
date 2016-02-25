@@ -24,14 +24,18 @@ public class TrunkImporter : ExcelImporter
         xmlOutput = null;
         
         //load item info
-        LoadItemInfo(content[1]);
+        if(! LoadItemInfo(content[1]))
+        {
+            return;
+        }
 
         //load trunk info
         LoadTrunk(content[0]);
 
+        LogQueue.instance.Add("生成成功");
 
     }
-    private void LoadItemInfo(string[][] config)
+    private bool LoadItemInfo(string[][] config)
     {
         for (int i = 0; i < config.Length; ++i)
         {
@@ -41,16 +45,24 @@ public class TrunkImporter : ExcelImporter
                 continue;
             }
 
-            LoadItemElement(config[i]);
+            if(!LoadItemElement(config[i]))
+            {
+                return false;
+            }
         }
-        
+        return true;
     }
-    private void LoadItemElement(string[] config)
+    private bool LoadItemElement(string[] config)
     {
         string name     = config[0];
         int length = int.Parse(config[1]);
-
+        if(m_ItemLengthMap.ContainsKey(name))
+        {
+            LogQueue.instance.Add("文件名重复: " + name);
+            return false;
+        }
         m_ItemLengthMap.Add(name, length);
+        return true;
     }
     private void LoadTrunk(string[][] config)
     {
@@ -68,49 +80,66 @@ public class TrunkImporter : ExcelImporter
     }
     private void LoadTrunkElement(string[] config)
     {
-        RunnerTrunkElementConfig elem = new RunnerTrunkElementConfig();
-
-        //set default 
-        elem.TrunkLength = 50;
-        elem.TrunkDesc = "auto-gen";
-        elem.ItemList = new List<RunnerTrunkItemConfig>();
-
-        int id = int.Parse(config[0]);
-        int sceneId = int.Parse(config[1]);
-        int diff = int.Parse(config[2]);
-
-        elem.TrunkId = id;
-        elem.TrunkDiff = diff;
-        elem.SceneId = sceneId;
-
-        int index = 3;
-        int xoffset = 0;
-        int lastLength = 0;
-        int lastSkip = 0;
-        while(index < config.Length &&  (! string.IsNullOrEmpty(config[index])))
+        try
         {
-            string name = config[index];
-            int skip = int.Parse(config[index+1]);
-            RunnerTrunkItemConfig tmp = new RunnerTrunkItemConfig();
+            RunnerTrunkElementConfig elem = new RunnerTrunkElementConfig();
 
-            //set data 
-            tmp.ItemOffsetY = 0;
-            tmp.ItemOffsetX = xoffset + lastSkip + lastLength;
-            lastLength = m_ItemLengthMap[name];
-            lastSkip = skip;
-            tmp.ItemName = name;
+            //set default 
+            elem.TrunkLength = 50;
+            elem.TrunkDesc = "auto-gen";
+            elem.ItemList = new List<RunnerTrunkItemConfig>();
 
-            elem.ItemList.Add(tmp);
-            index += 2;
-            xoffset = tmp.ItemOffsetX;
+            int id = int.Parse(config[0]);
+            int sceneId = int.Parse(config[1]);
+            int diff = int.Parse(config[2]);
+
+            elem.TrunkId = id;
+            elem.TrunkDiff = diff / 10;
+            elem.SceneId = sceneId;
+
+            int index = 3;
+            int xoffset = 0;
+            int lastLength = 0;
+            int lastSkip = 0;
+            while (index < config.Length && (!string.IsNullOrEmpty(config[index])))
+            {
+                string name = config[index];
+                int skip = int.Parse(config[index + 1]);
+                RunnerTrunkItemConfig tmp = new RunnerTrunkItemConfig();
+
+                //set data 
+                tmp.ItemOffsetY = 0;
+                tmp.ItemOffsetX = xoffset + lastSkip + lastLength;
+                if(!m_ItemLengthMap.ContainsKey(name))
+                {
+                    LogQueue.instance.Add("找不到关键字 " + name); ;
+                    return;
+                }
+                lastLength = m_ItemLengthMap[name];
+                lastSkip = skip;
+                tmp.ItemName = name;
+
+                if (lastLength > 0)
+                {
+                    elem.ItemList.Add(tmp);
+                }
+                index += 2;
+                xoffset = tmp.ItemOffsetX;
+            }
+
+            //save to file 
+            //        string output = "D:/My Documents/Visual Studio 2013/Projects/ExcelImproter/ExcelImproter/config/xmloutput/TrunkElement_" + id.ToString() + ".xml";
+            string output = SystemInfo.m_strXmlOutputPath + "/TrunkElement_" + id.ToString() + ".xml";
+            string content = XmlConfigBase.Serialize(elem);
+
+            FileUtils.WriteStringFile(output, content);
+
+            LogQueue.instance.Add("done: " + output);
         }
-
-        //save to file 
-//        string output = "D:/My Documents/Visual Studio 2013/Projects/ExcelImproter/ExcelImproter/config/xmloutput/TrunkElement_" + id.ToString() + ".xml";
-        string output = SystemInfo.m_strXmlOutputPath + "/TrunkElement_" + id.ToString() + ".xml";
-        string content = XmlConfigBase.Serialize(elem);
-
-        FileUtils.WriteStringFile(output, content);
+        catch (Exception e)
+        {
+            LogQueue.instance.Add("error " + e.Message);
+        }        
     }
 }
 

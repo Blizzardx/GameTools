@@ -52,6 +52,7 @@
     <Compile Include="Framework\Importer\ExcelImporter.cs" />
     <Compile Include="Framework\Importer\ImporterBase.cs" />
     <Compile Include="Framework\Importer\XmlImporter.cs" />
+    <Compile Include="Framework\Log\LogQueue.cs" />
     <Compile Include="Plugin\Xml\XmlConfigBase.cs" />
     <Compile Include="Project\Dog\Configs\Struct\ExchangeCDConfig.cs" />
     <Compile Include="Project\Dog\Configs\Struct\ExchangeConfig.cs" />
