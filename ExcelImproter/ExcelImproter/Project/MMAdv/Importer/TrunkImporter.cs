@@ -94,7 +94,7 @@ public class TrunkImporter : ExcelImporter
             int diff = int.Parse(config[2]);
 
             elem.TrunkId = id;
-            elem.TrunkDiff = diff / 10;
+            elem.TrunkDiff = diff;
             elem.SceneId = sceneId;
 
             int index = 3;
