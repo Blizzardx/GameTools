@@ -85,8 +85,11 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Project\mmAdv\DiyConfigImproter.cs" />
     <Compile Include="Project\ScriptGenTool\GenScriptXml.cs" />
+    <Compile Include="Project\GenScript\User\AeroLevelUpConfigHandler.cs" />
+    <Compile Include="Project\GenScript\Auto\AeroLevelUpConfigHandler.cs" />
+    <Compile Include="Project\GenScript\User\DiyCharConfigHandler.cs" />
+    <Compile Include="Project\GenScript\Auto\DiyCharConfigHandler.cs" />
     <Compile Include="Project\ScriptGenTool\ScriptGenInfo.cs" />
     <Compile Include="Project\ScriptGenTool\ScriptGenTool.cs" />
     <Compile Include="Project\ScriptGenTool\XmlConfigBase.cs" />
@@ -168,6 +171,7 @@
     <Content Include="Project\ScriptGenTool\ExcelImporterUserTemplate.txt" />
     <Content Include="Project\ScriptGenTool\testTemplate.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -308,6 +308,21 @@ namespace GameConfigTools.Util
             }
             return string.Format("{0:yyyy-MM-dd HH:mm:ss}", time);
         }
+        public static bool IsLineNotNull(List<string> line)
+        {
+            if (line == null)
+            {
+                return false;
+            }
+            foreach (string obj in line)
+            {
+                if (obj != null && obj.ToString().Trim() != "")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         #endregion
     }
 }

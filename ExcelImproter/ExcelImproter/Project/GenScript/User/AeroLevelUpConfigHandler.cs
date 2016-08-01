@@ -7,7 +7,7 @@ using System;
 
 namespace ExcelImproter.Project
 {
-    public partial class {0}Handler : ExcelConfigHandlerBase
+    public partial class AeroLevelUpConfigHandler : ExcelConfigHandlerBase
     {
         protected override void ImporterExcel(ExcelData data, out ImporterPkg outPkg, ref string errMsg)
         {
@@ -16,7 +16,7 @@ namespace ExcelImproter.Project
 
         protected override string GetConfigPath()
         {
-             throw new NotImplementedException();
+            return "AeroLevelUpConfig.xlsx";
         }
 
         protected override void OnAutoParasLine(List<string> line, ref string errMsg)

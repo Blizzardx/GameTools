@@ -13,13 +13,13 @@ namespace ExcelImporter.Importer
     {
         public void GenScript(ScriptGenInfo info)
         {
-            string genScriptFilename = info.className + "Importer.cs";
+            string genScriptFilename = info.className + "Handler.cs";
             string genScriptUserFilename = genScriptFilename;
 
-            string parasFileOutputPath = "../../Import/GenScript/Auto/" + genScriptUserFilename;
-            string userFileOutputPath = "../../Import/GenScript/User/" + genScriptUserFilename;
+            string parasFileOutputPath = "../../Project/GenScript/Auto/" + genScriptUserFilename;
+            string userFileOutputPath = "../../Project/GenScript/User/" + genScriptUserFilename;
 
-            string resourcePath = "../../ScriptGenTool/";
+            string resourcePath = "../../Project/ScriptGenTool/";
             string autoParasTemplate = File.ReadAllText(resourcePath+"ExcelImporterAutoParasTemplate.txt");
             string autoParasUserTemplate = File.ReadAllText(resourcePath + "ExcelImporterUserTemplate.txt");
             string memberTemplate = File.ReadAllText(resourcePath + "ExcelImporterMemberTemplate.txt");
@@ -114,12 +114,12 @@ namespace ExcelImporter.Importer
         }
         private void FixProjectFile(string className)
         {
-            string projectFilePath = "../../GameConfigTools.csproj";
+            string projectFilePath = "../../ExcelImproter.csproj";
             // check project file
             string projectFile = File.ReadAllText(projectFilePath);
-            string autoFileDesc = File.ReadAllText("../../ScriptGenTool/ExcelImporterProjfixAuto.txt");
-            string userFileDesc = File.ReadAllText("../../ScriptGenTool/ExcelImporterProjfixUser.txt");
-            string testTemplate = File.ReadAllText("../../ScriptGenTool/testTemplate.txt");
+            string autoFileDesc = File.ReadAllText("../../Project/ScriptGenTool/ExcelImporterProjfixAuto.txt");
+            string userFileDesc = File.ReadAllText("../../Project/ScriptGenTool/ExcelImporterProjfixUser.txt");
+            string testTemplate = File.ReadAllText("../../Project/ScriptGenTool/testTemplate.txt");
             bool needUpdate = false;
             StringBuilder autoFile = new StringBuilder(autoFileDesc);
             autoFile = autoFile.Replace("{0}", className);
@@ -150,7 +150,7 @@ namespace ExcelImporter.Importer
             // load config
             ScriptGenTool tool = new ScriptGenTool();
 
-            string configPath = "../../ScriptGenTool/ConfigXml.xml";
+            string configPath = "../../Project/ScriptGenTool/ConfigXml.xml";
             string configContent = File.ReadAllText(configPath);
 
             var config = XmlConfigBase.DeSerialize<GenScriptXmlConfig>(configContent);

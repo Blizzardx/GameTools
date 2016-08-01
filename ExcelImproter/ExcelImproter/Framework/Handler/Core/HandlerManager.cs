@@ -55,7 +55,7 @@ namespace ExcelImproter.Framework.Handler
                 var handler = Activator.CreateInstance(list[i]) as IHandler;
                 if (m_HandlerFactory.ContainsKey(handler.GetImporter().GetPath()))
                 {
-                    LogQueue.instance.Add("Exist config path " + handler.GetImporter().GetPath() + " at importer " + list[i].ToString());
+                    LogQueue.instance.Add("already exist config path " + handler.GetImporter().GetPath() + " at importer " + list[i].ToString());
                     continue;
                 }
                 

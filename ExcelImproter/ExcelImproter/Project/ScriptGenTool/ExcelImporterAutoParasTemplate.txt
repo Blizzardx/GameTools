@@ -4,23 +4,18 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-using GameConfigTools.Constant;
-using GameConfigTools.Util;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using Config;
-using Config.Table;
-using Thrift.Protocol;
+using ExcelImproter.Framework.Handler;
+using ExcelImproter.Framework.Importer;
+using ExcelImproter.Framework.Reader;
+using GameConfigTools.Util;
 
-namespace GameConfigTools.Import
+namespace ExcelImproter.Project
 {
-    public partial class {0}Importer : AbstractExcelImporter
+    public partial class {0}Handler : ExcelConfigHandlerBase
     {
 {1}    
-        protected override void AutoParasTable(List<string[][]> sheetValues, ref string errMsg)
+        protected override void AutoParasTable(List<ExcelTable> sheetValues, ref string errMsg)
         {
             OnAutoParasBegin();
 
@@ -28,20 +23,16 @@ namespace GameConfigTools.Import
             {
                 return;
             }
-            
-            string[] sheetNames = this.GetSheetNames();
-            for (int sheetIndex = 0; sheetIndex < sheetValues.Count; sheetIndex++)
+            for (int tableIndex = 0; tableIndex < sheetValues.Count; ++tableIndex)
             {
-                string sheetName = sheetNames[sheetIndex];
-                string[][] values = sheetValues[sheetIndex];
-                for (int i = 0; i < values.Length; i++)
+                List<List<string>> values = sheetValues[tableIndex].Data;
+                for (int i = 0; i < values.Count; i++)
                 {
-                    if (!this.IsLineNotNull(values[i]))
+                    if (!VaildUtil.IsLineNotNull(values[i]))
                     {
                         continue;
                     }
                     int row = i + 1;
-                    int index = 0;
 
 {2}                    
                     
@@ -50,6 +41,7 @@ namespace GameConfigTools.Import
                     {
                         return;
                     }
+                    
                 }
             }
         }
