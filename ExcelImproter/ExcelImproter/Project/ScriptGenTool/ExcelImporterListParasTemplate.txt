@@ -1,0 +1,10 @@
+ try
+{
+    VaildUtil.SplitToList_{classname}(values[i][{index}]);
+}
+catch (Exception e)
+{
+    errMsg = string.Format("{4} {0}.xlsx sheet:[{1}] [{2},{3}]读取出现错误 ", this.GetConfigName(), sheetName, row,{index}+1, "{desc}");
+    errMsg += " " + e.Message;
+    return;
+}    

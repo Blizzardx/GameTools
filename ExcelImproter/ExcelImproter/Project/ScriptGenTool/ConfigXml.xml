@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <classConfigList>
+    <GenScriptClassXmlConfig className="DiyCharConfig">
+      <lineConfigList>
+        <GenScriptLineXmlConfig index="1" classTypeName="int" memberName="id" desc="id"/>
+        <GenScriptLineXmlConfig index="3" classTypeName="int" memberName="positionId" desc="positionId"/>
+        <GenScriptLineXmlConfig index="4" classTypeName="int" memberName="vertexid" desc="vertexid"/>
+        <GenScriptLineXmlConfig index="5" classTypeName="int" memberName="radius" desc="radius"/>
+        <GenScriptLineXmlConfig index="6" classTypeName="int" memberName="min" desc="min"/>
+        <GenScriptLineXmlConfig index="7" classTypeName="int" memberName="max" desc="max"/>
+        <GenScriptLineXmlConfig index="8" classTypeName="int" memberName="dirx" desc="dirx"/>
+        <GenScriptLineXmlConfig index="9" classTypeName="int" memberName="diry" desc="diry"/>
+        <GenScriptLineXmlConfig index="10" classTypeName="int" memberName="dirz" desc="dirz"/>
+      </lineConfigList>
+    </GenScriptClassXmlConfig>
+    <GenScriptClassXmlConfig className="AeroLevelUpConfig">
+      <lineConfigList>
+        <GenScriptLineXmlConfig index="1" classTypeName="int" memberName="aeroId" desc="aeroId"/>
+        <GenScriptLineXmlConfig index="2" classTypeName="int" memberName="level" desc="level"/>
+        <GenScriptLineXmlConfig index="3" classTypeName="int" memberName="limitId" desc="limitId"/>
+        <GenScriptLineXmlConfig index="4" classTypeName="int" memberName="funcId" desc="funcId"/>
+      </lineConfigList>
+    </GenScriptClassXmlConfig>
+  </classConfigList>
+</root>
