@@ -10,11 +10,23 @@ namespace ExcelImproter.Framework.Handler
 {
     public abstract class ExcelConfigHandlerBase : ExcelImporterBase, IExporter, IHandler
     {
+        #region public interface
         public void Export(object param)
         {
-            DoImporter(param);
+            DoExport(param);
         }
-        protected virtual void DoImporter(object param)
+        public IImporter GetImporter()
+        {
+            return SetImporter();
+        }
+        public IExporter GetExporter()
+        {
+            return SetExporter();
+        }
+        #endregion
+
+        #region protected function
+        protected virtual void DoExport(object param)
         {
             Export(param as ImporterPkg);
         }
@@ -22,13 +34,14 @@ namespace ExcelImproter.Framework.Handler
         {
 
         }
-        public IImporter GetImporter()
+        protected virtual IImporter SetImporter()
         {
             return this;
         }
-        public IExporter GetExporter()
+        protected virtual IExporter SetExporter()
         {
             return this;
         }
+        #endregion
     }
 }
