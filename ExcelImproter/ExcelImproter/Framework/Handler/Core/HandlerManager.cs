@@ -21,7 +21,7 @@ namespace ExcelImproter.Framework.Handler
             m_HandlerFactory.TryGetValue(name, out handler);
             if (null == handler)
             {
-                LogQueue.instance.Add("can't load handler by name "+ name);
+                LogQueue.Instance.Enqueue("can't load handler by name "+ name);
                 return;
             }
             try
@@ -37,8 +37,8 @@ namespace ExcelImproter.Framework.Handler
             }
             catch (Exception e)
             {
-                LogQueue.instance.Add("Exception on handle config " + name + " " + e.Message);
-                LogQueue.instance.Add(e.StackTrace);
+                LogQueue.Instance.Enqueue("Exception on handle config " + name + " " + e.Message);
+                LogQueue.Instance.Enqueue(e.StackTrace);
             }
         }
         private void AutoRegister()
@@ -55,7 +55,7 @@ namespace ExcelImproter.Framework.Handler
                 var handler = Activator.CreateInstance(list[i]) as IHandler;
                 if (m_HandlerFactory.ContainsKey(handler.GetImporter().GetPath()))
                 {
-                    LogQueue.instance.Add("already exist config path " + handler.GetImporter().GetPath() + " at importer " + list[i].ToString());
+                    LogQueue.Instance.Enqueue("already exist config path " + handler.GetImporter().GetPath() + " at importer " + list[i].ToString());
                     continue;
                 }
                 

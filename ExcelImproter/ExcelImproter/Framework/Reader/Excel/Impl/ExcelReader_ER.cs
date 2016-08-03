@@ -33,7 +33,7 @@ namespace ExcelImproter.Framework.Reader
             stream.Close();
             var space = DateTime.Now - time;
             Console.WriteLine("cost time " + space.TotalMilliseconds);
-            LogQueue.instance.Add("ER reader cost time " + space.TotalMilliseconds);
+            LogQueue.Instance.Enqueue("ER reader cost time " + space.TotalMilliseconds);
             return res;
         }
         private ExcelTable ReadSheet(int rowCount, int colCount, DataTable dataTable)

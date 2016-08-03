@@ -27,7 +27,7 @@ namespace ExcelImproter.Framework.Reader
             }
             var space = DateTime.Now - time;
             Console.WriteLine("cost time " + space.TotalMilliseconds);
-            LogQueue.instance.Add("DB reader cost time " + space.TotalMilliseconds);
+            LogQueue.Instance.Enqueue("DB reader cost time " + space.TotalMilliseconds);
             return res;
         }
         private List<List<string>> ReadSheet(string strConn, string sheetName)

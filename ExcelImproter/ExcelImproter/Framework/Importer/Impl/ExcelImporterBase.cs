@@ -61,7 +61,7 @@ namespace ExcelImproter.Framework.Importer.Impl
             {
                 return true;
             }
-            LogQueue.instance.Add(errorMsg);
+            LogQueue.Instance.Enqueue(errorMsg);
             return false;
         }
         protected abstract void ImporterExcel(ExcelData data, out ImporterPkg outPkg, ref string errMsg);

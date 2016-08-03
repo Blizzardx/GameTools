@@ -10,14 +10,13 @@
 //========================================================================
 using System;
 using System.Collections.Generic;
+using Common.Tool;
 
-public class LogQueue
+public class LogQueue:Singleton<LogQueue>
 {
-    public static readonly LogQueue instance = new LogQueue();
-
     private readonly Queue<string> queue = new Queue<string>();
 
-    public void Add(string log)
+    public void Enqueue(string log)
     {
         lock (queue)
         {
@@ -25,7 +24,7 @@ public class LogQueue
         }
     }
 
-    public string Take()
+    public string Dequeue()
     {
         lock (queue)
         {

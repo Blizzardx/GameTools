@@ -22,7 +22,7 @@ namespace ExcelImproter
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            string log = LogQueue.instance.Take();
+            string log = LogQueue.Instance.Dequeue();
             if (log == null)
             {
                 return;
