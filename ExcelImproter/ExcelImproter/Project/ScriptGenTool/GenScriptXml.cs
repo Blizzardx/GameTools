@@ -19,8 +19,8 @@ public class GenScriptClassXmlConfig : XmlConfigBase
 
 public class GenScriptLineXmlConfig : XmlConfigBase
 {
-    [XmlAttribute("index")]
-    public int index { get; set; }
+    //[XmlAttribute("index")]
+    //public int index { get; set; }
 
     [XmlAttribute("classTypeName")]
     public string classTypeName { get; set; }

@@ -166,12 +166,24 @@ namespace ExcelImporter.Importer
                 ScriptGenInfo info = new ScriptGenInfo();
                 info.className = elemConfig.className;
                 info.elements = new List<ScriptGenElementInfo>(elemConfig.lineConfigList.Count);
+                int lineIndex = -1;
                 foreach (var line in elemConfig.lineConfigList)
                 {
+                    ++lineIndex;
+                    if (string.IsNullOrEmpty(line.classTypeName))
+                    {
+                        // skip this line
+                        continue;
+                    }
                     ScriptGenElementInfo infoLine = new ScriptGenElementInfo();
-                    infoLine.index = line.index-1;
+                    //infoLine.index = line.index-1;
+                    infoLine.index = lineIndex;
                     infoLine.classTypeName = line.classTypeName;
                     infoLine.desc = line.desc;
+                    if (string.IsNullOrEmpty(infoLine.desc))
+                    {
+                        infoLine.desc = line.memberName;
+                    }
                     infoLine.isList = line.isList;
                     infoLine.memberName = line.memberName;
                     infoLine.rangeMax = line.rangeMax;
@@ -311,7 +323,7 @@ namespace ExcelImporter.Importer
             GenScriptLineXmlConfig elem1Line1 = new GenScriptLineXmlConfig();
             elem1Line1.classTypeName = "int";
             elem1Line1.desc = "id";
-            elem1Line1.index = 0;
+            //elem1Line1.index = 0;
             elem1Line1.isList = false;
             elem1Line1.isNullable = false;
             elem1Line1.memberName = "id";
@@ -322,7 +334,7 @@ namespace ExcelImporter.Importer
             GenScriptLineXmlConfig elem1Line2 = new GenScriptLineXmlConfig();
             elem1Line1.classTypeName = "int";
             elem1Line1.desc = "vertexid";
-            elem1Line1.index = 0;
+            //elem1Line1.index = 0;
             elem1Line1.isList = false;
             elem1Line1.isNullable = false;
             elem1Line1.memberName = "vertexid";
