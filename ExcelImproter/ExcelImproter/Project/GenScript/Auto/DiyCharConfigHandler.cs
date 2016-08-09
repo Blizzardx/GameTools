@@ -90,7 +90,7 @@ if (!VaildUtil.TryConvert(values[i][9], out dirz,int.MinValue,int.MaxValue))
 }
                     
                     
-                    OnAutoParasLine(values[i],ref errMsg);
+                    OnAutoParasLine(tableIndex,row,values[i],ref errMsg);
                     if (!string.IsNullOrEmpty(errMsg))
                     {
                         return;

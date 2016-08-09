@@ -66,7 +66,7 @@ if (!VaildUtil.TryConvert(values[i][4], out funcId,int.MinValue,int.MaxValue))
 }
                     
                     
-                    OnAutoParasLine(values[i],ref errMsg);
+                    OnAutoParasLine(tableIndex,row,values[i],ref errMsg);
                     if (!string.IsNullOrEmpty(errMsg))
                     {
                         return;

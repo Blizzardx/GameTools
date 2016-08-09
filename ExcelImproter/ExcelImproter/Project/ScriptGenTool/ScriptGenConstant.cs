@@ -13,5 +13,6 @@ namespace ExcelImporter.Importer
         public const string userFileOutputPath = "../../Project/GenScript/User/";
         public const string resourcePath = "../../Project/ScriptGenTool/";
         public const string projectFilePath = "../../ExcelImproter.csproj";
+        public const string classPerfix = "Handler.cs";
     }
 }

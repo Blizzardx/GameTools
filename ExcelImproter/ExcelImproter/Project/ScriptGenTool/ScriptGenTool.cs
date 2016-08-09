@@ -13,7 +13,7 @@ namespace ExcelImporter.Importer
     {
         public void GenScript(ScriptGenInfo info)
         {
-            string genScriptFilename = info.className + "Importer.cs";
+            string genScriptFilename = info.className + ScriptGenConstant.classPerfix;
             string genScriptUserFilename = genScriptFilename;
 
             string parasFileOutputPath = ScriptGenConstant.parasFileOutputPath + genScriptUserFilename;

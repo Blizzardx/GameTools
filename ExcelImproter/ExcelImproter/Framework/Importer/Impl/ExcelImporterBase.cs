@@ -22,7 +22,7 @@ namespace ExcelImproter.Framework.Importer.Impl
                 return;
             }
             // custom importer
-            ImporterExcel(content, out outPkg, ref errMsg);
+            ImporteExcel(content, out outPkg, ref errMsg);
 
             if (!CheckErrorMsg(errMsg))
             {
@@ -47,7 +47,7 @@ namespace ExcelImproter.Framework.Importer.Impl
         protected virtual void OnAutoParasBegin()
         {
         }
-        protected virtual void OnAutoParasLine(List<string> line, ref string errMsg)
+        protected virtual void OnAutoParasLine(int sheetIndex, int row, List<string> line, ref string errMsg)
         {
 
         }
@@ -64,7 +64,7 @@ namespace ExcelImproter.Framework.Importer.Impl
             LogQueue.Instance.Enqueue(errorMsg);
             return false;
         }
-        protected abstract void ImporterExcel(ExcelData data, out ImporterPkg outPkg, ref string errMsg);
+        protected abstract void ImporteExcel(ExcelData data, out ImporterPkg outPkg, ref string errMsg);
         protected abstract string GetConfigPath();
 
         #endregion

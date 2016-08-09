@@ -36,7 +36,7 @@ namespace ExcelImproter.Project
 
 {2}                    
                     
-                    OnAutoParasLine(values[i],ref errMsg);
+                    OnAutoParasLine(tableIndex,row,values[i],ref errMsg);
                     if (!string.IsNullOrEmpty(errMsg))
                     {
                         return;

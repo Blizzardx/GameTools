@@ -9,23 +9,21 @@ namespace ExcelImproter.Project
 {
     public partial class DiyCharConfigHandler : ExcelConfigHandlerBase
     {
-        protected override void ImporterExcel(ExcelData data, out ImporterPkg outPkg, ref string errMsg)
+        protected override void OnAutoParasBegin()
         {
-            outPkg = null;
-        }
 
-        protected override string GetConfigPath()
-        {
-            return "diyCharConfig.xlsx";
         }
-
-        protected override void OnAutoParasLine(List<string> line, ref string errMsg)
+        protected override void OnAutoParasLine(int sheetIndex, int row, List<string> line, ref string errMsg)
         {
             
         }
-
-        protected override void OnAutoParasBegin()
+        protected override void ImporteExcel(ExcelData data, out ImporterPkg outPkg, ref string errMsg)
         {
+            outPkg = null;
+        }
+        protected override string GetConfigPath()
+        {
+            return "diyCharConfig.xlsx";
         }
     }
 }
