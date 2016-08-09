@@ -16,6 +16,7 @@ namespace ExcelImproter.Project
     {
 		private int aeroId;
 		private int level;
+		private int consumeId;
 		private int limitId;
 		private int funcId;
     
@@ -48,14 +49,19 @@ if (!VaildUtil.TryConvert(values[i][1], out level,int.MinValue,int.MaxValue))
 	errMsg = string.Format("{8} {0}.xlsx sheet:[{1}] [{2},{3}]读取出现错误，{4}必须为{5} - {6} {7}型", this.GetConfigPath(), tableIndex, row,1+1, level,int.MinValue,int.MaxValue,"int","level");
 	return;
 }
-if (!VaildUtil.TryConvert(values[i][2], out limitId,int.MinValue,int.MaxValue))
+if (!VaildUtil.TryConvert(values[i][2], out consumeId,int.MinValue,int.MaxValue))
 {
-	errMsg = string.Format("{8} {0}.xlsx sheet:[{1}] [{2},{3}]读取出现错误，{4}必须为{5} - {6} {7}型", this.GetConfigPath(), tableIndex, row,2+1, limitId,int.MinValue,int.MaxValue,"int","limitId");
+	errMsg = string.Format("{8} {0}.xlsx sheet:[{1}] [{2},{3}]读取出现错误，{4}必须为{5} - {6} {7}型", this.GetConfigPath(), tableIndex, row,2+1, consumeId,int.MinValue,int.MaxValue,"int","consumeId");
 	return;
 }
-if (!VaildUtil.TryConvert(values[i][3], out funcId,int.MinValue,int.MaxValue))
+if (!VaildUtil.TryConvert(values[i][3], out limitId,int.MinValue,int.MaxValue))
 {
-	errMsg = string.Format("{8} {0}.xlsx sheet:[{1}] [{2},{3}]读取出现错误，{4}必须为{5} - {6} {7}型", this.GetConfigPath(), tableIndex, row,3+1, funcId,int.MinValue,int.MaxValue,"int","funcId");
+	errMsg = string.Format("{8} {0}.xlsx sheet:[{1}] [{2},{3}]读取出现错误，{4}必须为{5} - {6} {7}型", this.GetConfigPath(), tableIndex, row,3+1, limitId,int.MinValue,int.MaxValue,"int","limitId");
+	return;
+}
+if (!VaildUtil.TryConvert(values[i][4], out funcId,int.MinValue,int.MaxValue))
+{
+	errMsg = string.Format("{8} {0}.xlsx sheet:[{1}] [{2},{3}]读取出现错误，{4}必须为{5} - {6} {7}型", this.GetConfigPath(), tableIndex, row,4+1, funcId,int.MinValue,int.MaxValue,"int","funcId");
 	return;
 }
                     

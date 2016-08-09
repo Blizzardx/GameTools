@@ -89,6 +89,7 @@
     <Compile Include="Project\GenScript\Auto\AeroLevelUpConfigHandler.cs" />
     <Compile Include="Project\GenScript\User\DiyCharConfigHandler.cs" />
     <Compile Include="Project\GenScript\Auto\DiyCharConfigHandler.cs" />
+    <Compile Include="Project\ScriptGenTool\ScriptGenConstant.cs" />
     <Compile Include="Project\ScriptGenTool\ScriptGenInfo.cs" />
     <Compile Include="Project\ScriptGenTool\ScriptGenTool.cs" />
     <Compile Include="Plugin\Xml\XmlConfigBase.cs" />
