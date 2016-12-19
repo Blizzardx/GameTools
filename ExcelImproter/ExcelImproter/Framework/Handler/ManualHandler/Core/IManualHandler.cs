@@ -7,7 +7,7 @@ using ExcelImproter.Framework.Importer;
 
 namespace ExcelImproter.Framework.Handler
 {
-    public  interface IHandler
+    public  interface IManualHandler
     {
         IImporter GetImporter();
         IExporter GetExporter();

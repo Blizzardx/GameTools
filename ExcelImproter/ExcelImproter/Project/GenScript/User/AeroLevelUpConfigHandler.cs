@@ -25,5 +25,10 @@ namespace ExcelImproter.Project
         {
             return "aeroLevelUpConfig.xlsx";
         }
+
+        protected override void Export(ImporterPkg param)
+        {
+            base.Export(param);
+        }
     }
 }

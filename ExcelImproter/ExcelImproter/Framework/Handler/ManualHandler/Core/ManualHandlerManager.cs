@@ -6,18 +6,19 @@ using ExcelImproter.Framework.Importer;
 
 namespace ExcelImproter.Framework.Handler
 {
-    public class HandlerManager:Singleton<HandlerManager>
+    public class ManualHandlerManager:Singleton<ManualHandlerManager>
     {
-        private Dictionary<string, IHandler> m_HandlerFactory;
+        private Dictionary<string, IManualHandler> m_HandlerFactory;
 
-        public HandlerManager()
+        public ManualHandlerManager()
         {
             // check init
             AutoRegister();
         }
+        
         public void HandleConfig(string name,string path)
         {
-            IHandler handler = null;
+            IManualHandler handler = null;
             m_HandlerFactory.TryGetValue(name, out handler);
             if (null == handler)
             {
@@ -29,10 +30,14 @@ namespace ExcelImproter.Framework.Handler
                 var importer = handler.GetImporter();
 
                 ImporterPkg pkg = null;
+                LogQueue.Instance.Enqueue("begin importer config " + name);
                 importer.Import(path, out pkg);
+                //LogQueue.Instance.Enqueue("end importer config " + name);
 
                 var exporter = handler.GetExporter();
+                //LogQueue.Instance.Enqueue("begin export config " + name);
                 exporter.Export(pkg);
+                LogQueue.Instance.Enqueue("end export config " + name);
 
             }
             catch (Exception e)
@@ -47,12 +52,12 @@ namespace ExcelImproter.Framework.Handler
             {
                 return;
             }
-            m_HandlerFactory = new Dictionary<string, IHandler>();
+            m_HandlerFactory = new Dictionary<string, IManualHandler>();
 
-            var list = ReflectionManager.Instance.GetTypeByBase(typeof (IHandler));
+            var list = ReflectionManager.Instance.GetTypeByBase(typeof (IManualHandler));
             for (int i = 0; i < list.Count; ++i)
             {
-                var handler = Activator.CreateInstance(list[i]) as IHandler;
+                var handler = Activator.CreateInstance(list[i]) as IManualHandler;
                 if (m_HandlerFactory.ContainsKey(handler.GetImporter().GetPath()))
                 {
                     LogQueue.Instance.Enqueue("already exist config path " + handler.GetImporter().GetPath() + " at importer " + list[i].ToString());

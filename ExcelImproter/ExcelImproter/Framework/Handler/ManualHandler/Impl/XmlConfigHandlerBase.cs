@@ -8,7 +8,7 @@ using ExcelImproter.Framework.Importer.Impl;
 
 namespace ExcelImproter.Framework.Handler
 {
-    public abstract class ExcelConfigHandlerBase : ExcelImporterBase, IExporter, IHandler
+    abstract class XmlConfigHandlerBase: XmlImporterBase,IExporter, IManualHandler
     {
         #region public interface
         public void Export(object param)

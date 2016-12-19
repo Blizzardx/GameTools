@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -55,14 +55,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framework\Common\FileUtils.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Core\AutoHandler.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Core\AutoHandlerManager.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Core\ConfigData.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Core\IAutoExporter.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Core\ParserConfig\ParserExcelDataToPackData.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Core\ParserConfig\ParserTxtDataToPackData.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Impl\Json\AutoHandlerExportJson.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Impl\Protocol\AutoHandlerExportProtocol.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Impl\Thrift\AutoHandlerExportThrift.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Impl\Xml\AutoHandlerExportXml.cs" />
+    <Compile Include="Framework\Handler\HandlerCommon.cs" />
+    <Compile Include="Framework\Packer\Core\ByteStream.cs" />
+    <Compile Include="Framework\Packer\Core\IPacker.cs" />
+    <Compile Include="Framework\Packer\Core\PackDataElementType.cs" />
+    <Compile Include="Framework\Packer\Core\PackDataStruct.cs" />
+    <Compile Include="Framework\Packer\Impl\Json\Packer_Json.cs" />
+    <Compile Include="Framework\Packer\Impl\Thrift\Packer_Thrift.cs" />
+    <Compile Include="Framework\Packer\Impl\Xml\Packer_Xml.cs" />
     <Compile Include="Framework\Reflection\ReflectionManager.cs" />
     <Compile Include="Framework\Common\Singleton.cs" />
     <Compile Include="Framework\Common\VaildUtil.cs" />
     <Compile Include="Framework\Exporter\IExporter.cs" />
-    <Compile Include="Framework\Handler\Impl\ExcelConfigHandlerBase.cs" />
-    <Compile Include="Framework\Handler\Core\HandlerManager.cs" />
-    <Compile Include="Framework\Handler\Core\IHandler.cs" />
-    <Compile Include="Framework\Handler\Impl\XmlConfigHandlerBase.cs" />
+    <Compile Include="Framework\Handler\ManualHandler\Impl\ExcelConfigHandlerBase.cs" />
+    <Compile Include="Framework\Handler\ManualHandler\Core\ManualHandlerManager.cs" />
+    <Compile Include="Framework\Handler\ManualHandler\Core\IManualHandler.cs" />
+    <Compile Include="Framework\Handler\ManualHandler\Impl\XmlConfigHandlerBase.cs" />
     <Compile Include="Framework\Importer\Core\IImporter.cs" />
     <Compile Include="Framework\Importer\Core\ImporterPkg.cs" />
     <Compile Include="Framework\Importer\Impl\ExcelImporterBase.cs" />
@@ -85,10 +103,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Project\ScriptGenTool\GenScriptXml.cs" />
-<Compile Include="Project\GenScript\User\AeroLevelUpConfigHandler.cs" />
-<Compile Include="Project\GenScript\Auto\AeroLevelUpConfigHandler.cs" />
-<Compile Include="Project\GenScript\User\DiyCharConfigHandler.cs" />
-<Compile Include="Project\GenScript\Auto\DiyCharConfigHandler.cs" />
+    <Compile Include="Project\GenScript\User\AeroLevelUpConfigHandler.cs" />
+    <Compile Include="Project\GenScript\Auto\AeroLevelUpConfigHandler.cs" />
+    <Compile Include="Project\GenScript\User\DiyCharConfigHandler.cs" />
+    <Compile Include="Project\GenScript\Auto\DiyCharConfigHandler.cs" />
     <Compile Include="Project\ScriptGenTool\ScriptGenConstant.cs" />
     <Compile Include="Project\ScriptGenTool\ScriptGenInfo.cs" />
     <Compile Include="Project\ScriptGenTool\ScriptGenTool.cs" />
@@ -171,10 +189,7 @@
     <Content Include="Project\ScriptGenTool\ExcelImporterUserTemplate.txt" />
     <Content Include="Project\ScriptGenTool\testTemplate.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Project\GenScript\Auto\" />
-    <Folder Include="Project\GenScript\User\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
