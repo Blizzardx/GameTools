@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExcelImporter.Importer;
 using ExcelImproter.Framework.Handler;
@@ -59,9 +52,8 @@ namespace ExcelImproter
                 }
             }
         }
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e1)
         {
-
         }
         private void RefreshFileList()
         {

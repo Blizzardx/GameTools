@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using ExcelImproter.Configs;
 
 namespace ExcelImproter.Framework.Handler
 {
@@ -9,7 +11,7 @@ namespace ExcelImproter.Framework.Handler
     {
         public string DoParser(string path)
         {
-            return null;
+            return FileUtils.ReadStringFile(path);
         }
     }
 }

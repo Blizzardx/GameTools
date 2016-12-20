@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using ExcelImproter.Framework.Reader;
 
 namespace ExcelImproter.Framework.Handler
 {
@@ -21,11 +18,10 @@ namespace ExcelImproter.Framework.Handler
         public void Clear()
         {
         }
-        private void ExportExcel(PackDataStruct content)
+        private void ExportExcel(ExcelData content)
         {
             
         }
-
         public void ExportTxt(string content)
         {
             

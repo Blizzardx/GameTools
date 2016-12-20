@@ -1,4 +1,6 @@
-﻿namespace ExcelImproter.Framework.Handler
+﻿using ExcelImproter.Framework.Reader;
+
+namespace ExcelImproter.Framework.Handler
 {
     public enum ConfigType
     {
@@ -14,7 +16,7 @@
     {
         private ConfigDataInfo   m_Info;
         private string           m_StrContent;
-        private PackDataStruct   m_ExcelContent;
+        private ExcelData        m_ExcelContent;
 
         public ConfigData(ConfigDataInfo info)
         {
@@ -35,7 +37,7 @@
         {
             return m_StrContent;
         }
-        public PackDataStruct GetExcelContent()
+        public ExcelData GetExcelContent()
         {
             return m_ExcelContent;
         }
