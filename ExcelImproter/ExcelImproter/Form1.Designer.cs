@@ -34,12 +34,14 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.自动生成解析代码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试按钮ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.aI编辑器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aI编辑器ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.aI编辑器设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +62,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.配置ToolStripMenuItem});
+            this.配置ToolStripMenuItem,
+            this.aI编辑器ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(968, 25);
@@ -71,7 +74,6 @@
             // 
             this.配置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.自动生成解析代码ToolStripMenuItem,
-            this.设置ToolStripMenuItem,
             this.测试按钮ToolStripMenuItem});
             this.配置ToolStripMenuItem.Name = "配置ToolStripMenuItem";
             this.配置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
@@ -83,12 +85,6 @@
             this.自动生成解析代码ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.自动生成解析代码ToolStripMenuItem.Text = "自动生成解析代码";
             this.自动生成解析代码ToolStripMenuItem.Click += new System.EventHandler(this.自动生成解析代码ToolStripMenuItem_Click);
-            // 
-            // 设置ToolStripMenuItem
-            // 
-            this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.设置ToolStripMenuItem.Text = "设置";
             // 
             // 测试按钮ToolStripMenuItem
             // 
@@ -137,6 +133,28 @@
             this.comboBox1.TabIndex = 11;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // aI编辑器ToolStripMenuItem
+            // 
+            this.aI编辑器ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aI编辑器ToolStripMenuItem1,
+            this.aI编辑器设置ToolStripMenuItem});
+            this.aI编辑器ToolStripMenuItem.Name = "aI编辑器ToolStripMenuItem";
+            this.aI编辑器ToolStripMenuItem.Size = new System.Drawing.Size(32, 21);
+            this.aI编辑器ToolStripMenuItem.Text = "AI";
+            // 
+            // aI编辑器ToolStripMenuItem1
+            // 
+            this.aI编辑器ToolStripMenuItem1.Name = "aI编辑器ToolStripMenuItem1";
+            this.aI编辑器ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.aI编辑器ToolStripMenuItem1.Text = "AI编辑器";
+            this.aI编辑器ToolStripMenuItem1.Click += new System.EventHandler(this.aI编辑器ToolStripMenuItem1_Click);
+            // 
+            // aI编辑器设置ToolStripMenuItem
+            // 
+            this.aI编辑器设置ToolStripMenuItem.Name = "aI编辑器设置ToolStripMenuItem";
+            this.aI编辑器设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aI编辑器设置ToolStripMenuItem.Text = "AI编辑器设置";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -164,12 +182,14 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 配置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 自动生成解析代码ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 测试按钮ToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ToolStripMenuItem aI编辑器ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aI编辑器ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem aI编辑器设置ToolStripMenuItem;
     }
 }
 

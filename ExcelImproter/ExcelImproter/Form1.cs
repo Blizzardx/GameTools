@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using ExcelImporter.Importer;
+using ExcelImproter.Framework.BehaviourTree;
+using ExcelImproter.Framework.BehaviourTree.Editor;
 using ExcelImproter.Framework.Handler;
 
 namespace ExcelImproter
@@ -66,6 +68,20 @@ namespace ExcelImproter
                 comboBox1.Items.Add(list[i].m_strName);
             }
             comboBox1.SelectedIndex = 0;
+        }
+        private void aI编辑器ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormCollection coll = Application.OpenForms;
+            foreach (Form form in coll)
+            {
+                if (form is AIEditorForm)
+                {
+                    form.Focus();
+                    return;
+                }
+            }
+            AIEditorForm aiForm = new AIEditorForm();
+            aiForm.Show();
         }
     }
 }
