@@ -5,6 +5,7 @@ using ExcelImporter.Importer;
 using ExcelImproter.Framework.BehaviourTree;
 using ExcelImproter.Framework.BehaviourTree.Editor;
 using ExcelImproter.Framework.BehaviourTree.Editor.Controller;
+using ExcelImproter.Framework.BehaviourTree.Editor.View;
 using ExcelImproter.Framework.Handler;
 
 namespace ExcelImproter
@@ -96,6 +97,21 @@ namespace ExcelImproter
                 }
             }
             AIEditorForm aiForm = new AIEditorForm();
+            aiForm.Show();
+        }
+
+        private void aI编辑器设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCollection coll = Application.OpenForms;
+            foreach (Form form in coll)
+            {
+                if (form is AINodeTypeEditor)
+                {
+                    form.Focus();
+                    return;
+                }
+            }
+            AINodeTypeEditor aiForm = new AINodeTypeEditor();
             aiForm.Show();
         }
     }

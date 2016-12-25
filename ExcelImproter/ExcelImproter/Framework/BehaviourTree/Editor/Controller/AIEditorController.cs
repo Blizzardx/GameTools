@@ -38,7 +38,7 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.Controller
             node.SetData(dataNode);
             node.Text = dataNode.m_strName;
 
-            for (int i = 0; i < dataNode.m_ChildList.Count; ++i)
+            for (int i = 0; dataNode.m_ChildList != null && i < dataNode.m_ChildList.Count; ++i)
             {
                 node.Nodes.Add(ConverDataNodeToViewNode(dataNode.m_ChildList[i]));
             }

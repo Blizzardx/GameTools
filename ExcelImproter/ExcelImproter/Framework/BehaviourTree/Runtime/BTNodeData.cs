@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace ExcelImproter.Framework.BehaviourTree
 {
@@ -27,15 +28,22 @@ namespace ExcelImproter.Framework.BehaviourTree
     }
     public class BTNodeParamData
     {
+        [XmlAttribute("ParamType")]
         public BTNodeParamDataType m_Type;
+        [XmlAttribute("Name")]
         public string m_strName;
+        [XmlAttribute("Value")]
         public string m_Value;
     }
     public class BTNodeData
     {
-        public string   m_strName;
-        public string   m_strType;
-        public string   m_strDesc;
+        [XmlAttribute("Name")]
+        public string m_strName;
+        [XmlAttribute("Type")]
+        public string m_strType;
+        [XmlAttribute("Desc")]
+        public string m_strDesc;
+        [XmlAttribute("Id")]
         public int      m_Id;
         public List<BTNodeParamData>    m_ParamList;
         public List<BTNodeData>         m_ChildList;

@@ -57,7 +57,7 @@
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(19, 146);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(465, 211);
+            this.groupBox1.Size = new System.Drawing.Size(465, 341);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "参数列表";
@@ -70,6 +70,7 @@
             this.button1.TabIndex = 9;
             this.button1.Text = "+";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label7
             // 
@@ -103,7 +104,7 @@
             this.panel1.AutoScroll = true;
             this.panel1.Location = new System.Drawing.Point(2, 47);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(463, 163);
+            this.panel1.Size = new System.Drawing.Size(463, 294);
             this.panel1.TabIndex = 0;
             // 
             // comboBoxNodeType
@@ -173,7 +174,7 @@
             // 
             // buttonDone
             // 
-            this.buttonDone.Location = new System.Drawing.Point(189, 363);
+            this.buttonDone.Location = new System.Drawing.Point(189, 493);
             this.buttonDone.Name = "buttonDone";
             this.buttonDone.Size = new System.Drawing.Size(107, 36);
             this.buttonDone.TabIndex = 11;
@@ -183,7 +184,7 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(47, 362);
+            this.buttonAdd.Location = new System.Drawing.Point(47, 492);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(107, 36);
             this.buttonAdd.TabIndex = 21;
@@ -193,7 +194,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(336, 363);
+            this.buttonCancel.Location = new System.Drawing.Point(336, 493);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(107, 36);
             this.buttonCancel.TabIndex = 22;
@@ -218,7 +219,7 @@
             this.Controls.Add(this.textBoxNodeId);
             this.Controls.Add(this.buttonDone);
             this.Name = "AINodeEditorPanel";
-            this.Size = new System.Drawing.Size(503, 430);
+            this.Size = new System.Drawing.Size(503, 539);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

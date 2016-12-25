@@ -35,13 +35,13 @@
             this.配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.自动生成解析代码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试按钮ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aI编辑器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aI编辑器ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.aI编辑器设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.aI编辑器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aI编辑器ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.aI编辑器设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +66,7 @@
             this.aI编辑器ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(968, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(968, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -76,22 +76,45 @@
             this.自动生成解析代码ToolStripMenuItem,
             this.测试按钮ToolStripMenuItem});
             this.配置ToolStripMenuItem.Name = "配置ToolStripMenuItem";
-            this.配置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.配置ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.配置ToolStripMenuItem.Text = "编辑";
             // 
             // 自动生成解析代码ToolStripMenuItem
             // 
             this.自动生成解析代码ToolStripMenuItem.Name = "自动生成解析代码ToolStripMenuItem";
-            this.自动生成解析代码ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.自动生成解析代码ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.自动生成解析代码ToolStripMenuItem.Text = "自动生成解析代码";
             this.自动生成解析代码ToolStripMenuItem.Click += new System.EventHandler(this.自动生成解析代码ToolStripMenuItem_Click);
             // 
             // 测试按钮ToolStripMenuItem
             // 
             this.测试按钮ToolStripMenuItem.Name = "测试按钮ToolStripMenuItem";
-            this.测试按钮ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.测试按钮ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.测试按钮ToolStripMenuItem.Text = "测试按钮";
             this.测试按钮ToolStripMenuItem.Click += new System.EventHandler(this.测试按钮ToolStripMenuItem_Click);
+            // 
+            // aI编辑器ToolStripMenuItem
+            // 
+            this.aI编辑器ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aI编辑器ToolStripMenuItem1,
+            this.aI编辑器设置ToolStripMenuItem});
+            this.aI编辑器ToolStripMenuItem.Name = "aI编辑器ToolStripMenuItem";
+            this.aI编辑器ToolStripMenuItem.Size = new System.Drawing.Size(30, 20);
+            this.aI编辑器ToolStripMenuItem.Text = "AI";
+            // 
+            // aI编辑器ToolStripMenuItem1
+            // 
+            this.aI编辑器ToolStripMenuItem1.Name = "aI编辑器ToolStripMenuItem1";
+            this.aI编辑器ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.aI编辑器ToolStripMenuItem1.Text = "AI编辑器";
+            this.aI编辑器ToolStripMenuItem1.Click += new System.EventHandler(this.aI编辑器ToolStripMenuItem1_Click);
+            // 
+            // aI编辑器设置ToolStripMenuItem
+            // 
+            this.aI编辑器设置ToolStripMenuItem.Name = "aI编辑器设置ToolStripMenuItem";
+            this.aI编辑器设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aI编辑器设置ToolStripMenuItem.Text = "AI编辑器设置";
+            this.aI编辑器设置ToolStripMenuItem.Click += new System.EventHandler(this.aI编辑器设置ToolStripMenuItem_Click);
             // 
             // button1
             // 
@@ -132,28 +155,6 @@
             this.comboBox1.Size = new System.Drawing.Size(323, 24);
             this.comboBox1.TabIndex = 11;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // aI编辑器ToolStripMenuItem
-            // 
-            this.aI编辑器ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aI编辑器ToolStripMenuItem1,
-            this.aI编辑器设置ToolStripMenuItem});
-            this.aI编辑器ToolStripMenuItem.Name = "aI编辑器ToolStripMenuItem";
-            this.aI编辑器ToolStripMenuItem.Size = new System.Drawing.Size(32, 21);
-            this.aI编辑器ToolStripMenuItem.Text = "AI";
-            // 
-            // aI编辑器ToolStripMenuItem1
-            // 
-            this.aI编辑器ToolStripMenuItem1.Name = "aI编辑器ToolStripMenuItem1";
-            this.aI编辑器ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.aI编辑器ToolStripMenuItem1.Text = "AI编辑器";
-            this.aI编辑器ToolStripMenuItem1.Click += new System.EventHandler(this.aI编辑器ToolStripMenuItem1_Click);
-            // 
-            // aI编辑器设置ToolStripMenuItem
-            // 
-            this.aI编辑器设置ToolStripMenuItem.Name = "aI编辑器设置ToolStripMenuItem";
-            this.aI编辑器设置ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aI编辑器设置ToolStripMenuItem.Text = "AI编辑器设置";
             // 
             // Form1
             // 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using ExcelImproter.Framework.BehaviourTree.Editor.Controller;
 
@@ -16,13 +18,18 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
         private CustomViewNode m_Data;
         private Action<CustomViewNode> m_OnCreateCallback;
         private NodePanelOpr m_Status;
+        private List<AINodeParamEditor> m_ParamEditPanelList;
 
         #region common
 
         public AINodeEditorPanel()
         {
             InitializeComponent();
-            comboBoxNodeType.Items.AddRange(BTNodeTypeManager.Instance.GetOptionTypeList().ToArray());
+            m_ParamEditPanelList = new List<AINodeParamEditor>();
+            if (null != BTNodeTypeManager.Instance.GetOptionTypeList())
+            {
+                comboBoxNodeType.Items.AddRange(BTNodeTypeManager.Instance.GetOptionTypeList().ToArray());
+            }
         }
         public NodePanelOpr GetStatus()
         {
@@ -43,6 +50,7 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
             textBoxNodeDesc.Text = m_Data.GetData().m_strDesc;
             textBoxNodeNmae.Text = m_Data.GetData().m_strName;
             textBoxNodeId.Text = m_Data.GetData().m_Id.ToString();
+            RefreshParamterEditList();
         }
         private bool CheckData(ref string errorMsg)
         {
@@ -63,6 +71,86 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
             }
             return true;
         }
+        private void RefreshParamterEditList()
+        {
+            if (null == m_Data.GetData().m_ParamList)
+            {
+                m_Data.GetData().m_ParamList = new List<BTNodeParamData>();
+            }
+            List<AINodeParamEditor> tmpList = new List<AINodeParamEditor>();
+            int i = 0;
+            for (i = 0; i < m_Data.GetData().m_ParamList.Count;++i)
+            {
+                AINodeParamEditor panel = null;
+                if (i < m_ParamEditPanelList.Count)
+                {
+                    panel = m_ParamEditPanelList[i];
+                }
+                else
+                {
+                    panel = new AINodeParamEditor();
+                    panel.SetCallback(OnSubOper);
+                    tmpList.Add(panel);
+                }
+                panel.Visible = true;
+                panel.Location = new Point(10, i * panel.Size.Height);
+                panel1.Controls.Add(panel);
+                panel.Refresh(m_Data.GetData().m_ParamList[i]);
+            }
+            if (i < m_ParamEditPanelList.Count)
+            {
+                for (; i < m_ParamEditPanelList.Count; ++i)
+                {
+                    panel1.Controls.Remove(m_ParamEditPanelList[i]);
+                    m_ParamEditPanelList[i].Visible = false;
+                }
+            }
+            m_ParamEditPanelList.AddRange(tmpList);
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OnAddOper();
+        }
+        private void OnAddOper()
+        {
+            if (null == m_Data.GetData().m_ParamList)
+            {
+                m_Data.GetData().m_ParamList = new List<BTNodeParamData>();
+            }
+            BTNodeParamData paramData = new BTNodeParamData();
+            m_Data.GetData().m_ParamList.Add(paramData);
+            SaveEditData();
+            RefreshParamterEditList();
+        }
+        private void OnSubOper(BTNodeParamData node)
+        {
+            if (null == m_Data.GetData().m_ParamList || m_Data.GetData().m_ParamList.Count == 0)
+            {
+                return;
+            }
+            for (int i = 0; i < m_Data.GetData().m_ParamList.Count; ++i)
+            {
+                if (node == m_Data.GetData().m_ParamList[i])
+                {
+                    m_Data.GetData().m_ParamList.RemoveAt(i);
+                    break;
+                }
+            }
+            SaveEditData();
+            RefreshParamterEditList();
+        }
+        private void SaveEditData()
+        {
+            foreach (var elem in m_ParamEditPanelList)
+            {
+                elem.Save();
+            }
+        }
+        private bool SaveParamList(ref string errorMsg)
+        {
+            SaveEditData();
+            return true;
+        }
         #endregion
 
         #region update node
@@ -79,6 +167,10 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
         private bool OnEndEdit(ref string errorMsg)
         {
             if (!CheckData(ref errorMsg))
+            {
+                return false;
+            }
+            if (!SaveParamList(ref errorMsg))
             {
                 return false;
             }
@@ -116,6 +208,10 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
         private bool OnEndCreate(ref string errorMsg)
         {
             if (!CheckData(ref errorMsg))
+            {
+                return false;
+            }
+            if (!SaveParamList(ref errorMsg))
             {
                 return false;
             }

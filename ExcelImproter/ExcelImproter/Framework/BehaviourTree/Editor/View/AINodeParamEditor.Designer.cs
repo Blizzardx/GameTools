@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxValue = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -42,19 +42,19 @@
             this.comboBox1.Size = new System.Drawing.Size(88, 20);
             this.comboBox1.TabIndex = 0;
             // 
-            // textBox1
+            // textBoxValue
             // 
-            this.textBox1.Location = new System.Drawing.Point(249, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(132, 21);
-            this.textBox1.TabIndex = 2;
+            this.textBoxValue.Location = new System.Drawing.Point(249, 6);
+            this.textBoxValue.Name = "textBoxValue";
+            this.textBoxValue.Size = new System.Drawing.Size(132, 21);
+            this.textBoxValue.TabIndex = 2;
             // 
-            // textBox2
+            // textBoxName
             // 
-            this.textBox2.Location = new System.Drawing.Point(5, 7);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(140, 21);
-            this.textBox2.TabIndex = 3;
+            this.textBoxName.Location = new System.Drawing.Point(5, 7);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(140, 21);
+            this.textBoxName.TabIndex = 3;
             // 
             // button1
             // 
@@ -71,8 +71,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.textBoxValue);
             this.Controls.Add(this.comboBox1);
             this.Name = "AINodeParamEditor";
             this.Size = new System.Drawing.Size(424, 36);
@@ -84,8 +84,8 @@
         #endregion
 
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxValue;
+        private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Button button1;
     }
 }
