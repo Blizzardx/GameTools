@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framework\BehaviourTree\Editor\Controller\AIEditorController.cs" />
+    <Compile Include="Framework\BehaviourTree\Editor\Controller\BTConfigSetting.cs" />
     <Compile Include="Framework\BehaviourTree\Editor\View\AIEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +67,12 @@
     </Compile>
     <Compile Include="Framework\BehaviourTree\Editor\View\AINodeEditor.Designer.cs">
       <DependentUpon>AINodeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeEditorPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeEditorPanel.Designer.cs">
+      <DependentUpon>AINodeEditorPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Framework\BehaviourTree\Editor\View\AINodeParamEditor.cs">
       <SubType>UserControl</SubType>
@@ -182,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Framework\BehaviourTree\Editor\View\AINodeEditor.resx">
       <DependentUpon>AINodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\BehaviourTree\Editor\View\AINodeEditorPanel.resx">
+      <DependentUpon>AINodeEditorPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Framework\BehaviourTree\Editor\View\AINodeParamEditor.resx">
       <DependentUpon>AINodeParamEditor.cs</DependentUpon>

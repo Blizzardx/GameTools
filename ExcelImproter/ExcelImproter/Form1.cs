@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using ExcelImporter.Importer;
 using ExcelImproter.Framework.BehaviourTree;
 using ExcelImproter.Framework.BehaviourTree.Editor;
+using ExcelImproter.Framework.BehaviourTree.Editor.Controller;
 using ExcelImproter.Framework.Handler;
 
 namespace ExcelImproter
@@ -33,6 +35,16 @@ namespace ExcelImproter
         private void 测试按钮ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ManualHandlerManager.Instance.HandleConfig("diyCharConfig.xlsx", "E:/Project/GameClient/策划文档/config/dev/cqq/1.1/");
+            List<string> list = new List<string>()
+            {
+                "BTRoot",
+                "BTCondition",
+                "BTSequence",
+                "BTSelector",
+                "BTDecorate",
+                "BTActionIdle",
+            };
+            BTNodeTypeManager.Instance.SaveTypeList(BTConfigSetting.BTNodeTypeConfigPath, list);
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -67,7 +79,10 @@ namespace ExcelImproter
             {
                 comboBox1.Items.Add(list[i].m_strName);
             }
-            comboBox1.SelectedIndex = 0;
+            if (comboBox1.Items.Count != 0)
+            {
+                comboBox1.SelectedIndex = 0;
+            }
         }
         private void aI编辑器ToolStripMenuItem1_Click(object sender, EventArgs e)
         {

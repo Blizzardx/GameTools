@@ -15,6 +15,10 @@ namespace ExcelImproter.Framework.BehaviourTree
         public BehaviourTreePlanData LoadBTPlan(string path)
         {
             string xmlContent = FileUtils.ReadStringFile(path);
+            if (string.IsNullOrEmpty(xmlContent))
+            {
+                return null;
+            }
             m_PlanList = XmlConfigBase.DeSerialize<BehaviourTreePlanData>(xmlContent);
             return m_PlanList;
         }

@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using ExcelImproter.Framework.BehaviourTree.Editor.Controller;
+using ExcelImproter.Framework.BehaviourTree.Editor.View;
 
 namespace ExcelImproter.Framework.BehaviourTree.Editor
 {
-    public enum NodePanelOpr
-    {
-        Add,
-        Update,
-    }
     public partial class AINodeEditor : Form
     {
         private CustomViewNode m_Data;
