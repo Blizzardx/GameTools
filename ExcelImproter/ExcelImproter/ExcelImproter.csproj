@@ -57,6 +57,10 @@
   <ItemGroup>
     <Compile Include="Framework\BehaviourTree\Editor\Controller\AIEditorController.cs" />
     <Compile Include="Framework\BehaviourTree\Editor\Controller\BTConfigSetting.cs" />
+    <Content Include="Framework\BehaviourTree\Editor\GenCode\GenCodeClassTemplate.txt" />
+    <Content Include="Framework\BehaviourTree\Editor\GenCode\GenCodeParamterTemplate.txt" />
+    <Content Include="Framework\BehaviourTree\Editor\GenCode\GenCodeParserParamterTemplate.txt" />
+    <Compile Include="Framework\BehaviourTree\Editor\GenCode\GenCodeTool.cs" />
     <Compile Include="Framework\BehaviourTree\Editor\View\AIEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>

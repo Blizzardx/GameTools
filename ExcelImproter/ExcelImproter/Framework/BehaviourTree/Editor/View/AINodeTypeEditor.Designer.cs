@@ -38,8 +38,17 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.buttonDone = new System.Windows.Forms.Button();
+            this.buttonGenCode = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -90,9 +99,9 @@
             // panel2
             // 
             this.panel2.AutoScroll = true;
-            this.panel2.Location = new System.Drawing.Point(22, 26);
+            this.panel2.Location = new System.Drawing.Point(6, 26);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(320, 570);
+            this.panel2.Size = new System.Drawing.Size(194, 570);
             this.panel2.TabIndex = 15;
             // 
             // buttonLoad
@@ -133,26 +142,107 @@
             this.groupBox2.Controls.Add(this.panel2);
             this.groupBox2.Location = new System.Drawing.Point(679, 71);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 601);
+            this.groupBox2.Size = new System.Drawing.Size(208, 601);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "可选节点类型";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.panel3);
+            this.groupBox3.Location = new System.Drawing.Point(913, 71);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(465, 602);
+            this.groupBox3.TabIndex = 22;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "参数列表";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(380, 20);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(33, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "+";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(315, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "参数值";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(179, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "参数类型";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(26, 32);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "参数名";
+            // 
+            // panel3
+            // 
+            this.panel3.AutoScroll = true;
+            this.panel3.Location = new System.Drawing.Point(2, 47);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(463, 513);
+            this.panel3.TabIndex = 0;
+            // 
+            // buttonDone
+            // 
+            this.buttonDone.Location = new System.Drawing.Point(1074, 637);
+            this.buttonDone.Name = "buttonDone";
+            this.buttonDone.Size = new System.Drawing.Size(107, 36);
+            this.buttonDone.TabIndex = 21;
+            this.buttonDone.Text = "完成";
+            this.buttonDone.UseVisualStyleBackColor = true;
+            // 
+            // buttonGenCode
+            // 
+            this.buttonGenCode.Location = new System.Drawing.Point(407, 13);
+            this.buttonGenCode.Name = "buttonGenCode";
+            this.buttonGenCode.Size = new System.Drawing.Size(102, 36);
+            this.buttonGenCode.TabIndex = 23;
+            this.buttonGenCode.Text = "生成代码";
+            this.buttonGenCode.UseVisualStyleBackColor = true;
             // 
             // AINodeTypeEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1043, 685);
+            this.ClientSize = new System.Drawing.Size(1411, 685);
+            this.Controls.Add(this.buttonGenCode);
+            this.Controls.Add(this.buttonDone);
             this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox3);
             this.Name = "AINodeTypeEditor";
             this.Text = "AINodeTypeEditor";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -169,5 +259,13 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button buttonDone;
+        private System.Windows.Forms.Button buttonGenCode;
     }
 }

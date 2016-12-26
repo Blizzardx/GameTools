@@ -35,7 +35,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(54, 11);
+            this.label1.Location = new System.Drawing.Point(42, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 12);
             this.label1.TabIndex = 0;
@@ -44,7 +44,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(19, 11);
+            this.checkBox1.Location = new System.Drawing.Point(7, 11);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(15, 14);
             this.checkBox1.TabIndex = 6;
@@ -58,7 +58,7 @@
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
             this.Name = "AINodeTypeOptionEditorPanel";
-            this.Size = new System.Drawing.Size(227, 32);
+            this.Size = new System.Drawing.Size(151, 32);
             this.ResumeLayout(false);
             this.PerformLayout();
 

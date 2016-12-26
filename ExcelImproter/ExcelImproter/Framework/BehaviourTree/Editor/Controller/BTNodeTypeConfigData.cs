@@ -6,6 +6,13 @@ using ExcelImproter.Configs;
 
 namespace ExcelImproter.Framework.BehaviourTree.Editor.Controller
 {
+    public class BTNodeTypeParamterData
+    {
+        [XmlAttribute("ParamType")]
+        public BTNodeParamDataType m_Type;
+        [XmlAttribute("Name")]
+        public string m_strName;
+    }
     public class BTNodeTypeInfoData
     {
         [XmlAttribute("IsRoot")]
@@ -24,6 +31,8 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.Controller
         public bool m_bIsLimitChildType;
 
         public List<string> m_OptionChildTypeList;
+
+        public List<BTNodeTypeParamterData> m_ParamList;
     }
     public class BTNodeTypeConfigData:XmlConfigBase
     {
