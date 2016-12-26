@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using ExcelImproter.Framework.BehaviourTree.Editor.Controller;
+using GameConfigTools.Util;
 
 namespace ExcelImproter.Framework.BehaviourTree.Editor.View
 {
@@ -156,6 +157,74 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
         private bool SaveParamList(ref string errorMsg)
         {
             SaveEditData();
+            if (null == m_Data.GetData().m_ParamList)
+            {
+                return true;
+            }
+            for (int i = 0; i < m_Data.GetData().m_ParamList.Count; ++i)
+            {
+                var elem = m_Data.GetData().m_ParamList[i];
+                if (!CheckParam(elem,ref errorMsg))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool CheckParam(BTNodeParamData data,ref string errorMsg)
+        {
+            if (string.IsNullOrEmpty(data.m_strName))
+            {
+                errorMsg = "node paramter name can't be null";
+                return false;
+            }
+            switch (data.m_Type)
+            {
+                case BTNodeParamDataType.Bool:
+                    if (data.m_Value != "0" && data.m_Value != "1")
+                    {
+                        errorMsg = "bool type with wrong value {0,1}";
+                        return false;
+                    }
+                    break;
+                case BTNodeParamDataType.Byte:
+                    if (!VaildUtil.IsFormateCorrect_Byte(data.m_Value))
+                    {
+                        errorMsg = "Byte type with wrong value";
+                        return false;
+                    }
+                    break;
+                case BTNodeParamDataType.Double:
+                    if (!VaildUtil.IsFormateCorrect_Double(data.m_Value))
+                    {
+                        errorMsg = "Double type with wrong value";
+                        return false;
+                    }
+                    break;
+                case BTNodeParamDataType.I16:
+                    if (!VaildUtil.IsFormateCorrect_Short(data.m_Value))
+                    {
+                        errorMsg = "I16 type with wrong value";
+                        return false;
+                    }
+                    break;
+                case BTNodeParamDataType.I32:
+                    if (!VaildUtil.IsFormateCorrect_Int(data.m_Value))
+                    {
+                        errorMsg = "I32 type with wrong value";
+                        return false;
+                    }
+                    break;
+                case BTNodeParamDataType.I64:
+                    if (!VaildUtil.IsFormateCorrect_Long(data.m_Value))
+                    {
+                        errorMsg = "I64 type with wrong value";
+                        return false;
+                    }
+                    break;
+                case BTNodeParamDataType.String:
+                    break;
+            }
             return true;
         }
         #endregion
@@ -181,6 +250,7 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
             {
                 return false;
             }
+            m_Data.Text = m_Data.GetData().m_strName;
             m_Status = NodePanelOpr.Idle;
             return true;
         }

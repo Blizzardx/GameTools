@@ -44,6 +44,11 @@ namespace GameConfigTools.Util
         {
             return TryConvertInt(s, out n, min, max);
         }
+        public static bool IsFormateCorrect_Int(string s)
+        {
+            int value = 0;
+            return TryConvert(s, out value);
+        }
         #endregion
 
         #region float
@@ -74,6 +79,11 @@ namespace GameConfigTools.Util
         {
             return TryConvertFloat(s, out n, min, max);
         }
+        public static bool IsFormateCorrect_Float(string s)
+        {
+            float value = 0;
+            return TryConvert(s, out value);
+        }
         #endregion
 
         #region short
@@ -99,6 +109,11 @@ namespace GameConfigTools.Util
         public static bool TryConvert(string s, out short n, short min = short.MinValue, short max = short.MaxValue)
         {
             return TryConvertShort(s, out n, min, max);
+        }
+        public static bool IsFormateCorrect_Short(string s)
+        {
+            short value = 0;
+            return TryConvert(s, out value);
         }
         #endregion
 
@@ -126,6 +141,43 @@ namespace GameConfigTools.Util
         {
             return TryConvertLong(s, out n, min, max);
         }
+        public static bool IsFormateCorrect_Long(string s)
+        {
+            long value = 0;
+            return TryConvert(s, out value);
+        }
+        #endregion
+
+        #region double
+
+        public static bool TryConvertDouble(string s, out double n, double min = double.MinValue, double max = double.MaxValue)
+        {
+            double a;
+            n = 0;
+            if (!double.TryParse(s, out a))
+            {
+                return false;
+            }
+            if (a < min)
+            {
+                return false;
+            }
+            if (a > max)
+            {
+                return false;
+            }
+            n = a;
+            return true;
+        }
+        public static bool TryConvert(string s, out double n, double min = double.MinValue, double max = double.MaxValue)
+        {
+            return TryConvertDouble(s, out n, min, max);
+        }
+        public static bool IsFormateCorrect_Double(string s)
+        {
+            double value = 0;
+            return TryConvert(s, out value);
+        }
         #endregion
 
         #region byte
@@ -151,6 +203,11 @@ namespace GameConfigTools.Util
         public static bool TryConvert(string s, out byte n, byte min = byte.MinValue, byte max = byte.MaxValue)
         {
             return TryConvertByte(s, out n, min, max);
+        }
+        public static bool IsFormateCorrect_Byte(string s)
+        {
+            byte value = 0;
+            return TryConvert(s, out value);
         }
         #endregion
 
