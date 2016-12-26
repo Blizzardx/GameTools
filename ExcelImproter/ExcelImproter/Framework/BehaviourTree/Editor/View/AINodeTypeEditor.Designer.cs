@@ -50,6 +50,7 @@
             this.button1.TabIndex = 14;
             this.button1.Text = "+";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label7
             // 
@@ -102,6 +103,7 @@
             this.buttonLoad.TabIndex = 4;
             this.buttonLoad.Text = "载入";
             this.buttonLoad.UseVisualStyleBackColor = true;
+            this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
             // buttonSave
             // 
@@ -111,6 +113,7 @@
             this.buttonSave.TabIndex = 3;
             this.buttonSave.Text = "保存";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // groupBox1
             // 

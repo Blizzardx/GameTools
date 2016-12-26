@@ -45,7 +45,7 @@ namespace ExcelImproter
                 "BTDecorate",
                 "BTActionIdle",
             };
-            BTNodeTypeManager.Instance.SaveTypeList(BTConfigSetting.BTNodeTypeConfigPath, list);
+           // BTNodeTypeManager.Instance.SaveTypeList(BTConfigSetting.BTNodeTypeConfigPath, list);
         }
         private void button1_Click(object sender, EventArgs e)
         {
