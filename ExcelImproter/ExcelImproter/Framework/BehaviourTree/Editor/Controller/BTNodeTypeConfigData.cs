@@ -27,12 +27,10 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.Controller
     }
     public class BTNodeTypeConfigData:XmlConfigBase
     {
-        public List<string> m_OptionTypeList;
         public List<BTNodeTypeInfoData> m_TypeInfoList;
     }
     public class BTNodeTypeManager : Singleton<BTNodeTypeManager>
     {
-        private List<string>            m_OptionTypeList;
         private List<BTNodeTypeInfoData> m_TypeInfoList;
 
         public void LoadTypeList(string path)
@@ -43,25 +41,19 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.Controller
                 return;
             }
             var data=XmlConfigBase.DeSerialize<BTNodeTypeConfigData>(content);
-            if (data == null || data.m_OptionTypeList == null)
+            if (data == null || data.m_TypeInfoList == null)
             {
                 return;
             }
-            m_OptionTypeList = data.m_OptionTypeList;
             m_TypeInfoList   = data.m_TypeInfoList;
         }
-        public void SaveTypeList(string path,List<BTNodeTypeInfoData> optionList )
+        public void SaveTypeList(string path,List<BTNodeTypeInfoData> typeList )
         {
-            m_TypeInfoList = optionList;
+            m_TypeInfoList = typeList;
             BTNodeTypeConfigData data = new BTNodeTypeConfigData();
-            data.m_OptionTypeList = m_OptionTypeList;
             data.m_TypeInfoList = m_TypeInfoList;
             string content = XmlConfigBase.Serialize(data);
             FileUtils.WriteStringFile(path, content);
-        }
-        public List<string> GetOptionTypeList()
-        {
-            return m_OptionTypeList;
         }
         public List<BTNodeTypeInfoData> GetTypeInfoList()
         {

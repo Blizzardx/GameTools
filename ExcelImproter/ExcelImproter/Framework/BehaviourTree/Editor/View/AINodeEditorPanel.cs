@@ -26,9 +26,16 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
         {
             InitializeComponent();
             m_ParamEditPanelList = new List<AINodeParamEditor>();
-            if (null != BTNodeTypeManager.Instance.GetOptionTypeList())
+            
+            if (null != BTNodeTypeManager.Instance.GetTypeInfoList())
             {
-                comboBoxNodeType.Items.AddRange(BTNodeTypeManager.Instance.GetOptionTypeList().ToArray());
+                var list = BTNodeTypeManager.Instance.GetTypeInfoList();
+                List<string> typeList = new List<string>(list.Count);
+                for (int i = 0; i < list.Count; ++i)
+                {
+                    typeList.Add(list[i].m_strName);
+                }
+                comboBoxNodeType.Items.AddRange(typeList.ToArray());
             }
         }
         public NodePanelOpr GetStatus()

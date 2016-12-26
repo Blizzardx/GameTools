@@ -111,8 +111,8 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         { 
             // check config
-            if (BTNodeTypeManager.Instance.GetOptionTypeList() == null ||
-                BTNodeTypeManager.Instance.GetOptionTypeList().Count == 0)
+            if (BTNodeTypeManager.Instance.GetTypeInfoList() == null ||
+                BTNodeTypeManager.Instance.GetTypeInfoList().Count == 0)
             {
                 MessageBox.Show(this, "节点配置不完善", "参数错误", MessageBoxButtons.OK);
 
