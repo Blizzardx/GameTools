@@ -1,21 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using ExcelImproter.Framework.BehaviourTree.Editor.Controller;
 
-namespace ExcelImproter.Framework.BehaviourTree.Editor
+namespace ExcelImproter.Framework.BehaviourTree.Editor.View
 {
-    public partial class AINodeParamEditor : UserControl
+    public partial class AINodeTypeParamterEditorPanel : UserControl
     {
-        private Action<BTNodeParamData> m_OperCallback;
-        private BTNodeParamData m_Data;
-
-        public AINodeParamEditor()
+        private BTNodeTypeParamterData          m_Data;
+        private Action<BTNodeTypeParamterData>  m_OnSubCallback;
+        public AINodeTypeParamterEditorPanel()
         {
             InitializeComponent();
-            Init();
-        }
-        public void Init()
-        {
             var types = BTNodeParamDataTypeDesc.BTNodeParamDataTypes;
             for (int i = 0; i < types.Length; ++i)
             {
@@ -23,7 +24,11 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor
             }
             comboBox1.SelectedIndex = 0;
         }
-        public void Refresh(BTNodeParamData data)
+        public void SetCallback(Action<BTNodeTypeParamterData> callback)
+        {
+            m_OnSubCallback = callback;
+        }
+        public void Refresh(BTNodeTypeParamterData data)
         {
             m_Data = data;
             for (int i = 0; i < comboBox1.Items.Count; ++i)
@@ -40,30 +45,20 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor
                 m_Data.m_strName = string.Empty;
             }
             textBoxName.Text = m_Data.m_strName;
-
-            if (string.IsNullOrEmpty(m_Data.m_Value))
-            {
-                m_Data.m_Value = string.Empty;
-            }
-            textBoxValue.Text = m_Data.m_Value;
-
-            //lock edit
-            textBoxName.Enabled = false;
-            comboBox1.Enabled = false;
         }
-        private void button1_Click(object sender, EventArgs e)
+        public BTNodeTypeParamterData GetData()
         {
-            m_OperCallback(m_Data);
-        }
-        public void SetCallback(Action<BTNodeParamData> callback)
-        {
-            m_OperCallback = callback;
+            return m_Data;
         }
         public void Save()
         {
             m_Data.m_strName = textBoxName.Text;
-            m_Data.m_Value = textBoxValue.Text;
             m_Data.m_Type = (BTNodeParamDataType)comboBox1.SelectedItem;
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            m_OnSubCallback(m_Data);
+        }
+
     }
 }

@@ -11,6 +11,7 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
         private List<BTNodeTypeInfoData> m_TypeInfoList;
         private List<AINodeTypeEditorPanel> m_TypeEditPanelList;
         private List<AINodeTypeOptionEditorPanel> m_TypeOptionEditPanelList;
+        private List<AINodeTypeParamterEditorPanel> m_TypeParmterEditPanelList;
         private BTNodeTypeInfoData m_CurrentEditNode;
 
         public AINodeTypeEditor()
@@ -19,6 +20,7 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
             m_TypeInfoList = new List<BTNodeTypeInfoData>();
             m_TypeEditPanelList = new List<AINodeTypeEditorPanel>();
             m_TypeOptionEditPanelList = new List<AINodeTypeOptionEditorPanel>();
+            m_TypeParmterEditPanelList = new List<AINodeTypeParamterEditorPanel>();
         }
         private void buttonLoad_Click(object sender, EventArgs e)
         {
@@ -34,7 +36,7 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
         {
             Save();
             string errorMsg = string.Empty;
-            if (!CheckData(ref errorMsg))
+            if (!CheckData(ref errorMsg) || !CheckAllParamterData(ref errorMsg))
             {
                 MessageBox.Show(this, errorMsg, "参数错误", MessageBoxButtons.OK);
                 return;
@@ -148,6 +150,7 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
                 }
             }
             RefreshOptionPanelList(data);
+            RefreshParamterPanleList(data);
         }
         private void OnChangeOptionTypeList(BTNodeTypeInfoData data, bool isSelected)
         {
@@ -220,6 +223,137 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
             if (!haveRoot)
             {
                 errorMsg = "Donot exist root in plan list";
+                return false;
+            }
+            return true;
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // add paramter
+            OnAddParamter();
+        }
+        private void RefreshParamterPanleList(BTNodeTypeInfoData rootData)
+        {
+            if (null == rootData.m_ParamList)
+            {
+                rootData.m_ParamList = new List<BTNodeTypeParamterData>();
+            }
+            List<AINodeTypeParamterEditorPanel> tmpPanelList = new List<AINodeTypeParamterEditorPanel>();
+            int i = 0;
+            for (i = 0; i < rootData.m_ParamList.Count; ++i)
+            {
+                AINodeTypeParamterEditorPanel panel = null;
+                if (i < m_TypeParmterEditPanelList.Count)
+                {
+                    panel = m_TypeParmterEditPanelList[i];
+                }
+                else
+                {
+                    panel = new AINodeTypeParamterEditorPanel();
+                    panel.SetCallback(OnSubParamter);
+                    tmpPanelList.Add(panel);
+                }
+                panel.Visible = true;
+                panel.Location = new Point(10, i * panel.Size.Height);
+                panel3.Controls.Add(panel);
+                panel.Refresh(rootData.m_ParamList[i]);
+            }
+            if (i < m_TypeParmterEditPanelList.Count)
+            {
+                for (; i < m_TypeParmterEditPanelList.Count; ++i)
+                {
+                    m_TypeParmterEditPanelList[i].Visible = false;
+                }
+            }
+            m_TypeParmterEditPanelList.AddRange(tmpPanelList);
+        }
+        private void OnAddParamter()
+        {
+            if (null == m_CurrentEditNode)
+            {
+                return;
+            }
+            if (null == m_CurrentEditNode.m_ParamList)
+            {
+                m_CurrentEditNode.m_ParamList = new List<BTNodeTypeParamterData>();
+            }
+            BTNodeTypeParamterData elem = new BTNodeTypeParamterData();
+            m_CurrentEditNode.m_ParamList.Add(elem);
+            RefreshParamterPanleList(m_CurrentEditNode);
+        }
+        private void OnSubParamter(BTNodeTypeParamterData data)
+        {
+            if (null == m_CurrentEditNode)
+            {
+                return;
+            }
+            for (int i = 0; i < m_CurrentEditNode.m_ParamList.Count; ++i)
+            {
+                if (m_CurrentEditNode.m_ParamList[i] == data)
+                {
+                    m_CurrentEditNode.m_ParamList.RemoveAt(i);
+                    break;
+                }
+            }
+            RefreshParamterPanleList(m_CurrentEditNode);
+        }
+        private void buttonDone_Click(object sender, EventArgs e)
+        {
+            if (null == m_CurrentEditNode)
+            {
+                return;
+            }
+            for (int i = 0; i < m_TypeParmterEditPanelList.Count; ++i)
+            {
+                m_TypeParmterEditPanelList[i].Save();
+            }
+            string errorMsg = string.Empty;
+            if (!CheckParamterData(ref errorMsg, m_CurrentEditNode))
+            {
+                MessageBox.Show(this, errorMsg, "参数错误", MessageBoxButtons.OK);
+            }
+        }
+        private bool CheckAllParamterData(ref string errorMsg)
+        {
+            for (int i = 0; i < m_TypeInfoList.Count; ++i)
+            {
+                var elem = m_TypeInfoList[i];
+                if (null == elem.m_ParamList)
+                {
+                    continue;
+                }
+                if (!CheckParamterData(ref errorMsg, elem))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool CheckParamterData(ref string errorMsg, BTNodeTypeInfoData elem)
+        {
+            HashSet<string> nameMap = new HashSet<string>();
+            foreach (var info in elem.m_ParamList)
+            {
+                if (!CheckParamterData(ref errorMsg, info))
+                {
+                    errorMsg += " : in type: " + elem.m_strName;
+                    return false;
+                }
+                if (nameMap.Contains(info.m_strName))
+                {
+                    errorMsg = string.Format("there are already exist node name {0} in {1}", info.m_strName, elem.m_strName);
+                    return false;
+                }
+                nameMap.Add(info.m_strName);
+
+            }
+            return true;
+        }
+        private bool CheckParamterData(ref string errorMsg,BTNodeTypeParamterData data)
+        {
+            if (string.IsNullOrEmpty(data.m_strName))
+            {
+                errorMsg = "paramter name can't be null ";
                 return false;
             }
             return true;

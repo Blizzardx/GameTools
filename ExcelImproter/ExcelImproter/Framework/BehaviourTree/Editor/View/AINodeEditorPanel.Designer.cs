@@ -102,6 +102,7 @@
             this.comboBoxNodeType.Name = "comboBoxNodeType";
             this.comboBoxNodeType.Size = new System.Drawing.Size(266, 20);
             this.comboBoxNodeType.TabIndex = 19;
+            this.comboBoxNodeType.SelectedIndexChanged += new System.EventHandler(this.comboBoxNodeType_SelectedIndexChanged);
             // 
             // textBoxNodeDesc
             // 

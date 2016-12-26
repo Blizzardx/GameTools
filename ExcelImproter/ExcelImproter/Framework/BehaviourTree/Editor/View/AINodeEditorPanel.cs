@@ -236,8 +236,10 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
             buttonDone.Visible = true;
             buttonAdd.Visible = false;
             buttonCancel.Visible = false;
-
+            comboBoxNodeType.Enabled = false;
+            
             m_Data = data;
+
             RefrshUpdate();
         }
         private bool OnEndEdit(ref string errorMsg)
@@ -271,9 +273,62 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
             buttonDone.Visible = false;
             buttonAdd.Visible = true;
             buttonCancel.Visible = true;
+            comboBoxNodeType.Enabled = true;
             m_OnCreateCallback = onCreateCallback;
             m_Data = CreateDefaultNode();
+            ReloadParamaterList();
             RefrshUpdate();
+        }
+        private void comboBoxNodeType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (m_Status == NodePanelOpr.Add)
+            {
+                ReloadParamaterList();
+                RefrshUpdate();
+            }
+        }
+        private void ReloadParamaterList()
+        {
+            if (comboBoxNodeType.Items.Count == 0)
+            {
+                return;
+            }
+            if (null == m_Data.GetData().m_ParamList)
+            {
+                m_Data.GetData().m_ParamList = new List<BTNodeParamData>();
+            }
+            else
+            {
+                m_Data.GetData().m_ParamList.Clear();
+            }
+            var list = BTNodeTypeManager.Instance.GetTypeInfoList();
+            string curSelected = string.Empty;
+            if (comboBoxNodeType.SelectedIndex != -1)
+            {
+                curSelected = comboBoxNodeType.Items[comboBoxNodeType.SelectedIndex] as string;
+            }
+            else
+            {
+                curSelected = comboBoxNodeType.Items[0] as string;
+            }
+            for (int i = 0; i < list.Count; ++i)
+            {
+                if (list[i].m_strName == curSelected)
+                {
+                    m_Data.GetData().m_strType = curSelected;
+                    if (null != list[i].m_ParamList)
+                    {
+                        foreach (var elem in list[i].m_ParamList)
+                        {
+                            BTNodeParamData newElem = new BTNodeParamData();
+                            newElem.m_strName = elem.m_strName;
+                            newElem.m_Type = elem.m_Type;
+                            m_Data.GetData().m_ParamList.Add(newElem);
+                        }
+                    }
+                    break;
+                }
+            }
         }
         private CustomViewNode CreateDefaultNode()
         {
