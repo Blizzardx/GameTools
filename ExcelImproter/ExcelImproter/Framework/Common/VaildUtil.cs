@@ -379,6 +379,24 @@ namespace GameConfigTools.Util
             }
             return false;
         }
+        public static bool IsChar(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+            {
+                return false;
+            }
+            System.Text.RegularExpressions.Regex rex = new System.Text.RegularExpressions.Regex(@"[a-zA-Z]");
+
+            if (rex.IsMatch(s))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            return true;
+        }
         #endregion
     }
 }

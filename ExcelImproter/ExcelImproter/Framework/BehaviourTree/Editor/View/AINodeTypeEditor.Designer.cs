@@ -214,6 +214,7 @@
             this.buttonGenCode.TabIndex = 23;
             this.buttonGenCode.Text = "生成代码";
             this.buttonGenCode.UseVisualStyleBackColor = true;
+            this.buttonGenCode.Click += new System.EventHandler(this.buttonGenCode_Click);
             // 
             // AINodeTypeEditor
             // 

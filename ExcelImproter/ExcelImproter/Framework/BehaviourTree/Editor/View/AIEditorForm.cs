@@ -71,12 +71,12 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor
         private void 添加节点ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             m_bIsAddRootNode = false;
-            CreateNode();
+            CreateNode(false);
         }
         private void 添加根节点ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             m_bIsAddRootNode = true;
-            CreateNode();
+            CreateNode(true);
         }
         private void 删除节点ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -137,11 +137,42 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor
                 {
                     elem.Enabled = treeView.Nodes.Count > 0;
                 }
-                if (elem.Text == "删除节点")
+                if (elem.Text == "添加节点")
                 {
-                    elem.Enabled = treeView.SelectedNode != null;
+                    if (treeView.SelectedNode != null)
+                    {
+                        CustomViewNode node = treeView.SelectedNode as CustomViewNode;
+                        if (!CheckCanAddChildNode(node.GetData().m_strType))
+                        {
+                            elem.Enabled = false;
+                        }
+                        else
+                        {
+                            elem.Enabled = true;
+                        }
+                    }
+                    else
+                    {
+                        elem.Enabled = false;
+                    }
                 }
             }
+        }
+        private bool CheckCanAddChildNode(string nodeType)
+        {
+            var list = BTNodeTypeManager.Instance.GetTypeInfoList();
+            for (int i = 0; i < list.Count; ++i)
+            {
+                if (list[i].m_strName == nodeType)
+                {
+                    if (list[i].m_bIsLimitChildCount && list[i].m_iLimitChildCount == 0)
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+            return false;
         }
         private void OnClickTreeItem(object sender, EventArgs e)
         {
@@ -156,10 +187,10 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor
             }
             EditNode(treeView.SelectedNode as CustomViewNode);
         }
-        private void CreateNode()
+        private void CreateNode(bool isRoot)
         {
             m_NodeEditorPanel.Visible = true;
-            m_NodeEditorPanel.CreateNode(OnCreateNewNode);
+            m_NodeEditorPanel.CreateNode(isRoot,OnCreateNewNode);
         }
         private void EditNode(CustomViewNode node)
         {
@@ -183,15 +214,26 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor
         private void OnCreateNewNode(CustomViewNode node)
         {
             CustomViewNode root = null;
-            node.Text = node.GetData().m_strName;
+            node.Text = node.GetData().m_strType + ":" + node.GetData().m_strName;
             if (m_bIsAddRootNode || treeView.SelectedNode == null)
             {
+                if (!CheckPlanId(node))
+                {
+                    MessageBox.Show(this, "id already exist", "参数错误", MessageBoxButtons.OK);
+                    return;
+                }
                 treeView.Nodes.Add(node);
                 treeView.SelectedNode = node;
             }
             else
             {
+                string errorMsg = string.Empty;
                 root = treeView.SelectedNode as CustomViewNode;
+                if (!CheckAddNodeRule(root,node,ref errorMsg))
+                {
+                    MessageBox.Show(this, errorMsg, "参数错误", MessageBoxButtons.OK);
+                    return;
+                }
                 if (null == root.GetData().m_ChildList)
                 {
                     root.GetData().m_ChildList = new List<BTNodeData>();
@@ -201,6 +243,72 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor
             }
 
             ClearPanel();
+        }
+        private bool CheckPlanId(CustomViewNode node)
+        {
+            var roots = treeView.Nodes;
+            foreach (var elem in roots)
+            {
+                CustomViewNode subNode = elem as CustomViewNode;
+                if (subNode.GetData().m_Id == node.GetData().m_Id)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool CheckAddNodeRule(CustomViewNode root, CustomViewNode current,ref string errorMsg)
+        {
+            BTNodeTypeInfoData rootTypeInfo = null;
+            BTNodeTypeInfoData nodeTypeInfo = null;
+
+            foreach (var elem in BTNodeTypeManager.Instance.GetTypeInfoList())
+            {
+                if (elem.m_strName == root.GetData().m_strType)
+                {
+                    rootTypeInfo = elem;
+                }
+                if (elem.m_strName == current.GetData().m_strType)
+                {
+                    nodeTypeInfo = elem;
+                }
+            }
+            if (null == nodeTypeInfo || null == rootTypeInfo)
+            {
+                errorMsg = "节点类型错误";
+                return false;
+            }
+            if (rootTypeInfo.m_bIsLimitChildCount)
+            {
+                if (root.GetData().m_ChildList != null && root.GetData().m_ChildList.Count >= rootTypeInfo.m_iLimitChildCount)
+                {
+                    errorMsg = "超过了该节点允许添加的节点个数";
+                    return false;
+                }
+            }
+            if (rootTypeInfo.m_bIsLimitChildType)
+            {
+                bool isChildInList = false;
+                for (int i = 0; i < rootTypeInfo.m_OptionChildTypeList.Count; ++i)
+                {
+                    if (rootTypeInfo.m_OptionChildTypeList[i] == nodeTypeInfo.m_strName)
+                    {
+                        isChildInList = true;
+                        break;
+                    }   
+                }
+                if (!isChildInList)
+                {
+                    errorMsg = "该子节点类型不允许添加到该父节点下";
+                    return false;
+                }
+            }
+            if (nodeTypeInfo.m_bIsRoot)
+            {
+                errorMsg = "根节点不允许被添加成子节点";
+                return false;
+            }
+            return true;
         }
         private string OpenFile()
         {

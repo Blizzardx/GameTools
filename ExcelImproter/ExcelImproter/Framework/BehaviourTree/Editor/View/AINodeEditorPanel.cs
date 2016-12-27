@@ -252,7 +252,7 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
             {
                 return false;
             }
-            m_Data.Text = m_Data.GetData().m_strName;
+            m_Data.Text = m_Data.GetData().m_strType + ":" + m_Data.GetData().m_strName;
             m_Status = NodePanelOpr.Idle;
             return true;
         }
@@ -267,7 +267,7 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
         #endregion
 
         #region create node
-        public void CreateNode(Action<CustomViewNode> onCreateCallback)
+        public void CreateNode(bool isRootNode,Action<CustomViewNode> onCreateCallback)
         {
             m_Status = NodePanelOpr.Add;
             buttonDone.Visible = false;
@@ -276,6 +276,18 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
             comboBoxNodeType.Enabled = true;
             m_OnCreateCallback = onCreateCallback;
             m_Data = CreateDefaultNode();
+            if (isRootNode)
+            {
+                foreach (var elem in BTNodeTypeManager.Instance.GetTypeInfoList())
+                {
+                    if (elem.m_bIsRoot)
+                    {
+                        comboBoxNodeType.SelectedItem = elem.m_strName;
+                        break;
+                    }
+                }
+                comboBoxNodeType.Enabled = false;
+            }
             ReloadParamaterList();
             RefrshUpdate();
         }

@@ -12,8 +12,13 @@ namespace ExcelImproter
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1(string[] args)
         {
+            if (args.Length != 1 || args[0] != "123456")
+            {
+                MessageBox.Show(this, "请从正常渠道打开工具", "参数错误", MessageBoxButtons.OK);
+                return;
+            }
             InitializeComponent();
             RefreshFileList();
         }

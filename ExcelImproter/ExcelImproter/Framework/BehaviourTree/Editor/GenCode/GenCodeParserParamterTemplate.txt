@@ -2,7 +2,7 @@
 {
     if (!VaildUtil.TryConvert(param.m_Value, out {0}))
     {
-        //Debug.LogError("error on parser node paramter " + param.m_strName);
+        Debug.LogError("error on parser node paramter " + param.m_strName);
         return;
     }
     break;

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using ExcelImproter.Framework.BehaviourTree.Editor.Controller;
+using ExcelImproter.Framework.BehaviourTree.Editor.GenCode;
+using GameConfigTools.Util;
 
 namespace ExcelImproter.Framework.BehaviourTree.Editor.View
 {
@@ -21,8 +23,14 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
             m_TypeEditPanelList = new List<AINodeTypeEditorPanel>();
             m_TypeOptionEditPanelList = new List<AINodeTypeOptionEditorPanel>();
             m_TypeParmterEditPanelList = new List<AINodeTypeParamterEditorPanel>();
+
+            LoadAllData();
         }
         private void buttonLoad_Click(object sender, EventArgs e)
+        {
+            LoadAllData();
+        }
+        private void LoadAllData()
         {
             BTNodeTypeManager.Instance.LoadTypeList(BTConfigSetting.BTNodeTypeConfigPath);
             m_TypeInfoList = BTNodeTypeManager.Instance.GetTypeInfoList();
@@ -34,14 +42,19 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            SaveAllTypeData();
+        }
+        private bool SaveAllTypeData()
+        {
             Save();
             string errorMsg = string.Empty;
             if (!CheckData(ref errorMsg) || !CheckAllParamterData(ref errorMsg))
             {
                 MessageBox.Show(this, errorMsg, "参数错误", MessageBoxButtons.OK);
-                return;
+                return false;
             }
             BTNodeTypeManager.Instance.SaveTypeList(BTConfigSetting.BTNodeTypeConfigPath, m_TypeInfoList);
+            return true;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -177,10 +190,19 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
         }
         private bool CheckData(ref string errorMsg)
         {
+            HashSet<string> nameMap = new HashSet<string>();
+
             bool haveRoot = false;
             for (int i = 0; i < m_TypeInfoList.Count; ++i)
             {
                 var elem = m_TypeInfoList[i];
+                if (nameMap.Contains(elem.m_strName))
+                {
+                    errorMsg = "Already exist name with name : " + elem.m_strName;
+                    return false;
+                }
+                nameMap.Add(elem.m_strName);
+
                 if (elem.m_bIsRoot)
                 {
                     if (haveRoot)
@@ -212,11 +234,19 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
                 }
                 else
                 {
-                    elem.m_OptionChildTypeList.Clear();
+                    if (null != elem.m_OptionChildTypeList)
+                    {
+                        elem.m_OptionChildTypeList.Clear();
+                    }
                 }
                 if (string.IsNullOrEmpty(elem.m_strName))
                 {
                     errorMsg = "node type name can't be null ";
+                    return false;
+                }
+                if (!VaildUtil.IsChar(elem.m_strName))
+                {
+                    errorMsg = "type name can't be number";
                     return false;
                 }
             }
@@ -344,6 +374,11 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
                     errorMsg = string.Format("there are already exist node name {0} in {1}", info.m_strName, elem.m_strName);
                     return false;
                 }
+                if (info.m_strName == elem.m_strName)
+                {
+                    errorMsg = string.Format("paramter name can't same with type name {0} in {1}", info.m_strName, elem.m_strName);
+                    return false;
+                }
                 nameMap.Add(info.m_strName);
 
             }
@@ -356,7 +391,20 @@ namespace ExcelImproter.Framework.BehaviourTree.Editor.View
                 errorMsg = "paramter name can't be null ";
                 return false;
             }
+            if (!VaildUtil.IsChar(data.m_strName))
+            {
+                errorMsg = "paramter name can't be number";
+                return false;
+            }
             return true;
+        }
+        private void buttonGenCode_Click(object sender, EventArgs e)
+        {
+            if (!SaveAllTypeData())
+            {
+                return;
+            }
+            GenCodeTool.Instance.GenCode(BTNodeTypeManager.Instance.GetTypeInfoList());
         }
     }
 }
