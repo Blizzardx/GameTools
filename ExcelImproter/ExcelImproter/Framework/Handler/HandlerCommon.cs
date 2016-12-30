@@ -20,7 +20,7 @@ namespace ExcelImproter.Framework.Handler
                 m_strFullPath = m_strFullPath.Replace('\\', '/');
                 HandleConfig(m_strFullPath, ref m_strName, ref m_strSubPath);
             }
-            public void HandleConfig(string fullPath, ref string name, ref string subPath)
+            public static void HandleConfig(string fullPath, ref string name, ref string subPath)
             {
                 fullPath = fullPath.Replace('\\', '/');
                 int index = fullPath.LastIndexOf('/');

@@ -7,7 +7,7 @@ public class Packer_Thrift:IPacker
     public byte[] DoPack(PackDataStruct Data)
     {
         Clear();
-        BeginPackData(Data);
+        EncodeStruct(Data);
         return GetBuffer();
     }
 
@@ -17,17 +17,10 @@ public class Packer_Thrift:IPacker
     {
         return trans.GetBuffer();
     }
-    public void BeginPackData(PackDataStruct data)
+    public void EncodeStruct(PackDataStruct data)
     {
         WriteStructBegin();
 
-        PackeData(data);
-
-        WriteFieldStop();
-        WriteStructEnd();
-    }
-    public void PackeData(PackDataStruct data)
-    {
         for (int i = 0; i < data.m_ElemList.Count; ++i)
         {
             var elem = data.m_ElemList[i];
@@ -35,6 +28,9 @@ public class Packer_Thrift:IPacker
             EncodeDataElement(elem);
             WriteFieldEnd();
         }
+
+        WriteFieldStop();
+        WriteStructEnd();
     }
     private TField GetFiledByDesc(PackDataElement data)
     {
@@ -111,12 +107,6 @@ public class Packer_Thrift:IPacker
     {
         WriteByteDirect((int)elem.m_Value);
     }
-    private void EncodeStruct(PackDataElement elem)
-    {
-        WriteStructBegin();
-        BeginPackData(elem.m_Value as PackDataStruct);
-        WriteStructEnd();
-    }
     private void EncodeList(PackDataElement elem)
     {
         List<PackDataElement> list = elem.m_Value as List<PackDataElement>;
@@ -177,14 +167,15 @@ public class Packer_Thrift:IPacker
         {
             var keyFiled = GetFiledByDesc(map.First().Key);
             var targetKeyType = map.First().Key.m_Type;
-            var vlaueFiled = GetFiledByDesc(map.First().Key);
-            var targetValueType = map.First().Key.m_Type;
+
+            var vlaueFiled = GetFiledByDesc(map.First().Value);
+            var targetValueType = map.First().Value.m_Type;
             WriteMapBegin(keyFiled.Type, vlaueFiled.Type,map.Count);
 
             foreach (var tmpElem in map)
             {
                 PackDataElement subKeyElem = tmpElem.Key;
-                PackDataElement subValueElem = tmpElem.Key;
+                PackDataElement subValueElem = tmpElem.Value;
 
                 if (subKeyElem.m_Type != targetKeyType)
                 {
@@ -227,7 +218,7 @@ public class Packer_Thrift:IPacker
                 EncodeString(elem);
                 break;
             case PackDataElementType.Struct:
-                EncodeStruct(elem);
+                EncodeStruct(elem.m_Value as PackDataStruct);
                 break;
             case PackDataElementType.Map:
                 EncodeMap(elem);

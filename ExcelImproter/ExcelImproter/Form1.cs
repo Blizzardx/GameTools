@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Communication;
+using Config.Table;
 using ExcelImporter.Importer;
+using ExcelImproter.Configs;
 using ExcelImproter.Framework.BehaviourTree;
 using ExcelImproter.Framework.BehaviourTree.Editor;
 using ExcelImproter.Framework.BehaviourTree.Editor.Controller;
@@ -41,16 +44,22 @@ namespace ExcelImproter
         private void 测试按钮ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ManualHandlerManager.Instance.HandleConfig("diyCharConfig.xlsx", "E:/Project/GameClient/策划文档/config/dev/cqq/1.1/");
-            List<string> list = new List<string>()
-            {
-                "BTRoot",
-                "BTCondition",
-                "BTSequence",
-                "BTSelector",
-                "BTDecorate",
-                "BTActionIdle",
-            };
+            //List<string> list = new List<string>()
+            //{
+            //    "BTRoot",
+            //    "BTCondition",
+            //    "BTSequence",
+            //    "BTSelector",
+            //    "BTDecorate",
+            //    "BTActionIdle",
+            //};
            // BTNodeTypeManager.Instance.SaveTypeList(BTConfigSetting.BTNodeTypeConfigPath, list);
+
+            //byte[] content = FileUtils.ReadByteFile("E:/Project/GameClient/策划文档/config/dev/cqq/1.1/spellCardConfig.xlsx.byte");
+            //SpellCardConfigTable table = new SpellCardConfigTable();
+            //ThriftSerialize.DeSerialize(table, content);
+            //int a = 0;
+            //ExcelDescManager.Instance.test();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -74,6 +83,16 @@ namespace ExcelImproter
         }
         private void button3_Click(object sender, EventArgs e1)
         {
+            var list = HandlerCommon.Instance.GetAllReadyConfig();
+            string name = comboBox1.SelectedItem as string;
+            for (int i = 0; i < list.Count; ++i)
+            {
+                if (name == list[i].m_strName)
+                {
+                    AutoHandlerManager.Instance.Handler(list[i].m_strFullPath);
+                    break;
+                }
+            }
         }
         private void RefreshFileList()
         {
@@ -104,7 +123,6 @@ namespace ExcelImproter
             AIEditorForm aiForm = new AIEditorForm();
             aiForm.Show();
         }
-
         private void aI编辑器设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormCollection coll = Application.OpenForms;

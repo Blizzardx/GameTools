@@ -209,6 +209,51 @@ namespace GameConfigTools.Util
             byte value = 0;
             return TryConvert(s, out value);
         }
+
+        public static bool TryConvertsByte(string s, out sbyte n, sbyte min = sbyte.MinValue, sbyte max = sbyte.MaxValue)
+        {
+            sbyte a;
+            n = 0;
+            if (!sbyte.TryParse(s, out a))
+            {
+                return false;
+            }
+            if (a < min)
+            {
+                return false;
+            }
+            if (a > max)
+            {
+                return false;
+            }
+            n = a;
+            return true;
+        }
+        public static bool TryConvert(string s, out sbyte n, sbyte min = sbyte.MinValue, sbyte max = sbyte.MaxValue)
+        {
+            return TryConvertsByte(s, out n, min, max);
+        }
+        public static bool IsFormateCorrect_sByte(string s)
+        {
+            sbyte value = 0;
+            return TryConvert(s, out value);
+        }
+        #endregion
+
+        #region bool
+        public static bool TryConvert(string s, out bool n)
+        {
+            n = false;
+            if (s != "0" && s != "1")
+            {
+                return false;
+            }
+            if (s == "1")
+            {
+                n = true;
+            }
+            return true;
+        }
         #endregion
 
         #region list

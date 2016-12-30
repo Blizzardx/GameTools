@@ -112,6 +112,8 @@
     <Compile Include="Framework\Handler\AutoHandler\Core\AutoHandlerManager.cs" />
     <Compile Include="Framework\Handler\AutoHandler\Core\ConfigData.cs" />
     <Compile Include="Framework\Handler\AutoHandler\Core\IAutoExporter.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Core\ParserConfig\ExcelDescInfo.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Core\ParserConfig\ExcelDescManager.cs" />
     <Compile Include="Framework\Handler\AutoHandler\Core\ParserConfig\ParserExcelDataToPackData.cs" />
     <Compile Include="Framework\Handler\AutoHandler\Core\ParserConfig\ParserTxtDataToPackData.cs" />
     <Compile Include="Framework\Handler\AutoHandler\Impl\Json\AutoHandlerExportJson.cs" />
@@ -119,6 +121,7 @@
     <Compile Include="Framework\Handler\AutoHandler\Impl\Thrift\AutoHandlerExportThrift.cs" />
     <Compile Include="Framework\Handler\AutoHandler\Impl\Xml\AutoHandlerExportXml.cs" />
     <Compile Include="Framework\Handler\HandlerCommon.cs" />
+    <Compile Include="Framework\Handler\HandlerConfigSetting.cs" />
     <Compile Include="Framework\Packer\Core\ByteStream.cs" />
     <Compile Include="Framework\Packer\Core\IPacker.cs" />
     <Compile Include="Framework\Packer\Core\PackDataElementType.cs" />
@@ -164,6 +167,8 @@
     <Compile Include="Project\ScriptGenTool\ScriptGenInfo.cs" />
     <Compile Include="Project\ScriptGenTool\ScriptGenTool.cs" />
     <Compile Include="Plugin\Xml\XmlConfigBase.cs" />
+    <Compile Include="Project\Test\SpellCardConfig.cs" />
+    <Compile Include="Project\Test\SpellCardConfigTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Plugin\Thrift\Collections\TCollections.cs" />
     <Compile Include="Plugin\Thrift\Collections\THashSet.cs" />

@@ -46,15 +46,15 @@ namespace ExcelImproter.Framework.Reader
                 {
                     string elem = dataRow[i].ToString();
                     // check 
-                    if (dataRow[0].ToString().Equals("##"))
-                    {
-                        return null;
-                    }
-                    if (UseAnnotation() && dataRow[0].ToString().StartsWith("#"))
-                    {
-                        line.Add(null);
-                    }
-                    else
+                    //if (dataRow[0].ToString().Equals("##"))
+                    //{
+                    //    return null;
+                    //}
+                    //if (UseAnnotation() && dataRow[0].ToString().StartsWith("#"))
+                    //{
+                    //    line.Add(null);
+                    //}
+                    //else
                     {
                         line.Add(elem);
                     }

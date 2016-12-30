@@ -16,7 +16,7 @@ namespace ExcelImproter.Framework.Handler
     {
         private ConfigDataInfo   m_Info;
         private string           m_StrContent;
-        private ExcelData        m_ExcelContent;
+        private PackDataStruct   m_ExcelContent;
 
         public ConfigData(ConfigDataInfo info)
         {
@@ -37,7 +37,7 @@ namespace ExcelImproter.Framework.Handler
         {
             return m_StrContent;
         }
-        public ExcelData GetExcelContent()
+        public PackDataStruct GetExcelContent()
         {
             return m_ExcelContent;
         }

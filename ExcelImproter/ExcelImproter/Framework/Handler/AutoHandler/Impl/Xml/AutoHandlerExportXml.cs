@@ -18,7 +18,7 @@ namespace ExcelImproter.Framework.Handler
         public void Clear()
         {
         }
-        private void ExportExcel(ExcelData content)
+        private void ExportExcel(PackDataStruct content)
         {
             
         }
