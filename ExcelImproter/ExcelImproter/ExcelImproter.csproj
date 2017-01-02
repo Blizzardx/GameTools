@@ -55,6 +55,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editor\Controller\ExcelTitleEditorController.cs" />
+    <Compile Include="Editor\View\ExcelTitleEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor\View\ExcelTitleEditor.Designer.cs">
+      <DependentUpon>ExcelTitleEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor\View\ExcelTitleParamEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Editor\View\ExcelTitleParamEditor.Designer.cs">
+      <DependentUpon>ExcelTitleParamEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Framework\BehaviourTree\Editor\Controller\AIEditorController.cs" />
     <Compile Include="Framework\BehaviourTree\Editor\Controller\BTConfigSetting.cs" />
     <Content Include="Framework\BehaviourTree\Editor\GenCode\GenCodeClassTemplate.txt" />
@@ -119,6 +132,7 @@
     <Compile Include="Framework\Handler\AutoHandler\Impl\Json\AutoHandlerExportJson.cs" />
     <Compile Include="Framework\Handler\AutoHandler\Impl\Protocol\AutoHandlerExportProtocol.cs" />
     <Compile Include="Framework\Handler\AutoHandler\Impl\Thrift\AutoHandlerExportThrift.cs" />
+    <Compile Include="Framework\Handler\AutoHandler\Impl\Thrift\GenThriftCode.cs" />
     <Compile Include="Framework\Handler\AutoHandler\Impl\Xml\AutoHandlerExportXml.cs" />
     <Compile Include="Framework\Handler\HandlerCommon.cs" />
     <Compile Include="Framework\Handler\HandlerConfigSetting.cs" />
@@ -209,6 +223,12 @@
     <Compile Include="Plugin\Thrift\Transport\TTransport.cs" />
     <Compile Include="Plugin\Thrift\Transport\TTransportException.cs" />
     <Compile Include="Plugin\Thrift\Transport\TTransportFactory.cs" />
+    <EmbeddedResource Include="Editor\View\ExcelTitleEditor.resx">
+      <DependentUpon>ExcelTitleEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor\View\ExcelTitleParamEditor.resx">
+      <DependentUpon>ExcelTitleParamEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

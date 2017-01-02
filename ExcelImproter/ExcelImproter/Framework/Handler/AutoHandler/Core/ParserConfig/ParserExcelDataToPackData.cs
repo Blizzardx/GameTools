@@ -10,7 +10,7 @@ namespace ExcelImproter.Framework.Handler
     class ParserExcelDataToPackData
     {
         private ExcelReaderBase m_Reader;
-        private ExcelDescInfo m_ExcelHeader;
+        private ExcelDataElement_Struct m_ExcelHeader;
         private PackDataStruct m_PackData;
         private List<string> m_CurrentLineData;
         private string m_ConfigPath;
@@ -54,7 +54,7 @@ namespace ExcelImproter.Framework.Handler
                     m_CurrentLineData = line;
                     if (!IsNeedSkipLine())
                     {
-                        contentList.Add(ParserLine(m_ExcelHeader.m_ExcelTitleDesc));
+                        contentList.Add(ParserLine(m_ExcelHeader));
                     }
                     ++ lineIndex;
                 }
@@ -108,9 +108,44 @@ namespace ExcelImproter.Framework.Handler
             PackDataElement packdata = new PackDataElement();
             packdata.m_strName = data.m_strName;
             packdata.m_Id = data.m_Id;
-            packdata.m_Type = data.m_Type;
-            packdata.m_Value = GetValueByType(data.m_Type, data.m_iColumnId);
+            if (data.m_bIsList)
+            {
+                packdata.m_Type = PackDataElementType.List;
+                packdata.m_Value = GetValueListByType(data.m_Type, data.m_iColumnId);   
+            }
+            else
+            {
+                packdata.m_Type = data.m_Type;
+                packdata.m_Value = GetValueByType(data.m_Type, data.m_iColumnId);   
+            }
             return packdata;
+        }
+        private object GetValueListByType(PackDataElementType type, int columeIndex)
+        {
+            if (columeIndex < 0 || columeIndex >= m_CurrentLineData.Count)
+            {
+                return null;
+            }
+            
+            string s = m_CurrentLineData[columeIndex];
+            switch (type)
+            {
+                case PackDataElementType.Bool:
+                    return VaildUtil.SplitToList_bool(s);
+                case PackDataElementType.Byte:
+                    return VaildUtil.SplitToList_sbyte(s);
+                case PackDataElementType.Double:
+                    return VaildUtil.SplitToList_double(s);
+                case PackDataElementType.I16:
+                    return VaildUtil.SplitToList_short(s);
+                case PackDataElementType.I32:
+                    return VaildUtil.SplitToList_int(s);
+                case PackDataElementType.I64:
+                    return VaildUtil.SplitToList_long(s);
+                case PackDataElementType.String:
+                    return VaildUtil.SplitToList(s);
+            }
+            return null;
         }
         private object GetValueByType(PackDataElementType type, int columeIndex)
         {
@@ -119,7 +154,6 @@ namespace ExcelImproter.Framework.Handler
                 return null;
             }
             string s = m_CurrentLineData[columeIndex];
-
             switch (type)
             {
                 case PackDataElementType.Bool:

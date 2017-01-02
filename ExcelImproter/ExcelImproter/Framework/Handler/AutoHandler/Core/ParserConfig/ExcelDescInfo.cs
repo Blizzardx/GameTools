@@ -14,6 +14,23 @@ namespace ExcelImproter.Framework.Handler
         public string m_strName;
         [XmlAttribute("ColumnId")]
         public int m_iColumnId;
+        [XmlAttribute("isList")] 
+        public bool m_bIsList;
+        [XmlAttribute("isLimitRange")]
+        public bool m_bIsLimitRange;
+        [XmlAttribute("RangeMin")]
+        public string m_RangeMin;
+        [XmlAttribute("RangeMax")]
+        public string m_RangeMax;
+        [XmlAttribute("isLimitOption")] 
+        public bool m_bIsLimitOption;
+        public List<string> m_OptionList;
+        [XmlAttribute("isCheckIndex")]
+        public bool m_bIsCheckIndex;
+        [XmlAttribute("IndexConfigName")]
+        public string m_IndexConfigName;
+        [XmlAttribute("IndexConfiggColumnId")] 
+        public int m_IndexConfigColumnId;
     }
     public class ExcelDataElement_List: ExcelDataElement
     {
@@ -30,14 +47,12 @@ namespace ExcelImproter.Framework.Handler
     }
     public class ExcelDataElement_Struct : ExcelDataElement
     {
+        [XmlAttribute("ParamterName")]
+        public string m_strParamterName;
         public List<ExcelDataElement> m_Value;
-    }
-    public class ExcelDescInfo
-    {
-        public ExcelDataElement_Struct m_ExcelTitleDesc;
     }
     public class ExcelDescInfoList:XmlConfigBase
     {
-        public List<ExcelDescInfo> m_DescList;
+        public List<ExcelDataElement_Struct> m_DescList;
     }
 }

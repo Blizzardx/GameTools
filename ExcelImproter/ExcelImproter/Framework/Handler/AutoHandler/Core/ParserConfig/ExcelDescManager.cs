@@ -10,7 +10,7 @@ namespace ExcelImproter.Framework.Handler
     {
         private ExcelDescInfoList m_ExcelDescList;
 
-        public ExcelDescInfo GetDescByName(string name)
+        public ExcelDataElement_Struct GetDescByName(string name)
         {
             if (null == m_ExcelDescList)
             {
@@ -26,14 +26,22 @@ namespace ExcelImproter.Framework.Handler
             configName = tmpc.ToUpper() + configName.Substring(1);
             for (int i = 0; i < m_ExcelDescList.m_DescList.Count; ++i)
             {
-                if (m_ExcelDescList.m_DescList[i].m_ExcelTitleDesc.m_strName == configName)
+                if (m_ExcelDescList.m_DescList[i].m_strName == configName)
                 {
                     return m_ExcelDescList.m_DescList[i];
                 }
             }
             return null;
         }
-        private void Load()
+        public ExcelDescInfoList GetDescList()
+        {
+            if (null == m_ExcelDescList)
+            {
+                Load();
+            }
+            return m_ExcelDescList;
+        }
+        public void Load()
         {
             var content = FileUtils.ReadStringFile(HandlerConfigSetting.ExcelDescConfigPath);
             m_ExcelDescList = XmlConfigBase.DeSerialize<ExcelDescInfoList>(content, getAllTypes().ToArray());
@@ -63,19 +71,19 @@ namespace ExcelImproter.Framework.Handler
 
             #region test code
             ExcelDescInfoList list = new ExcelDescInfoList();
-            list.m_DescList = new List<ExcelDescInfo>();
-            ExcelDescInfo m_ExcelHeader = new ExcelDescInfo();
+            list.m_DescList = new List<ExcelDataElement_Struct>();
+            ExcelDataElement_Struct m_ExcelHeader = new ExcelDataElement_Struct();
             list.m_DescList.Add(m_ExcelHeader);
 
-            m_ExcelHeader.m_ExcelTitleDesc = new ExcelDataElement_Struct();
-            m_ExcelHeader.m_ExcelTitleDesc.m_Id = -1;
-            m_ExcelHeader.m_ExcelTitleDesc.m_strName = "SpellCardConfigTable";
-            m_ExcelHeader.m_ExcelTitleDesc.m_Type = PackDataElementType.Struct;
-            m_ExcelHeader.m_ExcelTitleDesc.m_iColumnId = -1;
+            //m_ExcelHeader = new ExcelDataElement_Struct();
+            m_ExcelHeader.m_Id = -1;
+            m_ExcelHeader.m_strName = "SpellCardConfigTable";
+            m_ExcelHeader.m_Type = PackDataElementType.Struct;
+            m_ExcelHeader.m_iColumnId = -1;
 
-            m_ExcelHeader.m_ExcelTitleDesc.m_Value = new List<ExcelDataElement>();
+            m_ExcelHeader.m_Value = new List<ExcelDataElement>();
             ExcelDataElement_Map elem1 = new ExcelDataElement_Map();
-            m_ExcelHeader.m_ExcelTitleDesc.m_Value.Add(elem1);
+            m_ExcelHeader.m_Value.Add(elem1);
 
             elem1.m_strName = "spellCardConfigMap";
             elem1.m_Id = 1;
@@ -95,16 +103,16 @@ namespace ExcelImproter.Framework.Handler
             value.m_Type = PackDataElementType.Struct;
             value.m_iColumnId = -1;
             value.m_Value = new List<ExcelDataElement>();
-            ExcelDataElement subElem1 = new ExcelDataElement_Struct();
-            ExcelDataElement subElem2 = new ExcelDataElement_Struct();
-            ExcelDataElement subElem3 = new ExcelDataElement_Struct();
-            ExcelDataElement subElem4 = new ExcelDataElement_Struct();
-            ExcelDataElement subElem5 = new ExcelDataElement_Struct();
-            ExcelDataElement subElem6 = new ExcelDataElement_Struct();
-            ExcelDataElement subElem7 = new ExcelDataElement_Struct();
-            ExcelDataElement subElem8 = new ExcelDataElement_Struct();
-            ExcelDataElement subElem9 = new ExcelDataElement_Struct();
-            ExcelDataElement subElem10 = new ExcelDataElement_Struct();
+            ExcelDataElement subElem1 = new ExcelDataElement();
+            ExcelDataElement subElem2 = new ExcelDataElement();
+            ExcelDataElement subElem3 = new ExcelDataElement();
+            ExcelDataElement subElem4 = new ExcelDataElement();
+            ExcelDataElement subElem5 = new ExcelDataElement();
+            ExcelDataElement subElem6 = new ExcelDataElement();
+            ExcelDataElement subElem7 = new ExcelDataElement();
+            ExcelDataElement subElem8 = new ExcelDataElement();
+            ExcelDataElement subElem9 = new ExcelDataElement();
+            ExcelDataElement subElem10 = new ExcelDataElement();
             value.m_Value.Add(subElem1);
             value.m_Value.Add(subElem2);
             value.m_Value.Add(subElem3);
@@ -180,6 +188,12 @@ namespace ExcelImproter.Framework.Handler
                 typelist.AddRange(list);
             }
             return typelist;
+        }
+        public void Save(ExcelDescInfoList info)
+        {
+            m_ExcelDescList = info;
+            var strContent = XmlConfigBase.Serialize(info, getAllTypes().ToArray());
+            FileUtils.WriteStringFile(HandlerConfigSetting.ExcelDescConfigPath, strContent);
         }
     }
 }

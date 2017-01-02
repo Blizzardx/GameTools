@@ -209,7 +209,6 @@ namespace GameConfigTools.Util
             byte value = 0;
             return TryConvert(s, out value);
         }
-
         public static bool TryConvertsByte(string s, out sbyte n, sbyte min = sbyte.MinValue, sbyte max = sbyte.MaxValue)
         {
             sbyte a;
@@ -339,6 +338,55 @@ namespace GameConfigTools.Util
                     return null;
                 }
                 list.Add(n);
+            }
+            return list;
+        }
+        public static List<double> SplitToList_double(string str)
+        {
+            string[] ss = str.Split('|');
+            List<double> list = new List<double>();
+            foreach (string s in ss)
+            {
+                double n;
+                if (!double.TryParse(s, out n))
+                {
+                    return null;
+                }
+                list.Add(n);
+            }
+            return list;
+        }
+        public static List<sbyte> SplitToList_sbyte(string str)
+        {
+            string[] ss = str.Split('|');
+            List<sbyte> list = new List<sbyte>();
+            foreach (string s in ss)
+            {
+                sbyte n;
+                if (!sbyte.TryParse(s, out n))
+                {
+                    return null;
+                }
+                list.Add(n);
+            }
+            return list;
+        }
+        public static List<bool> SplitToList_bool(string str)
+        {
+            string[] ss = str.Split('|');
+            List<bool> list = new List<bool>();
+            foreach (string s in ss)
+            {
+                int n;
+                if (!int.TryParse(s, out n))
+                {
+                    return null;
+                }
+                if (n != 0 || n != 1)
+                {
+                    return null;
+                }
+                list.Add(n == 1);
             }
             return list;
         }

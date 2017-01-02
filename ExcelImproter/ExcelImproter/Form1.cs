@@ -5,6 +5,7 @@ using Communication;
 using Config.Table;
 using ExcelImporter.Importer;
 using ExcelImproter.Configs;
+using ExcelImproter.Editor;
 using ExcelImproter.Framework.BehaviourTree;
 using ExcelImproter.Framework.BehaviourTree.Editor;
 using ExcelImproter.Framework.BehaviourTree.Editor.Controller;
@@ -59,7 +60,7 @@ namespace ExcelImproter
             //SpellCardConfigTable table = new SpellCardConfigTable();
             //ThriftSerialize.DeSerialize(table, content);
             //int a = 0;
-            //ExcelDescManager.Instance.test();
+            ExcelDescManager.Instance.test();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -136,6 +137,21 @@ namespace ExcelImproter
             }
             AINodeTypeEditor aiForm = new AINodeTypeEditor();
             aiForm.Show();
+        }
+
+        private void 编辑ExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCollection coll = Application.OpenForms;
+            foreach (Form form in coll)
+            {
+                if (form is ExcelTitleEditor)
+                {
+                    form.Focus();
+                    return;
+                }
+            }
+            ExcelTitleEditor excelForm = new ExcelTitleEditor();
+            excelForm.Show();
         }
     }
 }
