@@ -33,17 +33,17 @@
             this.comboBoxParamType = new System.Windows.Forms.ComboBox();
             this.textBoxNodeDesc = new System.Windows.Forms.TextBox();
             this.textBoxNodeName = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelNodeId = new System.Windows.Forms.Label();
+            this.labelNodeDesc = new System.Windows.Forms.Label();
+            this.labelTypeName = new System.Windows.Forms.Label();
+            this.labelParamType = new System.Windows.Forms.Label();
             this.textBoxNodeId = new System.Windows.Forms.TextBox();
             this.buttonDone = new System.Windows.Forms.Button();
             this.comboBoxNodeType = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelNodeType = new System.Windows.Forms.Label();
+            this.labelColumnId = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.labelOptionList = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -59,6 +59,8 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.labelParamName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonCancel
@@ -98,46 +100,46 @@
             // 
             // textBoxNodeName
             // 
-            this.textBoxNodeName.Location = new System.Drawing.Point(147, 65);
+            this.textBoxNodeName.Location = new System.Drawing.Point(147, 43);
             this.textBoxNodeName.Name = "textBoxNodeName";
             this.textBoxNodeName.Size = new System.Drawing.Size(266, 21);
             this.textBoxNodeName.TabIndex = 29;
             // 
-            // label4
+            // labelNodeId
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(59, 135);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "节点ID";
+            this.labelNodeId.AutoSize = true;
+            this.labelNodeId.Location = new System.Drawing.Point(59, 135);
+            this.labelNodeId.Name = "labelNodeId";
+            this.labelNodeId.Size = new System.Drawing.Size(41, 12);
+            this.labelNodeId.TabIndex = 28;
+            this.labelNodeId.Text = "节点ID";
             // 
-            // label3
+            // labelNodeDesc
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(59, 105);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "节点描述";
+            this.labelNodeDesc.AutoSize = true;
+            this.labelNodeDesc.Location = new System.Drawing.Point(59, 105);
+            this.labelNodeDesc.Name = "labelNodeDesc";
+            this.labelNodeDesc.Size = new System.Drawing.Size(53, 12);
+            this.labelNodeDesc.TabIndex = 27;
+            this.labelNodeDesc.Text = "节点描述";
             // 
-            // label2
+            // labelTypeName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(59, 76);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 26;
-            this.label2.Text = "节点名称";
+            this.labelTypeName.AutoSize = true;
+            this.labelTypeName.Location = new System.Drawing.Point(59, 54);
+            this.labelTypeName.Name = "labelTypeName";
+            this.labelTypeName.Size = new System.Drawing.Size(77, 12);
+            this.labelTypeName.TabIndex = 26;
+            this.labelTypeName.Text = "节点类型名称";
             // 
-            // label1
+            // labelParamType
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(59, 188);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "数据类型";
+            this.labelParamType.AutoSize = true;
+            this.labelParamType.Location = new System.Drawing.Point(59, 188);
+            this.labelParamType.Name = "labelParamType";
+            this.labelParamType.Size = new System.Drawing.Size(53, 12);
+            this.labelParamType.TabIndex = 25;
+            this.labelParamType.Text = "数据类型";
             // 
             // textBoxNodeId
             // 
@@ -159,28 +161,28 @@
             // comboBoxNodeType
             // 
             this.comboBoxNodeType.FormattingEnabled = true;
-            this.comboBoxNodeType.Location = new System.Drawing.Point(147, 39);
+            this.comboBoxNodeType.Location = new System.Drawing.Point(147, 17);
             this.comboBoxNodeType.Name = "comboBoxNodeType";
             this.comboBoxNodeType.Size = new System.Drawing.Size(266, 20);
             this.comboBoxNodeType.TabIndex = 35;
             // 
-            // label5
+            // labelNodeType
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(59, 47);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 34;
-            this.label5.Text = "节点类型";
+            this.labelNodeType.AutoSize = true;
+            this.labelNodeType.Location = new System.Drawing.Point(59, 25);
+            this.labelNodeType.Name = "labelNodeType";
+            this.labelNodeType.Size = new System.Drawing.Size(53, 12);
+            this.labelNodeType.TabIndex = 34;
+            this.labelNodeType.Text = "节点类型";
             // 
-            // label6
+            // labelColumnId
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(59, 162);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 12);
-            this.label6.TabIndex = 37;
-            this.label6.Text = "列ID";
+            this.labelColumnId.AutoSize = true;
+            this.labelColumnId.Location = new System.Drawing.Point(59, 162);
+            this.labelColumnId.Name = "labelColumnId";
+            this.labelColumnId.Size = new System.Drawing.Size(29, 12);
+            this.labelColumnId.TabIndex = 37;
+            this.labelColumnId.Text = "列ID";
             // 
             // textBox1
             // 
@@ -189,14 +191,14 @@
             this.textBox1.Size = new System.Drawing.Size(266, 21);
             this.textBox1.TabIndex = 36;
             // 
-            // label7
+            // labelOptionList
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(59, 215);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 12);
-            this.label7.TabIndex = 39;
-            this.label7.Text = "可选值";
+            this.labelOptionList.AutoSize = true;
+            this.labelOptionList.Location = new System.Drawing.Point(59, 215);
+            this.labelOptionList.Name = "labelOptionList";
+            this.labelOptionList.Size = new System.Drawing.Size(41, 12);
+            this.labelOptionList.TabIndex = 39;
+            this.labelOptionList.Text = "可选值";
             // 
             // textBox2
             // 
@@ -325,10 +327,28 @@
             this.checkBox4.Text = "是否是日期";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(146, 69);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(266, 21);
+            this.textBox7.TabIndex = 56;
+            // 
+            // labelParamName
+            // 
+            this.labelParamName.AutoSize = true;
+            this.labelParamName.Location = new System.Drawing.Point(58, 80);
+            this.labelParamName.Name = "labelParamName";
+            this.labelParamName.Size = new System.Drawing.Size(77, 12);
+            this.labelParamName.TabIndex = 55;
+            this.labelParamName.Text = "节点参数名称";
+            // 
             // ExcelTitleParamEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.labelParamName);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox2);
@@ -343,21 +363,21 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.labelOptionList);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.labelColumnId);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.comboBoxNodeType);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.labelNodeType);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.comboBoxParamType);
             this.Controls.Add(this.textBoxNodeDesc);
             this.Controls.Add(this.textBoxNodeName);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelNodeId);
+            this.Controls.Add(this.labelNodeDesc);
+            this.Controls.Add(this.labelTypeName);
+            this.Controls.Add(this.labelParamType);
             this.Controls.Add(this.textBoxNodeId);
             this.Controls.Add(this.buttonDone);
             this.Name = "ExcelTitleParamEditor";
@@ -374,17 +394,17 @@
         private System.Windows.Forms.ComboBox comboBoxParamType;
         private System.Windows.Forms.TextBox textBoxNodeDesc;
         private System.Windows.Forms.TextBox textBoxNodeName;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelNodeId;
+        private System.Windows.Forms.Label labelNodeDesc;
+        private System.Windows.Forms.Label labelTypeName;
+        private System.Windows.Forms.Label labelParamType;
         private System.Windows.Forms.TextBox textBoxNodeId;
         private System.Windows.Forms.Button buttonDone;
         private System.Windows.Forms.ComboBox comboBoxNodeType;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelNodeType;
+        private System.Windows.Forms.Label labelColumnId;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelOptionList;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
@@ -400,5 +420,7 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label labelParamName;
     }
 }

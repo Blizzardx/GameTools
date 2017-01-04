@@ -35,9 +35,9 @@
             this.treeView = new System.Windows.Forms.TreeView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.展开全部子节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.添加根节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.添加节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddRootNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonGenCode = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -83,11 +83,11 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.展开全部子节点ToolStripMenuItem,
-            this.添加根节点ToolStripMenuItem,
-            this.添加节点ToolStripMenuItem,
-            this.删除节点ToolStripMenuItem});
+            this.AddRootNodeToolStripMenuItem,
+            this.AddNodeToolStripMenuItem,
+            this.DeleteNodeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 114);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // 展开全部子节点ToolStripMenuItem
@@ -96,23 +96,26 @@
             this.展开全部子节点ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.展开全部子节点ToolStripMenuItem.Text = "展开全部子节点";
             // 
-            // 添加根节点ToolStripMenuItem
+            // AddRootNodeToolStripMenuItem
             // 
-            this.添加根节点ToolStripMenuItem.Name = "添加根节点ToolStripMenuItem";
-            this.添加根节点ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.添加根节点ToolStripMenuItem.Text = "添加跟节点";
+            this.AddRootNodeToolStripMenuItem.Name = "AddRootNodeToolStripMenuItem";
+            this.AddRootNodeToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.AddRootNodeToolStripMenuItem.Text = "添加跟节点";
+            this.AddRootNodeToolStripMenuItem.Click += new System.EventHandler(this.AddRootNodeToolStripMenuItem_Click);
             // 
-            // 添加节点ToolStripMenuItem
+            // AddNodeToolStripMenuItem
             // 
-            this.添加节点ToolStripMenuItem.Name = "添加节点ToolStripMenuItem";
-            this.添加节点ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.添加节点ToolStripMenuItem.Text = "添加节点";
+            this.AddNodeToolStripMenuItem.Name = "AddNodeToolStripMenuItem";
+            this.AddNodeToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.AddNodeToolStripMenuItem.Text = "添加节点";
+            this.AddNodeToolStripMenuItem.Click += new System.EventHandler(this.AddNodeToolStripMenuItem_Click);
             // 
-            // 删除节点ToolStripMenuItem
+            // DeleteNodeToolStripMenuItem
             // 
-            this.删除节点ToolStripMenuItem.Name = "删除节点ToolStripMenuItem";
-            this.删除节点ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.删除节点ToolStripMenuItem.Text = "删除节点";
+            this.DeleteNodeToolStripMenuItem.Name = "DeleteNodeToolStripMenuItem";
+            this.DeleteNodeToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.DeleteNodeToolStripMenuItem.Text = "删除节点";
+            this.DeleteNodeToolStripMenuItem.Click += new System.EventHandler(this.DeleteNodeToolStripMenuItem_Click);
             // 
             // buttonGenCode
             // 
@@ -149,9 +152,9 @@
         private System.Windows.Forms.TreeView treeView;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 展开全部子节点ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 添加根节点ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 添加节点ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 删除节点ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddRootNodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddNodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteNodeToolStripMenuItem;
         private System.Windows.Forms.Button buttonGenCode;
     }
 }

@@ -12,6 +12,7 @@ namespace ExcelImproter.Editor
         private ExcelTitleEditorController m_Controller;
         private ExcelTitleParamEditor m_EditorPanel;
 
+        #region event
         public ExcelTitleEditor()
         {
             InitializeComponent();
@@ -69,9 +70,76 @@ namespace ExcelImproter.Editor
                 }
             }
         }
+        private void AddRootNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddRootNode();
+        }
+        private void AddNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddNode(treeView.SelectedNode as ExcelTitleViewNode);
+        }
+        private void DeleteNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteNode(treeView.SelectedNode as ExcelTitleViewNode);
+        }
+        #endregion
+
+        #region handler
+        private void AddRootNode()
+        {
+            m_EditorPanel.AddRootNode(OnAddRootNodeDone);
+        }
+        private void AddNode(ExcelTitleViewNode data)
+        {
+            m_EditorPanel.AddNode((elem) =>
+            {
+                OnAddNodeDone(data, elem);
+            });
+        }
+        private void OnAddRootNodeDone(ExcelTitleViewNode obj)
+        {
+            
+        }
+        private void OnAddNodeDone(ExcelTitleViewNode parent, ExcelTitleViewNode child)
+        {
+            
+        }
+        private void DeleteNode(ExcelTitleViewNode data)
+        {
+            if (data == null)
+            {
+                return;
+            }
+            var res = MessageBox.Show(this, "确定要执行操作吗？", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (res == DialogResult.OK)
+            {
+                // do delete
+                if (null == data.Parent)
+                {
+                    treeView.Nodes.Remove(data);
+                }
+                else
+                {
+                    ExcelTitleViewNode parent = data.Parent as ExcelTitleViewNode;
+                    if (!(parent.GetData() is ExcelDataElement_Struct))
+                    {
+                        return;
+                    }
+                    var structInfo = parent.GetData() as ExcelDataElement_Struct;
+                    for (int i = 0; i < structInfo.m_Value.Count; ++i)
+                    {
+                        if (structInfo.m_Value[i] == data.GetData())
+                        {
+                            structInfo.m_Value.RemoveAt(i);
+                            parent.Nodes.Remove(data);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         private void EditNode(ExcelTitleViewNode data)
         {
-            throw new NotImplementedException();
         }
         private void Save()
         {
@@ -83,7 +151,6 @@ namespace ExcelImproter.Editor
             var info = m_Controller.ConvertViewToData(list);
             ExcelDescManager.Instance.Save(info);
         }
-
         private void Load()
         {
             ExcelDescManager.Instance.Load();
@@ -97,5 +164,6 @@ namespace ExcelImproter.Editor
             Save();
             GenThriftCode.Instance.GenCode(ExcelDescManager.Instance.GetDescList());
         }
+        #endregion
     }
 }
