@@ -5,5 +5,4 @@
         Debug.LogError("error on parser node paramter " + param.m_strName);
         return;
     }
-    break;
 }
