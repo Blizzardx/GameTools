@@ -1,0 +1,10 @@
+﻿using System;
+using System.Collections.Generic;
+
+partial class  ConfigHandler_{className}
+{
+    private string ParserData(List<{className}> data)
+    {
+        throw new NotImplementedException();
+    }
+}

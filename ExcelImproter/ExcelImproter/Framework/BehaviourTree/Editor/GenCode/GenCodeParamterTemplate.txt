@@ -1,2 +1,0 @@
-﻿private {1} {0};
-private const string Key{0} = "{0}";

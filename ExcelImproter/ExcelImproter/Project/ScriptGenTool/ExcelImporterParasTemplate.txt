@@ -1,5 +1,0 @@
-if (!VaildUtil.TryConvert(values[i][{index}], out {membername},{min},{max}))
-{
-	errMsg = string.Format("{8} {0}.xlsx sheet:[{1}] [{2},{3}]读取出现错误，{4}必须为{5} - {6} {7}型", this.GetConfigPath(), tableIndex, row,{index}+1, {name},{min},{max},"{classname}","{desc}");
-	return;
-}

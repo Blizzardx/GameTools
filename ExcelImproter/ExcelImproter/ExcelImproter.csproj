@@ -55,116 +55,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Editor\Controller\ExcelTitleEditorController.cs" />
-    <Compile Include="Editor\View\ExcelTitleEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Editor\View\ExcelTitleEditor.Designer.cs">
-      <DependentUpon>ExcelTitleEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\View\ExcelTitleParamEditor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Editor\View\ExcelTitleParamEditor.Designer.cs">
-      <DependentUpon>ExcelTitleParamEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\Controller\AIEditorController.cs" />
-    <Compile Include="Framework\BehaviourTree\Editor\Controller\BTConfigSetting.cs" />
-    <Content Include="Framework\BehaviourTree\Editor\GenCode\GenCodeClassTemplate.txt" />
-    <Content Include="Framework\BehaviourTree\Editor\GenCode\GenCodeParamterTemplate.txt" />
-    <Content Include="Framework\BehaviourTree\Editor\GenCode\GenCodeParserParamterTemplate.txt" />
-    <Compile Include="Framework\BehaviourTree\Editor\GenCode\GenCodeTool.cs" />
-    <Compile Include="Framework\BehaviourTree\Editor\View\AIEditorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AIEditorForm.Designer.cs">
-      <DependentUpon>AIEditorForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeEditorPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeEditorPanel.Designer.cs">
-      <DependentUpon>AINodeEditorPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeParamEditor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeParamEditor.Designer.cs">
-      <DependentUpon>AINodeParamEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeTypeEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeTypeEditor.Designer.cs">
-      <DependentUpon>AINodeTypeEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeTypeEditorPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeTypeEditorPanel.Designer.cs">
-      <DependentUpon>AINodeTypeEditorPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeTypeOptionEditorPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeTypeOptionEditorPanel.Designer.cs">
-      <DependentUpon>AINodeTypeOptionEditorPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeTypeParamterEditorPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Editor\View\AINodeTypeParamterEditorPanel.Designer.cs">
-      <DependentUpon>AINodeTypeParamterEditorPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Framework\BehaviourTree\Runtime\BehaviourTreePlanData.cs" />
-    <Compile Include="Framework\BehaviourTree\Runtime\BTNodeData.cs" />
-    <Compile Include="Framework\BehaviourTree\Runtime\BTNodeParser.cs" />
-    <Compile Include="Framework\BehaviourTree\Editor\Controller\BTNodeTypeConfigData.cs" />
     <Compile Include="Framework\Common\FileUtils.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Core\AutoHandler.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Core\AutoHandlerManager.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Core\ConfigData.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Core\IAutoExporter.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Core\ParserConfig\ExcelDescInfo.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Core\ParserConfig\ExcelDescManager.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Core\ParserConfig\ParserExcelDataToPackData.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Core\ParserConfig\ParserTxtDataToPackData.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Impl\Json\AutoHandlerExportJson.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Impl\Protocol\AutoHandlerExportProtocol.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Impl\Thrift\AutoHandlerExportThrift.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Impl\Thrift\GenThriftCode.cs" />
-    <Compile Include="Framework\Handler\AutoHandler\Impl\Xml\AutoHandlerExportXml.cs" />
-    <Compile Include="Framework\Handler\HandlerCommon.cs" />
-    <Compile Include="Framework\Handler\HandlerConfigSetting.cs" />
-    <Compile Include="Framework\Packer\Core\ByteStream.cs" />
-    <Compile Include="Framework\Packer\Core\IPacker.cs" />
-    <Compile Include="Framework\Packer\Core\PackDataElementType.cs" />
-    <Compile Include="Framework\Packer\Core\PackDataStruct.cs" />
-    <Compile Include="Framework\Packer\Impl\Json\Packer_Json.cs" />
-    <Compile Include="Framework\Packer\Impl\Thrift\Packer_Thrift.cs" />
-    <Compile Include="Framework\Packer\Impl\Xml\Packer_Xml.cs" />
     <Compile Include="Framework\Reflection\ReflectionManager.cs" />
     <Compile Include="Framework\Common\Singleton.cs" />
     <Compile Include="Framework\Common\VaildUtil.cs" />
-    <Compile Include="Framework\Exporter\IExporter.cs" />
-    <Compile Include="Framework\Handler\ManualHandler\Impl\ExcelConfigHandlerBase.cs" />
-    <Compile Include="Framework\Handler\ManualHandler\Core\ManualHandlerManager.cs" />
-    <Compile Include="Framework\Handler\ManualHandler\Core\IManualHandler.cs" />
-    <Compile Include="Framework\Handler\ManualHandler\Impl\XmlConfigHandlerBase.cs" />
-    <Compile Include="Framework\Importer\Core\IImporter.cs" />
-    <Compile Include="Framework\Importer\Core\ImporterPkg.cs" />
-    <Compile Include="Framework\Importer\Impl\ExcelImporterBase.cs" />
-    <Compile Include="Framework\Importer\Impl\XmlImporterBase.cs" />
     <Compile Include="Framework\Log\LogQueue.cs" />
-    <Compile Include="Framework\Reader\Core\IConfigContent.cs" />
-    <Compile Include="Framework\Reader\Core\IReader.cs" />
-    <Compile Include="Framework\Reader\Excel\Core\ExcelData.cs" />
-    <Compile Include="Framework\Reader\Excel\Core\ExcelReaderBase.cs" />
-    <Compile Include="Framework\Reader\Excel\Impl\ExcelReader_ER.cs" />
-    <Compile Include="Framework\Reader\Xml\Core\XmlData.cs" />
-    <Compile Include="Framework\Reader\Xml\Core\XmlReaderBase.cs" />
-    <Compile Include="Framework\Reader\Xml\Impl\XmlReader_Common.cs" />
-    <Compile Include="Framework\Reader\Excel\Impl\ExcelReader_DB.cs" />
+    <Compile Include="Framework\Reader\Core\ExcelData.cs" />
+    <Compile Include="Framework\Reader\Core\IExcelReader.cs" />
+    <Compile Include="Framework\Reader\Impl\ExcelReader_ER.cs" />
+    <Compile Include="Framework\Reader\Impl\ExcelReader_DB.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,17 +71,11 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Project\ScriptGenTool\GenScriptXml.cs" />
-    <Compile Include="Project\GenScript\User\AeroLevelUpConfigHandler.cs" />
-    <Compile Include="Project\GenScript\Auto\AeroLevelUpConfigHandler.cs" />
-    <Compile Include="Project\GenScript\User\DiyCharConfigHandler.cs" />
-    <Compile Include="Project\GenScript\Auto\DiyCharConfigHandler.cs" />
-    <Compile Include="Project\ScriptGenTool\ScriptGenConstant.cs" />
-    <Compile Include="Project\ScriptGenTool\ScriptGenInfo.cs" />
-    <Compile Include="Project\ScriptGenTool\ScriptGenTool.cs" />
     <Compile Include="Plugin\Xml\XmlConfigBase.cs" />
-    <Compile Include="Project\Test\SpellCardConfig.cs" />
-    <Compile Include="Project\Test\SpellCardConfigTable.cs" />
+    <Compile Include="Project\ConfigHandler\Core\ConfigHandlerBase.cs" />
+    <Compile Include="Project\ConfigHandler\Core\ConfigHandlerManager.cs" />
+    <Compile Include="Project\GenCode\GenImporterCode.cs" />
+    <Compile Include="Project\SystemConst.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Plugin\Thrift\Collections\TCollections.cs" />
     <Compile Include="Plugin\Thrift\Collections\THashSet.cs" />
@@ -223,35 +116,8 @@
     <Compile Include="Plugin\Thrift\Transport\TTransport.cs" />
     <Compile Include="Plugin\Thrift\Transport\TTransportException.cs" />
     <Compile Include="Plugin\Thrift\Transport\TTransportFactory.cs" />
-    <EmbeddedResource Include="Editor\View\ExcelTitleEditor.resx">
-      <DependentUpon>ExcelTitleEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Editor\View\ExcelTitleParamEditor.resx">
-      <DependentUpon>ExcelTitleParamEditor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\BehaviourTree\Editor\View\AIEditorForm.resx">
-      <DependentUpon>AIEditorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\BehaviourTree\Editor\View\AINodeEditorPanel.resx">
-      <DependentUpon>AINodeEditorPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\BehaviourTree\Editor\View\AINodeParamEditor.resx">
-      <DependentUpon>AINodeParamEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\BehaviourTree\Editor\View\AINodeTypeEditor.resx">
-      <DependentUpon>AINodeTypeEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\BehaviourTree\Editor\View\AINodeTypeEditorPanel.resx">
-      <DependentUpon>AINodeTypeEditorPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\BehaviourTree\Editor\View\AINodeTypeOptionEditorPanel.resx">
-      <DependentUpon>AINodeTypeOptionEditorPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Framework\BehaviourTree\Editor\View\AINodeTypeParamterEditorPanel.resx">
-      <DependentUpon>AINodeTypeParamterEditorPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -277,18 +143,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Project\ScriptGenTool\ConfigXml.xml" />
-    <Content Include="Project\ScriptGenTool\ExcelImporterAutoParasTemplate.txt" />
-    <Content Include="Project\ScriptGenTool\ExcelImporterDatetimeParasTemplate.txt" />
-    <Content Include="Project\ScriptGenTool\ExcelImporterListParasTemplate.txt" />
-    <Content Include="Project\ScriptGenTool\ExcelImporterMemberTemplate.txt" />
-    <Content Include="Project\ScriptGenTool\ExcelImporterParasTemplate.txt" />
-    <Content Include="Project\ScriptGenTool\ExcelImporterProjfixAuto.txt" />
-    <Content Include="Project\ScriptGenTool\ExcelImporterProjfixUser.txt" />
-    <Content Include="Project\ScriptGenTool\ExcelImporterUserTemplate.txt" />
-    <Content Include="Project\ScriptGenTool\testTemplate.txt" />
+    <Folder Include="Project\ConfigHandler\Impl\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Project\GenCode\Resource\ConfigHandler_User.txt" />
+    <Content Include="Project\GenCode\Resource\ConfigHandler_Auto.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

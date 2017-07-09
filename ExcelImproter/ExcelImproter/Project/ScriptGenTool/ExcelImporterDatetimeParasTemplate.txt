@@ -1,5 +1,0 @@
-if (!VaildUtil.VaildDateTime(values[i][{index}],{nullable},out {membername}))
-{
-	errMsg = string.Format("{6} {0}.xlsx sheet:[{1}] [{2},{3}]读取出现错误，{4}必须为 {5}型", this.GetConfigPath(), tableIndex, row,{index}+1, {name},"{classname}","{desc}");
-	return;
-}  

@@ -1,0 +1,19 @@
+﻿using ExcelImproter.Framework.Reader;
+using ExcelImproter.Project;
+
+public partial class ConfigHandler_{className} : ConfigHandlerBase
+{
+    public override string HandleConfig(ExcelData content)
+    {
+        var sourcedata = content.GetMergedContent();
+        {parserClassName} parser = new {parserClassName}();
+        var data = parser.ParserConfig(sourcedata);
+
+        if (!string.IsNullOrEmpty(parser.GetErrorMsg()))
+        {
+            return parser.GetErrorMsg();
+        }
+
+        return ParserData(data);
+    }
+}

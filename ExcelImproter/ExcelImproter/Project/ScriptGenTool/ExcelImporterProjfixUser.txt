@@ -1,1 +1,0 @@
-<Compile Include="Project\GenScript\User\{0}Handler.cs" />
