@@ -45,21 +45,25 @@ namespace ExcelImproter.Framework.Reader
                 for (int col = 0; col < colCount; ++col)
                 {
                     var elem = dataTable.Rows[row][col].ToString();
-                    //if (elem.Equals("##"))
-                    //{
-                    //    return null;
-                    //}
-                    //if(UseAnnotation() && dataTable.Rows[row][0].ToString().StartsWith("#"))
-                    //{
-                    //    properties.Add(null);
-                    //}
-                    //else
+                    if (elem.Equals("##"))
+                    {
+                        return null;
+                    }
+                    if (UseAnnotation() && dataTable.Rows[row][0].ToString().StartsWith("#"))
+                    {
+                        //properties.Add(null);
+                        break;
+                    }
+                    else
                     {
                         properties.Add(elem);
                     }
 
                 }
-                table.Data.Add(properties);
+                if (properties.Count > 0)
+                {
+                    table.Data.Add(properties);
+                }
             }
 
             return table;

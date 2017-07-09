@@ -27,9 +27,9 @@
 	public class vector4Class
 	{
 		public double x;
-		public int t;
+		public double y;
 		public double z;
-		public int w;
+		public double w;
 
 	}
 		public vector4Class[] vector4;

@@ -44,7 +44,7 @@ namespace ExcelImproter.Project
                 }
 
                 ConfigHandlerBase handler = Activator.CreateInstance(handlerType) as ConfigHandlerBase;
-                var realconfigName = SystemConst.Config.ExcelConfigPath + "/" + configName;
+                var realconfigName = SystemConst.Config.ExcelConfigPath + "/" + configName + ".xlsx";
                 var content = m_ExcelReader.ReadExcel(realconfigName);
                 var errorInfo = handler.HandleConfig(content);
 

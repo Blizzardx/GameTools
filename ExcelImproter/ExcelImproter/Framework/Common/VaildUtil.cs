@@ -294,7 +294,7 @@ namespace Util
             return list;
         }
 
-        public static bool TryConvert(string s, int splitType,out List<string> result,out int skipCount)
+        public static bool TryConvert(string s, int splitType, out List<string> result, out int skipCount)
         {
             skipCount = 0;
             result = null;
@@ -307,6 +307,54 @@ namespace Util
             {
                 return false;
             }
+        }
+        public static bool TryConvert(string[] s, int startIndex,int splitType, out List<string> result, out int skipCount)
+        {
+            skipCount = 0;
+            result = null;
+
+            try
+            {
+                if(splitType == 0)
+                {
+                    result = SplitToList_string(s[startIndex]);
+                }
+                else
+                {
+                    result = SpliteToList_stringByBrackets(s, startIndex, out skipCount);
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public static List<string> SpliteToList_stringByBrackets(string[] s, int startIndex, out int skipCount)
+        {
+            int markStartIndex = startIndex+1;
+            skipCount = 0;
+            List<string> res = new List<string>();
+            if(s[startIndex] != "(")
+            {
+                throw new Exception("split bracket  error");
+            }
+
+            ++startIndex;
+            while (true)
+            {
+                var elem = s[startIndex];
+                ++startIndex;
+
+                if(elem == ")")
+                {
+                    break;
+                }
+                res.Add(elem);
+
+            }
+            skipCount = startIndex - markStartIndex;
+            return res;
         }
         #endregion
 
