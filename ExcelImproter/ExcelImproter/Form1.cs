@@ -1,5 +1,7 @@
-﻿using ExcelImproter.Project;
+﻿using Common.Config;
+using ExcelImproter.Project;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ExcelImproter
@@ -10,7 +12,7 @@ namespace ExcelImproter
         {    
             InitializeComponent();
             RefreshFileList();
-
+            LoadSystemConfig();
             LogQueue.Instance.Enqueue(Environment.CurrentDirectory.ToString());
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -82,6 +84,33 @@ namespace ExcelImproter
             {
                 comboBox1.SelectedIndex = 0;
             }
+        }
+        private void LoadSystemConfig()
+        {
+            try
+            {
+                var content = File.ReadAllText(SystemConst.settingConfigPath);
+                SystemConst.Config = XmlConfigBase.DeSerialize<PathConfig>(content);
+            }
+            catch (Exception e)
+            {
+                SystemConst.Config = new PathConfig();
+            }
+        }
+
+        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCollection coll = Application.OpenForms;
+            foreach (Form form in coll)
+            {
+                if (form is ToolSetting)
+                {
+                    form.Focus();
+                    return;
+                }
+            }
+            ToolSetting settingForm = new ToolSetting();
+            settingForm.Show();
         }
     }
 }
