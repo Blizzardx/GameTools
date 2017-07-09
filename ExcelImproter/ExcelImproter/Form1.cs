@@ -1,5 +1,6 @@
 ﻿using Common.Config;
 using ExcelImproter.Project;
+using ExcelImproter.Project.GenCode;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -34,24 +35,6 @@ namespace ExcelImproter
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var list = ConfigHandlerManager.Instance.GetAllVaildConfigHandlerList();
-            string name = comboBox1.SelectedItem as string;
-            for (int i = 0; i < list.Count; ++i)
-            {
-                if (name == list[i])
-                {
-                    var errorInfo = ConfigHandlerManager.Instance.HandleConfig(list[i]);
-
-                    if (!string.IsNullOrEmpty(errorInfo))
-                    {
-                        LogQueue.Instance.Enqueue(errorInfo);
-                    }
-                    break;
-                }
-            }
-        }
         private void button3_Click(object sender, EventArgs e1)
         {
             var list = ConfigHandlerManager.Instance.GetAllVaildConfigHandlerList();
@@ -72,8 +55,6 @@ namespace ExcelImproter
         }
         private void RefreshFileList()
         {
-            ConfigHandlerManager.Instance.SetConfigFolderPath("E:/Project/GameClient/策划文档/config/dev/cqq/1.1/");
-            
             var list = ConfigHandlerManager.Instance.GetAllVaildConfigHandlerList();
             comboBox1.Items.Clear();
             for (int i = 0; i < list.Count; ++i)
@@ -111,6 +92,12 @@ namespace ExcelImproter
             }
             ToolSetting settingForm = new ToolSetting();
             settingForm.Show();
+        }
+
+        private void genCodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GenImporterCode tool = new GenImporterCode();
+            tool.GenAutoImporterCode();
         }
     }
 }

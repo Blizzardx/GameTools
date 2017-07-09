@@ -7,7 +7,6 @@ namespace ExcelImproter.Project
 {
     public class ConfigHandlerManager : Singleton<ConfigHandlerManager>
     {
-        private string m_strRootPath;
         private Dictionary<string, Type> m_HandlerMpa;
         private List<string> m_AllHandlerConfigNameList;
         private IExcelReader m_ExcelReader;
@@ -30,28 +29,31 @@ namespace ExcelImproter.Project
             m_ExcelReader = new ExcelReader_ER();
             
         }
-        public void SetConfigFolderPath(string folderPath)
-        {
-            m_strRootPath = folderPath;
-        }
         public List<string> GetAllVaildConfigHandlerList()
         {
             return m_AllHandlerConfigNameList;
         }
         public string HandleConfig(string configName)
         {
-            Type handlerType = null;
-            if(! m_HandlerMpa.TryGetValue(configName, out handlerType))
+            try
             {
-                return "cna't find config handler by name " + configName;
+                Type handlerType = null;
+                if (!m_HandlerMpa.TryGetValue(configName, out handlerType))
+                {
+                    return "cna't find config handler by name " + configName;
+                }
+
+                ConfigHandlerBase handler = Activator.CreateInstance(handlerType) as ConfigHandlerBase;
+                var realconfigName = SystemConst.Config.ExcelConfigPath + "/" + configName;
+                var content = m_ExcelReader.ReadExcel(realconfigName);
+                var errorInfo = handler.HandleConfig(content);
+
+                return errorInfo;
             }
-
-            ConfigHandlerBase handler =  Activator.CreateInstance(handlerType) as ConfigHandlerBase;
-            var realconfigName = m_strRootPath + configName;
-            var content = m_ExcelReader.ReadExcel(realconfigName);
-            var errorInfo = handler.HandleConfig(content);
-
-            return errorInfo;
+            catch(Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }

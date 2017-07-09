@@ -16,6 +16,8 @@ namespace ExcelImproter.Project.GenCode
 
         public void GenAutoImporterCode()
         {
+            InitTempalte();
+
             DirectoryInfo dir = new DirectoryInfo(SystemConst.Config.ParserConfigPath);
             List<string> fileList = new List<string>();
 
@@ -25,9 +27,9 @@ namespace ExcelImproter.Project.GenCode
             {
                 var file = allCSFils[i];
 
-                if(!file.Name.EndsWith("parser"))
+                if(!file.Name.EndsWith("Parser.cs"))
                 {
-                    fileList.Add(file.Name);
+                    fileList.Add(file.Name.Substring(0,file.Name.Length - 3));
                 }
             }
             
@@ -41,7 +43,7 @@ namespace ExcelImproter.Project.GenCode
         }
         private void ProcessFile(string configName)
         {
-            var parser = configName + "parser" + ".cs";
+            var parser = configName + "Parser" + ".cs";
             var data = configName + ".cs";
 
             FileUtils.EnsureFolder(m_strProjectFolderPath + configName);
@@ -55,8 +57,9 @@ namespace ExcelImproter.Project.GenCode
             }
             FileUtils.EnsureFolder(subAutoFolder);
 
-            File.Move(SystemConst.Config.ParserConfigPath + "/" + parser, subAutoFolder + parser);
-            File.Move(SystemConst.Config.ParserConfigPath + "/" + data, subAutoFolder + data);
+            
+            File.Copy(SystemConst.Config.ParserConfigPath + "/" + parser, subAutoFolder + parser);
+            File.Copy(SystemConst.Config.ParserConfigPath + "/" + data, subAutoFolder + data);
 
             string autoImportPath = subAutoFolder + "ConfigHandler_" + configName + ".cs";
             string userImportPath = subUserFolder + "ConfigHandler_" + configName + ".cs";
@@ -65,7 +68,7 @@ namespace ExcelImproter.Project.GenCode
             if (!Directory.Exists(subUserFolder))
             {
                 FileUtils.EnsureFolder(subUserFolder);
-                File.WriteAllText(autoImportPath, GenUserImporter(configName));
+                File.WriteAllText(userImportPath, GenUserImporter(configName));
             }
 
             RefreshProjectDirectory(subAutoFolder + parser);
@@ -81,7 +84,7 @@ namespace ExcelImproter.Project.GenCode
         {
             StringBuilder res = new StringBuilder(m_strAutoImporterTemplate);
             res = res.Replace("{className}", configName);
-            res = res.Replace("{parserClassName}", configName+"parser");
+            res = res.Replace("{parserClassName}", configName+"Parser");
 
             return res.ToString();  
         }

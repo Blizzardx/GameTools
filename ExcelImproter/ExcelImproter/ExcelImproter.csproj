@@ -74,6 +74,10 @@
     <Compile Include="Plugin\Xml\XmlConfigBase.cs" />
     <Compile Include="Project\ConfigHandler\Core\ConfigHandlerBase.cs" />
     <Compile Include="Project\ConfigHandler\Core\ConfigHandlerManager.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testTableConfig\Auto\ConfigHandler_testTableConfig.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testTableConfig\Auto\testTableConfig.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testTableConfig\Auto\testTableConfigParser.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testTableConfig\User\ConfigHandler_testTableConfig.cs" />
     <Compile Include="Project\GenCode\GenImporterCode.cs" />
     <Compile Include="Project\SystemConst.cs" />
     <Compile Include="Project\ToolSetting.cs">
@@ -151,9 +155,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Project\ConfigHandler\Impl\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Project\GenCode\Resource\ConfigHandler_User.txt" />
     <Content Include="Project\GenCode\Resource\ConfigHandler_Auto.txt" />
