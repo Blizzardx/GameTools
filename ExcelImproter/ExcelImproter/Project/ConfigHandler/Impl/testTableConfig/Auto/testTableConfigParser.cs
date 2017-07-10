@@ -58,9 +58,9 @@ public class testTableConfigParser
                 m_strErrorMsg = string.Format("{7} {0}.xlsx [{1},{2}]读取出现错误，{3}必须为{4} - {5} {6}型", "testTableConfig", lineIndex,2+1, values[2 + tmpIndexOffset],int.MinValue,int.MaxValue,"int","constId");
 	            return null;
             }			
-			if (!VaildUtil.CheckRefrenceConfig("constConfig", 0 ,values[2 + tmpIndexOffset]))
+			if (!VaildUtil.CheckRefrenceConfig("", 0 ,values[2 + tmpIndexOffset]))
 			{
-					m_strErrorMsg = string.Format("{5} {0}.xlsx [{1},{2}]读取出现错误，{3}在{4}中没找到", "testTableConfig", lineIndex,2+1, values[2 + tmpIndexOffset],"constConfig","constId");
+					m_strErrorMsg = string.Format("{5} {0}.xlsx [{1},{2}]读取出现错误，{3}在{4}中没找到", "testTableConfig", lineIndex,2+1, values[2 + tmpIndexOffset],"","constId");
 					return null;
 			}
 
