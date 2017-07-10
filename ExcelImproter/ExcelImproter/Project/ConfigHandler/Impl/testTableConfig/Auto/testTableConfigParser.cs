@@ -111,7 +111,7 @@ public class testTableConfigParser
 			List<string> textureNameSourceList = null;
 			if (!VaildUtil.TryConvert(values,7 + tmpIndexOffset, 0, out textureNameSourceList , out skipCount))
             {
-                m_strErrorMsg = string.Format("{3} {0}.xlsx [{1},{2}]数组解析读取出现错误", "testTableConfig", lineIndex,7+1,"{desc}");
+                m_strErrorMsg = string.Format("{0}.xlsx [{1},{2}]数组解析读取出现错误", "testTableConfig", lineIndex,7+1);
 	            return null;
             }
 
@@ -141,7 +141,7 @@ public class testTableConfigParser
 			List<string> vector4SourceList = null;
 			if (!VaildUtil.TryConvert(values,8 + tmpIndexOffset, 1,out vector4SourceList ,out skipCount))
             {
-                m_strErrorMsg = string.Format("{3} {0}.xlsx [{1},{2}]数组解析读取出现错误", "testTableConfig", lineIndex,8+1,"{desc}");
+                m_strErrorMsg = string.Format("{0}.xlsx [{1},{2}]数组解析读取出现错误", "testTableConfig", lineIndex,8+1);
 	            return null;
             }
 
@@ -206,7 +206,7 @@ public class testTableConfigParser
 			List<string> packageSourceList = null;
 			if (!VaildUtil.TryConvert(values,9 + tmpIndexOffset, 0,out packageSourceList ,out skipCount))
             {
-                m_strErrorMsg = string.Format("{3} {0}.xlsx [{1},{2}]数组解析读取出现错误", "testTableConfig", lineIndex,9+1,"{desc}");
+                m_strErrorMsg = string.Format("{0}.xlsx [{1},{2}]数组解析读取出现错误", "testTableConfig", lineIndex,9+1);
 	            return null;
             }
 

@@ -36,9 +36,9 @@ public class testConfigParser
                 m_strErrorMsg = string.Format("{7} {0}.xlsx [{1},{2}]读取出现错误，{3}必须为{4} - {5} {6}型", "testConfig", lineIndex,0+1, values[0 + tmpIndexOffset],0,50,"int","id");
 	            return null;
             }			
-			if (!VaildUtil.CheckRefrenceConfig("aiconfig", 5 ,values[0 + tmpIndexOffset]))
+			if (!VaildUtil.CheckRefrenceConfig("", 5 ,values[0 + tmpIndexOffset]))
 			{
-					m_strErrorMsg = string.Format("{5} {0}.xlsx [{1},{2}]读取出现错误，{3}在{4}中没找到", "testConfig", lineIndex,0+1, values[0 + tmpIndexOffset],"aiconfig","id");
+					m_strErrorMsg = string.Format("{5} {0}.xlsx [{1},{2}]读取出现错误，{3}在{4}中没找到", "testConfig", lineIndex,0+1, values[0 + tmpIndexOffset],"","id");
 					return null;
 			}
 
@@ -47,9 +47,9 @@ public class testConfigParser
                 m_strErrorMsg = string.Format("{7} {0}.xlsx [{1},{2}]读取出现错误，{3}必须为{4} - {5} {6}型", "testConfig", lineIndex,1+1, values[1 + tmpIndexOffset],int.MinValue,int.MaxValue,"int","nameMessageId");
 	            return null;
             }			
-			if (!VaildUtil.CheckRefrenceConfig("messageConfig", 0 ,values[1 + tmpIndexOffset]))
+			if (!VaildUtil.CheckRefrenceConfig("testTableConfig", 2 ,values[1 + tmpIndexOffset]))
 			{
-					m_strErrorMsg = string.Format("{5} {0}.xlsx [{1},{2}]读取出现错误，{3}在{4}中没找到", "testConfig", lineIndex,1+1, values[1 + tmpIndexOffset],"messageConfig","nameMessageId");
+					m_strErrorMsg = string.Format("{5} {0}.xlsx [{1},{2}]读取出现错误，{3}在{4}中没找到", "testConfig", lineIndex,1+1, values[1 + tmpIndexOffset],"testTableConfig","nameMessageId");
 					return null;
 			}
 
@@ -98,9 +98,9 @@ public class testConfigParser
 			}
 
 			List<string> rotationSourceList = null;
-			if (!VaildUtil.TryConvert(values,6 + tmpIndexOffset, 0,out rotationSourceList ,out skipCount))
+			if (!VaildUtil.TryConvert(values,6 + tmpIndexOffset, 1,out rotationSourceList ,out skipCount))
             {
-                m_strErrorMsg = string.Format("{3} {0}.xlsx [{1},{2}]数组解析读取出现错误", "testConfig", lineIndex,6+1,"{desc}");
+                m_strErrorMsg = string.Format("{0}.xlsx [{1},{2}]数组解析读取出现错误", "testConfig", lineIndex,6+1);
 	            return null;
             }
 
@@ -154,7 +154,7 @@ public class testConfigParser
 			List<string> attachNamePositionSourceList = null;
 			if (!VaildUtil.TryConvert(values,7 + tmpIndexOffset, 0, out attachNamePositionSourceList , out skipCount))
             {
-                m_strErrorMsg = string.Format("{3} {0}.xlsx [{1},{2}]数组解析读取出现错误", "testConfig", lineIndex,7+1,"{desc}");
+                m_strErrorMsg = string.Format("{0}.xlsx [{1},{2}]数组解析读取出现错误", "testConfig", lineIndex,7+1);
 	            return null;
             }
 
@@ -184,7 +184,7 @@ public class testConfigParser
 			List<string> audioSourceSourceList = null;
 			if (!VaildUtil.TryConvert(values,8 + tmpIndexOffset, 0,out audioSourceSourceList ,out skipCount))
             {
-                m_strErrorMsg = string.Format("{3} {0}.xlsx [{1},{2}]数组解析读取出现错误", "testConfig", lineIndex,8+1,"{desc}");
+                m_strErrorMsg = string.Format("{0}.xlsx [{1},{2}]数组解析读取出现错误", "testConfig", lineIndex,8+1);
 	            return null;
             }
 
@@ -263,7 +263,7 @@ public class testConfigParser
 		}
 
         List<string> rotationSourceList = null;
-        if (!VaildUtil.TryConvert(values, 6 + tmpIndexOffset, 0, out rotationSourceList, out skipCount))
+        if (!VaildUtil.TryConvert(values, 6 + tmpIndexOffset, 1, out rotationSourceList, out skipCount))
         {
             throw new Exception("Error on check config is exist");
         }

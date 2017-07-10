@@ -10,7 +10,8 @@ namespace ExcelImproter.Project
         private Dictionary<string, Type> m_HandlerMpa;
         private List<string> m_AllHandlerConfigNameList;
         private IExcelReader m_ExcelReader;
-
+        private Dictionary<string, ExcelData> m_DataCashe;
+         
         public ConfigHandlerManager()
         {
             var allHandlerTypes = ReflectionManager.Instance.GetTypeByBase(typeof(ConfigHandlerBase));
@@ -37,22 +38,24 @@ namespace ExcelImproter.Project
         {
             try
             {
+                m_DataCashe = new Dictionary<string, ExcelData>();
+
                 Type handlerType = null;
                 if (!m_HandlerMpa.TryGetValue(configName, out handlerType))
                 {
-                    return "cna't find config handler by name " + configName;
+                    return "can't find config handler by name " + configName;
                 }
 
                 ConfigHandlerBase handler = Activator.CreateInstance(handlerType) as ConfigHandlerBase;
                 var realconfigName = SystemConst.Config.ExcelConfigPath + "/" + configName + ".xlsx";
-                var content = m_ExcelReader.ReadExcel(realconfigName);
+                var content = LoadExcelFromCasheOrDisk(realconfigName);
                 var errorInfo = handler.HandleConfig(content);
 
                 return errorInfo;
             }
             catch(Exception e)
             {
-                return e.Message;
+                return e.Message + e.StackTrace;
             }
         }
         public bool CheckRefrenceConfig(string configName, int id,string keyValue)
@@ -66,22 +69,33 @@ namespace ExcelImproter.Project
                 Type handlerType = null;
                 if (!m_HandlerMpa.TryGetValue(configName, out handlerType))
                 {
-                    LogQueue.Instance.Enqueue("cna't find config handler by name " + configName);
+                    LogQueue.Instance.Enqueue("can't find config handler by name " + configName);
                     return false;
                 }
 
                 ConfigHandlerBase handler = Activator.CreateInstance(handlerType) as ConfigHandlerBase;
                 var realconfigName = SystemConst.Config.ExcelConfigPath + "/" + configName + ".xlsx";
-                var content = m_ExcelReader.ReadExcel(realconfigName);
+                var content = LoadExcelFromCasheOrDisk(realconfigName);
 
                 return handler.CheckRefrenceConfig(content, id, keyValue);
             }
             catch (Exception e)
             {
-                LogQueue.Instance.Enqueue(e.Message);
+                LogQueue.Instance.Enqueue(e.Message + e.StackTrace);
                 return false;
             }
             return true;
+        }
+        private ExcelData LoadExcelFromCasheOrDisk(string configName)
+        {
+            ExcelData res = null;
+            if (m_DataCashe.TryGetValue(configName, out res))
+            {
+                return res;
+            }
+            res = m_ExcelReader.ReadExcel(configName);
+            m_DataCashe.Add(configName, res);
+            return res;
         }
     }
 }

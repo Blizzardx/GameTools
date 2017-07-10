@@ -96,8 +96,10 @@ namespace ExcelImproter
 
         private void genCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+#if DEBUG
             GenImporterCode tool = new GenImporterCode();
             tool.GenAutoImporterCode();
+#endif
         }
     }
 }
