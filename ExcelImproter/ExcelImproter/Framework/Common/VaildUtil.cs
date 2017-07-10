@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ExcelImproter.Project;
 
 //using System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
@@ -78,6 +79,11 @@ namespace Util
             }
             n = a;
             return true;
+        }
+
+        internal static bool CheckRefrenceConfig(string configName, int id, string keyValue)
+        {
+            return ConfigHandlerManager.Instance.CheckRefrenceConfig(configName, id, keyValue);
         }
 
         public static bool TryConvert(string s, out float n, float min = float.MinValue, float max = float.MaxValue)

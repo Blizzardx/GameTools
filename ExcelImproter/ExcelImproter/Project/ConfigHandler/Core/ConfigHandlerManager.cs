@@ -55,5 +55,33 @@ namespace ExcelImproter.Project
                 return e.Message;
             }
         }
+        public bool CheckRefrenceConfig(string configName, int id,string keyValue)
+        {
+            if (string.IsNullOrEmpty(configName))
+            {
+                return true;
+            }
+            try
+            {
+                Type handlerType = null;
+                if (!m_HandlerMpa.TryGetValue(configName, out handlerType))
+                {
+                    LogQueue.Instance.Enqueue("cna't find config handler by name " + configName);
+                    return false;
+                }
+
+                ConfigHandlerBase handler = Activator.CreateInstance(handlerType) as ConfigHandlerBase;
+                var realconfigName = SystemConst.Config.ExcelConfigPath + "/" + configName + ".xlsx";
+                var content = m_ExcelReader.ReadExcel(realconfigName);
+
+                return handler.CheckRefrenceConfig(content, id, keyValue);
+            }
+            catch (Exception e)
+            {
+                LogQueue.Instance.Enqueue(e.Message);
+                return false;
+            }
+            return true;
+        }
     }
 }

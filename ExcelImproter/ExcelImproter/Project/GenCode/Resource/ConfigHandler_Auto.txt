@@ -16,4 +16,10 @@ public partial class ConfigHandler_{className} : ConfigHandlerBase
 
         return ParserData(data);
     }
+	 public override bool CheckRefrenceConfig(ExcelData content, int id, string keyValue)
+    {
+        var sourcedata = content.GetMergedContent();
+        {parserClassName} parser = new {parserClassName}();
+        return parser.CheckIsConfigExistKey(sourcedata, id, keyValue);
+    }
 }

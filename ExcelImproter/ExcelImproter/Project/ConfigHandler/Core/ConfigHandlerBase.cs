@@ -19,5 +19,6 @@ namespace ExcelImproter.Project
             return m_strConfigName;
         }
         abstract public string HandleConfig(ExcelData content);
+        abstract public bool CheckRefrenceConfig(ExcelData content, int id, string keyValue);
     }
 }

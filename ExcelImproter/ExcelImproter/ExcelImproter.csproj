@@ -74,6 +74,10 @@
     <Compile Include="Plugin\Xml\XmlConfigBase.cs" />
     <Compile Include="Project\ConfigHandler\Core\ConfigHandlerBase.cs" />
     <Compile Include="Project\ConfigHandler\Core\ConfigHandlerManager.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testConfig\Auto\ConfigHandler_testConfig.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testConfig\Auto\testConfig.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testConfig\Auto\testConfigParser.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testConfig\User\ConfigHandler_testConfig.cs" />
     <Compile Include="Project\ConfigHandler\Impl\testTableConfig\Auto\ConfigHandler_testTableConfig.cs" />
     <Compile Include="Project\ConfigHandler\Impl\testTableConfig\Auto\testTableConfig.cs" />
     <Compile Include="Project\ConfigHandler\Impl\testTableConfig\Auto\testTableConfigParser.cs" />
