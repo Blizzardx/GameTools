@@ -1,5 +1,6 @@
 ﻿using Common.Config;
 using ExcelImproter.Project;
+using ExcelImproter.Project.DynamicCompile;
 using ExcelImproter.Project.GenCode;
 using System;
 using System.IO;
@@ -9,12 +10,16 @@ namespace ExcelImproter
 {
     public partial class Form1 : Form
     {
+        private bool isDebug = false;
+
         public Form1(string[] args)
-        {    
+        {
+            isDebug = args != null && args.Length > 0 && args[0] == "Debug";
+
             InitializeComponent();
-            RefreshFileList();
             LoadSystemConfig();
             LogQueue.Instance.Enqueue(Environment.CurrentDirectory.ToString());
+            RefreshFileList();
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -28,14 +33,84 @@ namespace ExcelImproter
             this.richTextBox1.Select(this.richTextBox1.Text.Length, 0);
             this.richTextBox1.ScrollToCaret();
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonRefreshHandlerListClick(object sender, EventArgs e)
         {
             RefreshFileList();
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
-        private void button3_Click(object sender, EventArgs e1)
+        private void buttonImporter_Click(object sender, EventArgs e1)
+        {
+            ImportConfig();
+        }
+        
+        #region handler
+        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCollection coll = Application.OpenForms;
+            foreach (Form form in coll)
+            {
+                if (form is ToolSetting)
+                {
+                    form.Focus();
+                    return;
+                }
+            }
+            ToolSetting settingForm = new ToolSetting();
+            settingForm.Show();
+        }
+        private void LoadSystemConfig()
+        {
+            try
+            {
+                var content = File.ReadAllText(SystemConst.settingConfigPath);
+                SystemConst.Config = XmlConfigBase.DeSerialize<PathConfig>(content);
+            }
+            catch (Exception e)
+            {
+                SystemConst.Config = new PathConfig();
+            }
+        }
+        private void ImportConfig()
+        {
+            if (isDebug)
+            {
+                ImportConfig_Debug();
+            }
+            else
+            {
+                ImproterConfig_Release();
+            }
+        }
+        private void RefreshFileList()
+        {
+            RefreshFileList_Release();
+            if (isDebug)
+            {
+                RefreshFileList_Debug();
+            }
+            else
+            {
+                RefreshFileList_Release();
+            }
+        }
+        #endregion
+
+        #region release
+        private void ImproterConfig_Release()
+        {
+            LogQueue.Instance.Enqueue("ImproterConfig_Release");
+        }
+        private void RefreshFileList_Release()
+        {
+            LogQueue.Instance.Enqueue("RefreshFileList_Release");
+            DynamicCompiler.Instance.LoadClassAtFolder(SystemConst.Config.CodeConfigPath);
+        }
+        #endregion
+
+        #region Debug
+        private void ImportConfig_Debug()
         {
             var list = ConfigHandlerManager.Instance.GetAllVaildConfigHandlerList();
             string name = comboBox1.SelectedItem as string;
@@ -53,7 +128,7 @@ namespace ExcelImproter
                 }
             }
         }
-        private void RefreshFileList()
+        private void RefreshFileList_Debug()
         {
             var list = ConfigHandlerManager.Instance.GetAllVaildConfigHandlerList();
             comboBox1.Items.Clear();
@@ -66,40 +141,16 @@ namespace ExcelImproter
                 comboBox1.SelectedIndex = 0;
             }
         }
-        private void LoadSystemConfig()
-        {
-            try
-            {
-                var content = File.ReadAllText(SystemConst.settingConfigPath);
-                SystemConst.Config = XmlConfigBase.DeSerialize<PathConfig>(content);
-            }
-            catch (Exception e)
-            {
-                SystemConst.Config = new PathConfig();
-            }
-        }
-
-        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormCollection coll = Application.OpenForms;
-            foreach (Form form in coll)
-            {
-                if (form is ToolSetting)
-                {
-                    form.Focus();
-                    return;
-                }
-            }
-            ToolSetting settingForm = new ToolSetting();
-            settingForm.Show();
-        }
-
         private void genCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-#if DEBUG
+            if(!isDebug)
+            {
+                return;
+            }
             GenImporterCode tool = new GenImporterCode();
             tool.GenAutoImporterCode();
-#endif
+            LogQueue.Instance.Enqueue("Done gen code");
         }
+#endregion
     }
 }

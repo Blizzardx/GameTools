@@ -8,7 +8,6 @@ namespace ExcelImproter.Project.GenCode
     public class GenImporterCode
     {
         private const string m_strAutoImporterTemplatePath = "Config/ConfigHandler_Auto.txt";
-        private const string m_strUserImporterTemplatePath = "Config/ConfigHandler_User.txt";
         private const string m_strProjectFolderPath = "../../Project/ConfigHandler/Impl/";
 
         private string m_strAutoImporterTemplate;
@@ -48,33 +47,31 @@ namespace ExcelImproter.Project.GenCode
 
             FileUtils.EnsureFolder(m_strProjectFolderPath + configName);
 
-            string subAutoFolder = m_strProjectFolderPath + configName + "/Auto/";
-            string subUserFolder = m_strProjectFolderPath + configName + "/User/";
+            string subAutoFolder = m_strProjectFolderPath + configName + "/";
 
-            if (Directory.Exists(subAutoFolder))
-            {
-                Directory.Delete(subAutoFolder, true);
-            }
             FileUtils.EnsureFolder(subAutoFolder);
 
-            
+            if(File.Exists(subAutoFolder + parser))
+            {
+                File.Delete(subAutoFolder + parser);
+            }
+            if (File.Exists(subAutoFolder + data))
+            {
+                File.Delete(subAutoFolder + data);
+            }
             File.Copy(SystemConst.Config.ParserConfigPath + "/" + parser, subAutoFolder + parser);
             File.Copy(SystemConst.Config.ParserConfigPath + "/" + data, subAutoFolder + data);
 
             string autoImportPath = subAutoFolder + "ConfigHandler_" + configName + ".cs";
-            string userImportPath = subUserFolder + "ConfigHandler_" + configName + ".cs";
 
-            File.WriteAllText(autoImportPath, GenAutoImporter(configName));
-            if (!Directory.Exists(subUserFolder))
+            if(!File.Exists(autoImportPath))
             {
-                FileUtils.EnsureFolder(subUserFolder);
-                File.WriteAllText(userImportPath, GenUserImporter(configName));
+                File.WriteAllText(autoImportPath, GenAutoImporter(configName));
             }
 
             RefreshProjectDirectory(subAutoFolder + parser);
             RefreshProjectDirectory(subAutoFolder + data);
             RefreshProjectDirectory(autoImportPath);
-            RefreshProjectDirectory(userImportPath);
         }
         private void RefreshProjectDirectory(string userImportPath)
         {
@@ -98,7 +95,6 @@ namespace ExcelImproter.Project.GenCode
         private void InitTempalte()
         {
             m_strAutoImporterTemplate = File.ReadAllText(m_strAutoImporterTemplatePath);
-            m_strUserImporterTemplate = File.ReadAllText(m_strUserImporterTemplatePath);
         }
     }
 }

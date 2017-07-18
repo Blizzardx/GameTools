@@ -14,6 +14,7 @@ namespace ExcelImproter.Project
             ExcelPathTextBox.Text = SystemConst.Config.ExcelConfigPath;
             ParserPathTextBox.Text = SystemConst.Config.ParserConfigPath;
             XmlPathTextBox.Text = SystemConst.Config.XmlConfigPath;
+            CodePathTextBox.Text = SystemConst.Config.CodeConfigPath;
         }
 
         private void selectExcelPathButton_Click(object sender, EventArgs e)
@@ -54,10 +55,23 @@ namespace ExcelImproter.Project
                 SaveSystemConfig();
             }
         }
+        private void selectCodePathButton_Click(object sender, EventArgs e)
+        {
+            configPathFolderBrowserDialog.SelectedPath = Environment.CurrentDirectory;
+            configPathFolderBrowserDialog.Description = "选择代码文件所存在的路径";
+            DialogResult result = configPathFolderBrowserDialog.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                CodePathTextBox.Text = configPathFolderBrowserDialog.SelectedPath;
+                SystemConst.Config.CodeConfigPath = configPathFolderBrowserDialog.SelectedPath;
+                SaveSystemConfig();
+            }
+        }
         private void SaveSystemConfig()
         {
             var content = XmlConfigBase.Serialize(SystemConst.Config);
             File.WriteAllText(SystemConst.settingConfigPath, content);
         }
+
     }
 }

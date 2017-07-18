@@ -38,6 +38,9 @@
             this.ParserPathTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.configPathFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.selectCodePathButton = new System.Windows.Forms.Button();
+            this.CodePathTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // selectXmlPathButton
@@ -121,11 +124,41 @@
             this.label2.Text = "解析器文件路径:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // selectCodePathButton
+            // 
+            this.selectCodePathButton.Location = new System.Drawing.Point(492, 242);
+            this.selectCodePathButton.Name = "selectCodePathButton";
+            this.selectCodePathButton.Size = new System.Drawing.Size(70, 23);
+            this.selectCodePathButton.TabIndex = 90;
+            this.selectCodePathButton.Text = "选择目录";
+            this.selectCodePathButton.UseVisualStyleBackColor = true;
+            this.selectCodePathButton.Click += new System.EventHandler(this.selectCodePathButton_Click);
+            // 
+            // CodePathTextBox
+            // 
+            this.CodePathTextBox.Location = new System.Drawing.Point(133, 246);
+            this.CodePathTextBox.Name = "CodePathTextBox";
+            this.CodePathTextBox.ReadOnly = true;
+            this.CodePathTextBox.Size = new System.Drawing.Size(353, 21);
+            this.CodePathTextBox.TabIndex = 89;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(11, 246);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(116, 23);
+            this.label4.TabIndex = 88;
+            this.label4.Text = "代码文件路径:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // ToolSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(580, 462);
+            this.Controls.Add(this.selectCodePathButton);
+            this.Controls.Add(this.CodePathTextBox);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.selectParserPathButton);
             this.Controls.Add(this.ParserPathTextBox);
             this.Controls.Add(this.label2);
@@ -154,5 +187,8 @@
         private System.Windows.Forms.TextBox ParserPathTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.FolderBrowserDialog configPathFolderBrowserDialog;
+        private System.Windows.Forms.Button selectCodePathButton;
+        private System.Windows.Forms.TextBox CodePathTextBox;
+        private System.Windows.Forms.Label label4;
     }
 }

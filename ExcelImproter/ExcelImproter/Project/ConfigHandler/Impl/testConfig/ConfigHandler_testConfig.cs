@@ -1,5 +1,7 @@
 using ExcelImproter.Framework.Reader;
 using ExcelImproter.Project;
+using System;
+using System.Collections.Generic;
 
 public partial class ConfigHandler_testConfig : ConfigHandlerBase
 {
@@ -21,5 +23,9 @@ public partial class ConfigHandler_testConfig : ConfigHandlerBase
         var sourcedata = content.GetMergedContent();
         testConfigParser parser = new testConfigParser();
         return parser.CheckIsConfigExistKey(sourcedata, id, keyValue);
+    }
+	private string ParserData(List<testConfig> data)
+    {
+        return "";
     }
 }

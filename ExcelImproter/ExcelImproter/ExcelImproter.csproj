@@ -74,14 +74,13 @@
     <Compile Include="Plugin\Xml\XmlConfigBase.cs" />
     <Compile Include="Project\ConfigHandler\Core\ConfigHandlerBase.cs" />
     <Compile Include="Project\ConfigHandler\Core\ConfigHandlerManager.cs" />
-    <Compile Include="Project\ConfigHandler\Impl\testConfig\Auto\ConfigHandler_testConfig.cs" />
-    <Compile Include="Project\ConfigHandler\Impl\testConfig\Auto\testConfig.cs" />
-    <Compile Include="Project\ConfigHandler\Impl\testConfig\Auto\testConfigParser.cs" />
-    <Compile Include="Project\ConfigHandler\Impl\testConfig\User\ConfigHandler_testConfig.cs" />
-    <Compile Include="Project\ConfigHandler\Impl\testTableConfig\Auto\ConfigHandler_testTableConfig.cs" />
-    <Compile Include="Project\ConfigHandler\Impl\testTableConfig\Auto\testTableConfig.cs" />
-    <Compile Include="Project\ConfigHandler\Impl\testTableConfig\Auto\testTableConfigParser.cs" />
-    <Compile Include="Project\ConfigHandler\Impl\testTableConfig\User\ConfigHandler_testTableConfig.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testConfig\ConfigHandler_testConfig.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testConfig\testConfig.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testConfig\testConfigParser.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testTableConfig\ConfigHandler_testTableConfig.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testTableConfig\testTableConfig.cs" />
+    <Compile Include="Project\ConfigHandler\Impl\testTableConfig\testTableConfigParser.cs" />
+    <Compile Include="Project\DynamicCompile\DynamicCompiler.cs" />
     <Compile Include="Project\GenCode\GenImporterCode.cs" />
     <Compile Include="Project\SystemConst.cs" />
     <Compile Include="Project\ToolSetting.cs">
@@ -161,7 +160,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Project\GenCode\Resource\ConfigHandler_User.txt" />
     <Content Include="Project\GenCode\Resource\ConfigHandler_Auto.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

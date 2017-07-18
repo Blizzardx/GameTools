@@ -34,8 +34,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.genCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.RefreshHandlerList = new System.Windows.Forms.Button();
+            this.buttonImporter = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -79,25 +79,25 @@
             this.genCodeToolStripMenuItem.Text = "GenCode";
             this.genCodeToolStripMenuItem.Click += new System.EventHandler(this.genCodeToolStripMenuItem_Click);
             // 
-            // button1
+            // RefreshHandlerList
             // 
-            this.button1.Location = new System.Drawing.Point(135, 37);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(93, 30);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "刷新文件列表";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.RefreshHandlerList.Location = new System.Drawing.Point(135, 37);
+            this.RefreshHandlerList.Name = "RefreshHandlerList";
+            this.RefreshHandlerList.Size = new System.Drawing.Size(93, 30);
+            this.RefreshHandlerList.TabIndex = 8;
+            this.RefreshHandlerList.Text = "刷新文件列表";
+            this.RefreshHandlerList.UseVisualStyleBackColor = true;
+            this.RefreshHandlerList.Click += new System.EventHandler(this.buttonRefreshHandlerListClick);
             // 
-            // button3
+            // buttonImporter
             // 
-            this.button3.Location = new System.Drawing.Point(726, 37);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(93, 30);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "导入";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonImporter.Location = new System.Drawing.Point(726, 37);
+            this.buttonImporter.Name = "buttonImporter";
+            this.buttonImporter.Size = new System.Drawing.Size(93, 30);
+            this.buttonImporter.TabIndex = 10;
+            this.buttonImporter.Text = "导入";
+            this.buttonImporter.UseVisualStyleBackColor = true;
+            this.buttonImporter.Click += new System.EventHandler(this.buttonImporter_Click);
             // 
             // comboBox1
             // 
@@ -115,8 +115,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 596);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonImporter);
+            this.Controls.Add(this.RefreshHandlerList);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -133,8 +133,8 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button RefreshHandlerList;
+        private System.Windows.Forms.Button buttonImporter;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem genCodeToolStripMenuItem;
