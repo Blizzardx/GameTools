@@ -27,39 +27,45 @@ namespace ExcelImproter.Project.DynamicCompile
         }
         private void LoadClass(string[] paths)
         {
-            Assembly assem = Assembly.GetAssembly(typeof(ReflectionManager));
+            //Assembly assem = Assembly.GetAssembly(typeof(ReflectionManager));
 
-            string[] sourcecodes = new string[paths.Length];
-            for(int i=0;i<paths.Length;++i)
-            {
-                sourcecodes[i] = File.ReadAllText(paths[i]);
-            }
 
             // 1.Create a new CSharpCodePrivoder instance  
-            CSharpCodeProvider objCSharpCodePrivoder = new CSharpCodeProvider();
+            //CSharpCodeProvider objCSharpCodePrivoder = new CSharpCodeProvider();
 
             // 2.Sets the runtime compiling parameters by crating a new CompilerParameters instance  
             CompilerParameters objCompilerParameters = new CompilerParameters();
-            objCompilerParameters.ReferencedAssemblies.Add("System.dll");
-            objCompilerParameters.ReferencedAssemblies.Add("System.Windows.Forms.dll");
-            
+            //objCompilerParameters.ReferencedAssemblies.Add("System.dll");
+            //objCompilerParameters.ReferencedAssemblies.Add("System.Windows.Forms.dll");
+            //objCompilerParameters.ReferencedAssemblies.Add("System.XML.dll");
+            //objCompilerParameters.ReferencedAssemblies.Add("System.Data.dll");
+            //objCompilerParameters.ReferencedAssemblies.Add("System.Core.dll");
+            //objCompilerParameters.ReferencedAssemblies.Add("Microsoft.CSharp.dll");
+            //objCompilerParameters.ReferencedAssemblies.Add("Excel.dll");
+            objCompilerParameters.ReferencedAssemblies.Add("ExcelImproter.exe"); 
             objCompilerParameters.GenerateInMemory = true;
-
+            objCompilerParameters.GenerateExecutable = false;
+            objCompilerParameters.CompilerOptions = "/optimize";
             // 3.CompilerResults: Complile the code snippet by calling a method from the provider  
-            CompilerResults cr = objCSharpCodePrivoder.CompileAssemblyFromSource(objCompilerParameters, sourcecodes);
+            CodeDomProvider provider = CodeDomProvider.CreateProvider("CSharp");
+            CompilerResults cr = provider.CompileAssemblyFromFile(objCompilerParameters, paths);
+            //CompilerResults cr = objCSharpCodePrivoder.CompileAssemblyFromFile(objCompilerParameters, paths);
 
             if (cr.Errors.HasErrors)
             {
-                string strErrorMsg = cr.Errors.Count.ToString() + " Errors:";
+                LogQueue.Instance.Enqueue("There were build erros, please modify your code.");
 
                 for (int x = 0; x < cr.Errors.Count; x++)
                 {
-                    strErrorMsg = strErrorMsg + "/r/nLine: " +
+                   var strErrorMsg = 
+                                cr.Errors[x].FileName + " " +
                                  cr.Errors[x].Line.ToString() + " - " +
                                  cr.Errors[x].ErrorText;
+
+                    LogQueue.Instance.Enqueue(strErrorMsg);
                 }
 
-                LogQueue.Instance.Enqueue("There were build erros, please modify your code." + strErrorMsg);
+
                 return;
             }
 

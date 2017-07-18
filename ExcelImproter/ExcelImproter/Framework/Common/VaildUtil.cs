@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ExcelImproter.Project;
 
-//using System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
-
 namespace Util
 {
     public static class VaildUtil
@@ -81,7 +79,7 @@ namespace Util
             return true;
         }
 
-        internal static bool CheckRefrenceConfig(string configName, int id, string keyValue)
+        public static bool CheckRefrenceConfig(string configName, int id, string keyValue)
         {
             return ConfigHandlerManager.Instance.CheckRefrenceConfig(configName, id, keyValue);
         }
@@ -92,7 +90,8 @@ namespace Util
         }
 
         #endregion
-        #region float
+
+        #region double
 
         public static bool TryConvertDouble(string s, out double n, double min, double max)
         {
@@ -120,6 +119,7 @@ namespace Util
         }
 
         #endregion
+
         #region short
 
         public static bool TryConvertShort(string s, out short n, short min = short.MinValue, short max = short.MaxValue)

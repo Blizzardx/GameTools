@@ -26,6 +26,6 @@ public partial class ConfigHandler_testConfig : ConfigHandlerBase
     }
 	private string ParserData(List<testConfig> data)
     {
-        return "";
+        throw new NotImplementedException();
     }
 }
