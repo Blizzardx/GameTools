@@ -15,6 +15,7 @@ namespace ExcelImproter.Project
             ParserPathTextBox.Text = SystemConst.Config.ParserConfigPath;
             XmlPathTextBox.Text = SystemConst.Config.XmlConfigPath;
             CodePathTextBox.Text = SystemConst.Config.CodeConfigPath;
+            outputPathTextBox.Text = SystemConst.Config.OutputPath;
         }
 
         private void selectExcelPathButton_Click(object sender, EventArgs e)
@@ -64,6 +65,18 @@ namespace ExcelImproter.Project
             {
                 CodePathTextBox.Text = configPathFolderBrowserDialog.SelectedPath;
                 SystemConst.Config.CodeConfigPath = configPathFolderBrowserDialog.SelectedPath;
+                SaveSystemConfig();
+            }
+        }
+        private void selectOutputPathButton_Click(object sender, EventArgs e)
+        {
+            configPathFolderBrowserDialog.SelectedPath = Environment.CurrentDirectory;
+            configPathFolderBrowserDialog.Description = "选择导出文件路径";
+            DialogResult result = configPathFolderBrowserDialog.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                outputPathTextBox.Text = configPathFolderBrowserDialog.SelectedPath;
+                SystemConst.Config.OutputPath = configPathFolderBrowserDialog.SelectedPath;
                 SaveSystemConfig();
             }
         }

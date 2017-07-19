@@ -41,6 +41,9 @@
             this.selectCodePathButton = new System.Windows.Forms.Button();
             this.CodePathTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.selectOutputPathButton = new System.Windows.Forms.Button();
+            this.outputPathTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // selectXmlPathButton
@@ -126,7 +129,7 @@
             // 
             // selectCodePathButton
             // 
-            this.selectCodePathButton.Location = new System.Drawing.Point(492, 242);
+            this.selectCodePathButton.Location = new System.Drawing.Point(492, 247);
             this.selectCodePathButton.Name = "selectCodePathButton";
             this.selectCodePathButton.Size = new System.Drawing.Size(70, 23);
             this.selectCodePathButton.TabIndex = 90;
@@ -136,7 +139,7 @@
             // 
             // CodePathTextBox
             // 
-            this.CodePathTextBox.Location = new System.Drawing.Point(133, 246);
+            this.CodePathTextBox.Location = new System.Drawing.Point(133, 251);
             this.CodePathTextBox.Name = "CodePathTextBox";
             this.CodePathTextBox.ReadOnly = true;
             this.CodePathTextBox.Size = new System.Drawing.Size(353, 21);
@@ -144,18 +147,48 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(11, 246);
+            this.label4.Location = new System.Drawing.Point(11, 251);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 23);
             this.label4.TabIndex = 88;
             this.label4.Text = "代码文件路径:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // selectOutputPathButton
+            // 
+            this.selectOutputPathButton.Location = new System.Drawing.Point(492, 287);
+            this.selectOutputPathButton.Name = "selectOutputPathButton";
+            this.selectOutputPathButton.Size = new System.Drawing.Size(70, 23);
+            this.selectOutputPathButton.TabIndex = 93;
+            this.selectOutputPathButton.Text = "选择目录";
+            this.selectOutputPathButton.UseVisualStyleBackColor = true;
+            this.selectOutputPathButton.Click += new System.EventHandler(this.selectOutputPathButton_Click);
+            // 
+            // outputPathTextBox
+            // 
+            this.outputPathTextBox.Location = new System.Drawing.Point(133, 291);
+            this.outputPathTextBox.Name = "outputPathTextBox";
+            this.outputPathTextBox.ReadOnly = true;
+            this.outputPathTextBox.Size = new System.Drawing.Size(353, 21);
+            this.outputPathTextBox.TabIndex = 92;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(11, 291);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(116, 23);
+            this.label5.TabIndex = 91;
+            this.label5.Text = "导出文件路径:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // ToolSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(580, 462);
+            this.Controls.Add(this.selectOutputPathButton);
+            this.Controls.Add(this.outputPathTextBox);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.selectCodePathButton);
             this.Controls.Add(this.CodePathTextBox);
             this.Controls.Add(this.label4);
@@ -190,5 +223,8 @@
         private System.Windows.Forms.Button selectCodePathButton;
         private System.Windows.Forms.TextBox CodePathTextBox;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button selectOutputPathButton;
+        private System.Windows.Forms.TextBox outputPathTextBox;
+        private System.Windows.Forms.Label label5;
     }
 }

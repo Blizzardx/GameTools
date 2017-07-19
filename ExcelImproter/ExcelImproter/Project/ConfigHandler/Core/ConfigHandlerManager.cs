@@ -59,6 +59,7 @@ namespace ExcelImproter.Project
                 var content = LoadExcelFromCasheOrDisk(realconfigName);
                 var errorInfo = handler.HandleConfig(content);
 
+                LogQueue.Instance.Enqueue("End import : " + configName);
                 return errorInfo;
             }
             catch(Exception e)

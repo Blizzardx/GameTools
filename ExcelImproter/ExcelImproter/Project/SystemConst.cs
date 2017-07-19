@@ -11,4 +11,5 @@ public class PathConfig : XmlConfigBase
     public string ParserConfigPath;
     public string ExcelConfigPath;
     public string CodeConfigPath;
+    public string OutputPath;
 }

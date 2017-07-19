@@ -1,4 +1,5 @@
-﻿using ExcelImproter.Framework.Reader;
+﻿using System.IO;
+using ExcelImproter.Framework.Reader;
 
 namespace ExcelImproter.Project
 {
@@ -17,6 +18,12 @@ namespace ExcelImproter.Project
         public string GetConfigName()
         {
             return m_strConfigName;
+        }
+
+        protected void Output(byte[] content)
+        {
+            string path = SystemConst.Config.OutputPath + "/" + m_strConfigName + ".bytes";
+            File.WriteAllBytes(path, content);
         }
         abstract public string HandleConfig(ExcelData content);
         abstract public bool CheckRefrenceConfig(ExcelData content, int id, string keyValue);

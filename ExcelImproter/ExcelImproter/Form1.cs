@@ -3,6 +3,7 @@ using ExcelImproter.Project;
 using ExcelImproter.Project.DynamicCompile;
 using ExcelImproter.Project.GenCode;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -29,6 +30,15 @@ namespace ExcelImproter
                 return;
             }
             this.richTextBox1.AppendText(log);
+            var tmpLog = log.ToLower();
+            if (tmpLog.Contains("error"))
+            {
+                this.richTextBox1.ForeColor = Color.Red;
+            }
+            else
+            {
+                this.richTextBox1.ForeColor = Color.Black;
+            }
             this.richTextBox1.Focus();
             this.richTextBox1.Select(this.richTextBox1.Text.Length, 0);
             this.richTextBox1.ScrollToCaret();
@@ -44,10 +54,9 @@ namespace ExcelImproter
         {
             ImportConfig();
         }
-
         private void buttonImportAll_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show(this, "确定要导入全部配置", "询问");
+            DialogResult result = MessageBox.Show(this, "确定要导入全部配置", "询问",MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK)
             {
                 ImportAllConfig();
