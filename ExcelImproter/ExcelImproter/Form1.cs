@@ -44,7 +44,16 @@ namespace ExcelImproter
         {
             ImportConfig();
         }
-        
+
+        private void buttonImportAll_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(this, "确定要导入全部配置", "询问");
+            if (result == DialogResult.OK)
+            {
+                ImportAllConfig();
+            }
+        }
+
         #region handler
         private void settingToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -80,12 +89,22 @@ namespace ExcelImproter
             }
             else
             {
-                ImproterConfig_Release();
+                ImprotConfig_Release();
+            }
+        }
+        private void ImportAllConfig()
+        {
+            if (isDebug)
+            {
+                ImportAllConfig_Debug();
+            }
+            else
+            {
+                ImprotAllConfig_Release();
             }
         }
         private void RefreshFileList()
         {
-            RefreshFileList_Release();
             if (isDebug)
             {
                 RefreshFileList_Debug();
@@ -98,21 +117,72 @@ namespace ExcelImproter
         #endregion
 
         #region release
-        private void ImproterConfig_Release()
+
+        private void ImprotAllConfig_Release()
         {
-            LogQueue.Instance.Enqueue("ImproterConfig_Release");
+            var list = ConfigHandlerManager.Instance.RefreshAllVaildConfigHandlerList();
+            for (int i = 0; i < list.Count; ++i)
+            {
+                var errorInfo = ConfigHandlerManager.Instance.HandleConfig(list[i]);
+
+                if (!string.IsNullOrEmpty(errorInfo))
+                {
+                    LogQueue.Instance.Enqueue(errorInfo);
+                }
+            }
+        }
+        private void ImprotConfig_Release()
+        {
+            var list = ConfigHandlerManager.Instance.RefreshAllVaildConfigHandlerList();
+            string name = comboBox1.SelectedItem as string;
+            for (int i = 0; i < list.Count; ++i)
+            {
+                if (name == list[i])
+                {
+                    var errorInfo = ConfigHandlerManager.Instance.HandleConfig(list[i]);
+
+                    if (!string.IsNullOrEmpty(errorInfo))
+                    {
+                        LogQueue.Instance.Enqueue(errorInfo);
+                    }
+                    break;
+                }
+            }
         }
         private void RefreshFileList_Release()
         {
-            LogQueue.Instance.Enqueue("RefreshFileList_Release");
-            DynamicCompiler.Instance.LoadClassAtFolder(SystemConst.Config.CodeConfigPath);
+            DynamicCompiler.Instance.CompileClassAtDirectory(SystemConst.Config.CodeConfigPath);
+            var list = ConfigHandlerManager.Instance.RefreshAllVaildConfigHandlerList();
+            comboBox1.Items.Clear();
+            for (int i = 0; i < list.Count; ++i)
+            {
+                comboBox1.Items.Add(list[i]);
+            }
+            if (comboBox1.Items.Count != 0)
+            {
+                comboBox1.SelectedIndex = 0;
+            }
         }
         #endregion
 
         #region Debug
+
+        private void ImportAllConfig_Debug()
+        {
+            var list = ConfigHandlerManager.Instance.RefreshAllVaildConfigHandlerList();
+            for (int i = 0; i < list.Count; ++i)
+            {
+                var errorInfo = ConfigHandlerManager.Instance.HandleConfig(list[i]);
+
+                if (!string.IsNullOrEmpty(errorInfo))
+                {
+                    LogQueue.Instance.Enqueue(errorInfo);
+                }
+            }
+        }
         private void ImportConfig_Debug()
         {
-            var list = ConfigHandlerManager.Instance.GetAllVaildConfigHandlerList();
+            var list = ConfigHandlerManager.Instance.RefreshAllVaildConfigHandlerList();
             string name = comboBox1.SelectedItem as string;
             for (int i = 0; i < list.Count; ++i)
             {
@@ -130,7 +200,7 @@ namespace ExcelImproter
         }
         private void RefreshFileList_Debug()
         {
-            var list = ConfigHandlerManager.Instance.GetAllVaildConfigHandlerList();
+            var list = ConfigHandlerManager.Instance.RefreshAllVaildConfigHandlerList();
             comboBox1.Items.Clear();
             for (int i = 0; i < list.Count; ++i)
             {
@@ -151,6 +221,6 @@ namespace ExcelImproter
             tool.GenAutoImporterCode();
             LogQueue.Instance.Enqueue("Done gen code");
         }
-#endregion
+        #endregion
     }
 }

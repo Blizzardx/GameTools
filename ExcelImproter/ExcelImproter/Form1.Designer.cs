@@ -37,6 +37,7 @@
             this.RefreshHandlerList = new System.Windows.Forms.Button();
             this.buttonImporter = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.buttonImportAll = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +92,7 @@
             // 
             // buttonImporter
             // 
-            this.buttonImporter.Location = new System.Drawing.Point(726, 37);
+            this.buttonImporter.Location = new System.Drawing.Point(669, 37);
             this.buttonImporter.Name = "buttonImporter";
             this.buttonImporter.Size = new System.Drawing.Size(93, 30);
             this.buttonImporter.TabIndex = 10;
@@ -109,11 +110,22 @@
             this.comboBox1.TabIndex = 11;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // buttonImportAll
+            // 
+            this.buttonImportAll.Location = new System.Drawing.Point(806, 36);
+            this.buttonImportAll.Name = "buttonImportAll";
+            this.buttonImportAll.Size = new System.Drawing.Size(93, 30);
+            this.buttonImportAll.TabIndex = 12;
+            this.buttonImportAll.Text = "导入全部";
+            this.buttonImportAll.UseVisualStyleBackColor = true;
+            this.buttonImportAll.Click += new System.EventHandler(this.buttonImportAll_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 596);
+            this.Controls.Add(this.buttonImportAll);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.buttonImporter);
             this.Controls.Add(this.RefreshHandlerList);
@@ -138,6 +150,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem genCodeToolStripMenuItem;
+        private System.Windows.Forms.Button buttonImportAll;
     }
 }
 

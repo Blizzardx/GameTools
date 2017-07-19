@@ -90,9 +90,6 @@
     <Compile Include="Plugin\Xml\XmlConfigBase.cs" />
     <Compile Include="Project\ConfigHandler\Core\ConfigHandlerBase.cs" />
     <Compile Include="Project\ConfigHandler\Core\ConfigHandlerManager.cs" />
-    <Compile Include="Project\ConfigHandler\Impl\testConfig\ConfigHandler_testConfig.cs" />
-    <Compile Include="Project\ConfigHandler\Impl\testConfig\testConfig.cs" />
-    <Compile Include="Project\ConfigHandler\Impl\testConfig\testConfigParser.cs" />
     <Compile Include="Project\DynamicCompile\DynamicCompiler.cs" />
     <Compile Include="Project\GenCode\GenImporterCode.cs" />
     <Compile Include="Project\SystemConst.cs" />
@@ -191,6 +188,7 @@
   <ItemGroup>
     <Content Include="Project\GenCode\Resource\ConfigHandler_Auto.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -2,6 +2,7 @@
 using Common.Tool;
 using System.Collections.Generic;
 using ExcelImproter.Framework.Reader;
+using ExcelImproter.Project.DynamicCompile;
 
 namespace ExcelImproter.Project
 {
@@ -14,11 +15,21 @@ namespace ExcelImproter.Project
          
         public ConfigHandlerManager()
         {
-            var allHandlerTypes = ReflectionManager.Instance.GetTypeByBase(typeof(ConfigHandlerBase));
+            m_ExcelReader = new ExcelReader_ER();
+            
             m_HandlerMpa = new Dictionary<string, Type>();
-            m_AllHandlerConfigNameList = new List<string>(allHandlerTypes.Count);
+            m_AllHandlerConfigNameList = new List<string>();
+            RefreshAllVaildConfigHandlerList();
+        }
+        public List<string> RefreshAllVaildConfigHandlerList()
+        {
+            var allHandlerTypes = ReflectionManager.Instance.GetTypeByBase(typeof(ConfigHandlerBase));
+            allHandlerTypes.AddRange(DynamicCompiler.Instance.GetTypeByBase(typeof(ConfigHandlerBase)));
 
-            for (int i=0;i<allHandlerTypes.Count;++i)
+            m_HandlerMpa.Clear();
+            m_AllHandlerConfigNameList.Clear();
+
+            for (int i = 0; i < allHandlerTypes.Count; ++i)
             {
                 var type = allHandlerTypes[i];
                 var name = ConfigHandlerBase.GetConfigNameByClassName(type.Name);
@@ -27,17 +38,14 @@ namespace ExcelImproter.Project
                 m_HandlerMpa.Add(name, type);
             }
 
-            m_ExcelReader = new ExcelReader_ER();
-            
-        }
-        public List<string> GetAllVaildConfigHandlerList()
-        {
             return m_AllHandlerConfigNameList;
         }
         public string HandleConfig(string configName)
         {
             try
             {
+                LogQueue.Instance.Enqueue("Begein import : " + configName);
+
                 m_DataCashe = new Dictionary<string, ExcelData>();
 
                 Type handlerType = null;

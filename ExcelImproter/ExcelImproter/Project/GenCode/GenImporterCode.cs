@@ -21,7 +21,7 @@ namespace ExcelImproter.Project.GenCode
             List<string> fileList = new List<string>();
 
             // load all cs file
-            var allCSFils = dir.GetFiles("*.cs");
+            var allCSFils = dir.GetFiles("*.cs", SearchOption.AllDirectories);
             for(int i=0;i<allCSFils.Length;++i)
             {
                 var file = allCSFils[i];
