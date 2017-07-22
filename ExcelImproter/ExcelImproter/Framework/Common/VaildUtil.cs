@@ -79,6 +79,15 @@ namespace Util
             return true;
         }
 
+        public static bool CheckIsDefaultValue(bool isAllowDefaultValue, string value,string defaultValue)
+        {
+           if(!isAllowDefaultValue)
+            {
+                return false;
+            }
+            return value == defaultValue;
+        }
+
         public static bool CheckRefrenceConfig(string configName, int id, string keyValue)
         {
             return ConfigHandlerManager.Instance.CheckRefrenceConfig(configName, id, keyValue);
