@@ -88,15 +88,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Plugin\Xml\XmlConfigBase.cs" />
-    <Compile Include="Project\ConfigHandler\Core\ConfigHandlerBase.cs" />
-    <Compile Include="Project\ConfigHandler\Core\ConfigHandlerManager.cs" />
-    <Compile Include="Project\DynamicCompile\DynamicCompiler.cs" />
-    <Compile Include="Project\GenCode\GenImporterCode.cs" />
-    <Compile Include="Project\SystemConst.cs" />
-    <Compile Include="Project\ToolSetting.cs">
+    <Compile Include="Framework\ConfigHandler\Core\ConfigHandlerBase.cs" />
+    <Compile Include="Framework\ConfigHandler\Core\ConfigHandlerManager.cs" />
+    <Compile Include="Framework\DynamicCompile\DynamicCompiler.cs" />
+    <Compile Include="Framework\GenCode\GenImporterCode.cs" />
+    <Compile Include="Framework\SystemConst.cs" />
+    <Compile Include="ToolSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Project\ToolSetting.Designer.cs">
+    <Compile Include="ToolSetting.Designer.cs">
       <DependentUpon>ToolSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,7 +142,7 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Project\ToolSetting.resx">
+    <EmbeddedResource Include="ToolSetting.resx">
       <DependentUpon>ToolSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -186,7 +186,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Project\GenCode\Resource\ConfigHandler_Auto.txt" />
+    <Content Include="Framework\GenCode\Resource\ConfigHandler_Auto.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

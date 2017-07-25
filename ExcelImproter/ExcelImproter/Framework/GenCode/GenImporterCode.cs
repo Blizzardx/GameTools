@@ -8,7 +8,7 @@ namespace ExcelImproter.Project.GenCode
     public class GenImporterCode
     {
         private const string m_strAutoImporterTemplatePath = "Config/ConfigHandler_Auto.txt";
-        private const string m_strProjectFolderPath = "../../Project/ConfigHandler/Impl/";
+        private const string m_strProjectFolderPath = "../../Project/ConfigHandler/";
 
         private string m_strAutoImporterTemplate;
         private string m_strUserImporterTemplate;
@@ -44,23 +44,10 @@ namespace ExcelImproter.Project.GenCode
         {
             var parser = configName + "Parser" + ".cs";
             var data = configName + ".cs";
-
-            FileUtils.EnsureFolder(m_strProjectFolderPath + configName);
-
-            string subAutoFolder = m_strProjectFolderPath + configName + "/";
+            
+            string subAutoFolder = m_strProjectFolderPath;
 
             FileUtils.EnsureFolder(subAutoFolder);
-
-            if(File.Exists(subAutoFolder + parser))
-            {
-                File.Delete(subAutoFolder + parser);
-            }
-            if (File.Exists(subAutoFolder + data))
-            {
-                File.Delete(subAutoFolder + data);
-            }
-            File.Copy(SystemConst.Config.ParserConfigPath + "/" + parser, subAutoFolder + parser);
-            File.Copy(SystemConst.Config.ParserConfigPath + "/" + data, subAutoFolder + data);
 
             string autoImportPath = subAutoFolder + "ConfigHandler_" + configName + ".cs";
 
